@@ -8,6 +8,8 @@ import View.VentanaMenu;
 import View.VentanaPrincipal;
 import View.VentanaTutorial;
 
+import javax.swing.*;
+
 public class Controller implements ActionListener{
 	private MatrizDeJuego matriz;
 	private VentanaMenu ventanaMenu;
@@ -30,7 +32,15 @@ public class Controller implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
-		
+		if(comando.equals("SALIR")) {
+			JOptionPane.showMessageDialog(null, "Hasta pronto, gracias por jugar", "Salir", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}else if (comando.equals("JUGAR")) {
+			ventanaMenu.setVisible(false);
+			ventanaJuego.setVisible(true);
+		}
+
+
 	}
 
 }

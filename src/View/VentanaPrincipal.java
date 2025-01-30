@@ -13,9 +13,12 @@ public class VentanaPrincipal extends JFrame {
 		getContentPane().setLayout(new GridLayout());
 		
 		inicializarComponentes();
+
+		setVisible(false);
 	}
 	
 	public void inicializarComponentes() {
-		
+		matriz = new PanelImagenMatriz();
+		getContentPane().add(matriz);
 	}
 }

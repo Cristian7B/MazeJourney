@@ -1,6 +1,6 @@
 package View;
 
-import java.awt.GridLayout;
+import java.awt.*;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,10 +20,14 @@ public class PanelMenu extends JPanel {
 	public void inicializarComponentes() {
 		jugar = new JButton("JUGAR");
 		jugar.setActionCommand("JUGAR");
+		jugar.setBackground(Color.GREEN);
+
 		tutorial = new JButton("TUTORIAL");
 		tutorial.setActionCommand("TUTORIAL");
+
 		salir = new JButton("SALIR");
 		salir.setActionCommand("SALIR");
+		salir.setBackground(Color.red);
 		
 		add(jugar);
 		add(tutorial);
