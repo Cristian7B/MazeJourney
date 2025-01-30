@@ -1,4 +1,4 @@
-package Model;
+package co.edu.udistrital.Model;
 
 public class ControlDeMovimientos {
 
