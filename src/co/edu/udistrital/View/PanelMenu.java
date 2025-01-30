@@ -1,10 +1,8 @@
-package View;
+package co.edu.udistrital.View;
 
 import java.awt.*;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JPanel;
 
 public class PanelMenu extends JPanel {

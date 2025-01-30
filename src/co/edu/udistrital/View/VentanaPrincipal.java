@@ -1,4 +1,4 @@
-package View;
+package co.edu.udistrital.View;
 
 import java.awt.GridLayout;
 
