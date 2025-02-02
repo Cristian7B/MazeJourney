@@ -1,18 +1,23 @@
 package co.edu.udistrital.Model;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class MatrizDeJuego {
-    private static ArrayList<ArrayList<Integer>> matrizDeJuego;
+    private static ArrayList<ArrayList<JButton>> matrizDeJuego;
+    private static JButton boton;
 
     public static boolean GenerarMatriz(int filas, int columnas) {
         matrizDeJuego = new ArrayList<>();
         if(filas > 4 && columnas > 4) {
             try {
                 for (int i = 0; i < filas; i++) {
-                    ArrayList<Integer> fila = new ArrayList<>();
+                    ArrayList<JButton> fila = new ArrayList<>();
                     for (int j = 0; j < columnas; j++) {
-                        fila.add(0);
+                        boton = new JButton("Celda " + (i + 1) + ", " + (j + 1));
+                        boton.setBackground(new Color(0x5448C8));
+                        fila.add(boton);
                     }
                     matrizDeJuego.add(fila);
                 }
@@ -38,11 +43,11 @@ public class MatrizDeJuego {
         return matriz;
     }
 
-    public static ArrayList<ArrayList<Integer>> getMatrizDeJuego() {
+    public static ArrayList<ArrayList<JButton>> getMatrizDeJuego() {
         return matrizDeJuego;
     }
 
-    public static void setMatrizDeJuego(ArrayList<ArrayList<Integer>> matrizDeJuego) {
+    public static void setMatrizDeJuego(ArrayList<ArrayList<JButton>> matrizDeJuego) {
         MatrizDeJuego.matrizDeJuego = matrizDeJuego;
     }
 }

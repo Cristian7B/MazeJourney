@@ -1,37 +1,56 @@
 package co.edu.udistrital.View;
 
+import co.edu.udistrital.Model.MatrizDeJuego;
+
 import java.awt.*;
+import java.util.Random;
 
 import javax.swing.*;
 
 public class PanelImagenMatriz extends JPanel {
-	private int FILAS = 5;
-	private int COLUMNAS = 5;
-	private JButton[][] matriz;
-	public PanelImagenMatriz() {
-		setLayout(new GridLayout(FILAS, COLUMNAS)); // Diseño tipo matriz
+	private int filasMatriz;
+	private int columnasMatriz;
+
+	public PanelImagenMatriz(int filas, int columnas) {
+		filasMatriz = filas;
+		columnasMatriz = columnas;
+		setLayout(new GridLayout(filasMatriz, columnasMatriz)); // Diseño tipo matriz
 
 		inicializarComponentes();
-		colocarJugador(3,3);
+		colocarJugador();
+		setVisible(false);
 	}
 
-	private void colocarJugador(int fila, int columna) {
-		matriz[fila][columna].setBackground(Color.BLUE);
-		matriz[fila][columna].setText("🤖");
+	private void colocarJugador() {
+		Random rand = new Random();
+		int filaJugador = rand.nextInt(filasMatriz);
+		int columnaJugador = rand.nextInt(filasMatriz);
+		MatrizDeJuego.getMatrizDeJuego().get(filaJugador).get(columnaJugador).setBackground(new Color(0x1385f0));
+		MatrizDeJuego.getMatrizDeJuego().get(filaJugador).get(columnaJugador).setText("🤖");
 
 	}
 
 	public void inicializarComponentes() {
-		matriz = new JButton[FILAS][COLUMNAS];
-
-		// Crear la matriz de botones
-		for (int i = 0; i < FILAS; i++) {
-			for (int j = 0; j < COLUMNAS; j++) {
-				matriz[i][j] = new JButton("Celda "+(i+1)+", "+(j+1) );
-				matriz[i][j].setBackground(Color.green); // Fondo blanco
-				add(matriz[i][j]); // Agregar cada botón al panel
+		for (int i = 0; i < filasMatriz; i++) {
+			for (int j = 0; j < columnasMatriz; j++) {
+				add(MatrizDeJuego.getMatrizDeJuego().get(i).get(j));
 			}
-
 		}
+	}
+
+	public int getFilasMatriz() {
+		return filasMatriz;
+	}
+
+	public void setFilasMatriz(int filasMatriz) {
+		this.filasMatriz = filasMatriz;
+	}
+
+	public int getColumnasMatriz() {
+		return columnasMatriz;
+	}
+
+	public void setColumnasMatriz(int columnasMatriz) {
+		this.columnasMatriz = columnasMatriz;
 	}
 }

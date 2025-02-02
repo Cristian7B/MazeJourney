@@ -1,42 +1,59 @@
 package co.edu.udistrital.View;
 
-import java.awt.*;
-
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class VentanaMenu extends JFrame {
 	private PanelMenu menu;
 	private PanelImagenMenu imagenMenu;
 	private JLayeredPane layeredPane;
+
 	public VentanaMenu() {
 		setTitle("MazeJourney");
-		setPreferredSize(new Dimension(900, 600));
-		getContentPane().setLayout(new BorderLayout());
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.darkGray);
+		getContentPane().setLayout(null);
+
 		inicializarComponentes();
 
-		pack();
-		setResizable(false);
-		setLocationRelativeTo(null);
+		setResizable(true);
 		setVisible(true);
-
 	}
-	
-	public void inicializarComponentes() {
+
+	private void inicializarComponentes() {
 		layeredPane = new JLayeredPane();
-		getContentPane().add(layeredPane, BorderLayout.CENTER);
+		layeredPane.setBounds(0, 0, getWidth(), getHeight());
+		getContentPane().add(layeredPane);
 
 		imagenMenu = new PanelImagenMenu();
-		imagenMenu.setBounds(0, 0, 500, 600);
+		imagenMenu.setBounds(0, 0, getWidth(), getHeight());
 		imagenMenu.setOpaque(true);
 
 		menu = new PanelMenu();
-		menu.setBounds(500, 140, 400, 300);
+		menu.setBounds(getWidth() / 3, getHeight() / 3, 400, 300);
 		menu.setOpaque(false);
 
-		layeredPane.add(imagenMenu,0,0);
-		layeredPane.add(menu,1,0);
+		layeredPane.add(imagenMenu, Integer.valueOf(0));
+		layeredPane.add(menu, Integer.valueOf(1));
+
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				ajustarTamaño();
+			}
+		});
+	}
+
+	private void ajustarTamaño() {
+		int width = getWidth();
+		int height = getHeight();
+
+		layeredPane.setBounds(0, 0, width, height);
+		imagenMenu.setBounds(0, 0, width, height);
+		menu.setBounds(width / 3, height / 3, 400, 300);
 	}
 
 	public PanelMenu getMenu() {
@@ -46,5 +63,4 @@ public class VentanaMenu extends JFrame {
 	public void setMenu(PanelMenu menu) {
 		this.menu = menu;
 	}
-	
 }

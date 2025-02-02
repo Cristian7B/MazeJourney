@@ -11,15 +11,18 @@ import co.edu.udistrital.View.VentanaTutorial;
 import javax.swing.*;
 
 public class Controller implements ActionListener{
-    private MatrizDeJuego matriz;
     private VentanaMenu ventanaMenu;
     private VentanaPrincipal ventanaJuego;
-    private VentanaTutorial emergenteTutorial; //al querer mostrar el tutorial saldra una ventana emergente mostrando el tutorial
+    private VentanaTutorial emergenteTutorial;
+    private int[] informacionParaGenerarMatriz;
+
+
     public Controller() {
-        matriz = new MatrizDeJuego();
         ventanaMenu = new VentanaMenu();
         ventanaJuego = new VentanaPrincipal();
         emergenteTutorial = new VentanaTutorial();
+
+        informacionParaGenerarMatriz = new int[5];
 
         asignarOyentes();
     }
@@ -28,19 +31,139 @@ public class Controller implements ActionListener{
         ventanaMenu.getMenu().getJugar().addActionListener(this);
         ventanaMenu.getMenu().getTutorial().addActionListener(this);
         ventanaMenu.getMenu().getSalir().addActionListener(this);
+
+        ventanaJuego.getPanelDificultad().getCheckpoints2().addActionListener(this);
+        ventanaJuego.getPanelDificultad().getCheckpoints3().addActionListener(this);
+        ventanaJuego.getPanelDificultad().getCheckpoints4().addActionListener(this);
+        ventanaJuego.getPanelDificultad().getCheckpoints5().addActionListener(this);
+        ventanaJuego.getPanelDificultad().getEnviar().addActionListener(this);
+        ventanaJuego.getPanelDificultad().getVolver().addActionListener(this);
+
     }
 
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
-        if(comando.equals("SALIR")) {
-            JOptionPane.showMessageDialog(null, "Hasta pronto, gracias por jugar", "Salir", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
-        }else if (comando.equals("JUGAR")) {
-            ventanaMenu.setVisible(false);
-            ventanaJuego.setVisible(true);
+        switch (comando) {
+            case "JUGAR":
+                jugar();
+                break;
+            case "TUTORIAL":
+                tutorial();
+                break;
+            case "SALIR":
+                salir();
+                break;
+            case "CHECKPOINTS2":
+                checkpoints2();
+                break;
+            case "CHECKPOINTS3":
+                checkpoints3();
+                break;
+            case "CHECKPOINTS4":
+                checkpoints4();
+                break;
+            case "CHECKPOINTS5":
+                checkpoints5();
+                break;
+            case "ENVIAR":
+                enviar();
+                break;
+            case "VOLVER":
+                volver();
+                break;
         }
-
 
     }
 
+
+    public void jugar() {
+        ventanaMenu.setVisible(false);
+        ventanaJuego.setVisible(true);
+    }
+
+    public void tutorial() {
+        emergenteTutorial.setVisible(true);
+    }
+
+    public void salir() {
+        JOptionPane.showMessageDialog(null, "Gracias por jugar");
+        System.exit(0);
+    }
+
+    public void checkpoints2() {
+        informacionParaGenerarMatriz[3] = 2;
+    }
+
+    public void checkpoints3() {
+        informacionParaGenerarMatriz[3] = 3;
+    }
+
+    public void checkpoints4() {
+        informacionParaGenerarMatriz[3] = 4;
+    }
+
+    public void checkpoints5() {
+        informacionParaGenerarMatriz[3] = 5;
+    }
+
+    public void enviar() {
+        informacionParaGenerarMatriz[0] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizFilas().getText());
+        informacionParaGenerarMatriz[1] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizColumnas().getText());
+        informacionParaGenerarMatriz[2] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadMuros().getText());
+        informacionParaGenerarMatriz[4] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadBestias().getText());
+
+        if(MatrizDeJuego.GenerarMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1])) {
+            ventanaJuego.getPanelDificultad().setVisible(false);
+            ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1]);
+            ventanaJuego.getPanelImagenMatriz().setFilasMatriz(informacionParaGenerarMatriz[0]);
+            ventanaJuego.getPanelImagenMatriz().setColumnasMatriz(informacionParaGenerarMatriz[1]);
+            ventanaJuego.getPanelImagenMatriz().setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
+        }
+    }
+
+    public void volver() {
+        ventanaJuego.setVisible(false);
+        ventanaMenu.setVisible(true);
+    }
+
+
+
+
+
+
+
+    public VentanaMenu getVentanaMenu() {
+        return ventanaMenu;
+    }
+
+    public void setVentanaMenu(VentanaMenu ventanaMenu) {
+        this.ventanaMenu = ventanaMenu;
+    }
+
+    public VentanaPrincipal getVentanaJuego() {
+        return ventanaJuego;
+    }
+
+    public void setVentanaJuego(VentanaPrincipal ventanaJuego) {
+        this.ventanaJuego = ventanaJuego;
+    }
+
+    public VentanaTutorial getEmergenteTutorial() {
+        return emergenteTutorial;
+    }
+
+    public void setEmergenteTutorial(VentanaTutorial emergenteTutorial) {
+        this.emergenteTutorial = emergenteTutorial;
+    }
+
+    public int[] getInformacionParaGenerarMatriz() {
+        return informacionParaGenerarMatriz;
+    }
+
+    public void setInformacionParaGenerarMatriz(int[] informacionParaGenerarMatriz) {
+        this.informacionParaGenerarMatriz = informacionParaGenerarMatriz;
+    }
 }

@@ -12,28 +12,37 @@ import javax.swing.JTextField;
 public class PanelDificultad extends JPanel{
    
     
-    private JPanel configuracion;
-    private JPanel matriz;
     private JPanel bestias;
-    private JPanel muros;
-    private JPanel checkpoints;
     private JPanel botones;
+
+    private JPanel checkpoints;
+    private JPanel configuracion;
+
+    private JPanel matriz1;
+    private JPanel matriz2;
+    private JPanel muros;
+
     private JButton enviar;
     private JButton volver;
+
     private JButton checkpoints2;
     private JButton checkpoints3;
     private JButton checkpoints4;
     private JButton checkpoints5;
-    private JLabel lbldimensionMatriz;
+
+    private JLabel lbldimensionMatrizFilas;
+    private JLabel lbldimensionMatrizColumnas;
     private JLabel lblcantidadBestias;
     private JLabel lblcantidadMuros;
-    private JTextField txtdimensionMatriz;
+
+    private JTextField txtdimensionMatrizFilas;
+    private JTextField txtdimensionMatrizColumnas;
     private JTextField txtcantidadBestias;
     private JTextField txtcantidadMuros;
 
     public PanelDificultad(){
         setLayout(new BorderLayout());
-        setVisible(false);
+        setVisible(true);
 
         inicializarComponentes();
     }
@@ -57,19 +66,30 @@ public class PanelDificultad extends JPanel{
 
         configuracion = new JPanel();
         configuracion.setBorder(BorderFactory.createTitledBorder("Configuracion"));
-        configuracion.setLayout(new GridLayout(4,0));
+        configuracion.setLayout(new GridLayout(5,1));
 
-        matriz = new JPanel();
-        matriz.setLayout(new FlowLayout());
+        matriz1 = new JPanel();
+        matriz1.setLayout(new FlowLayout());
 
-        lbldimensionMatriz = new JLabel("Numero de filas y columnas");
-        matriz.add(lbldimensionMatriz);
+        lbldimensionMatrizFilas = new JLabel("Numero de filas: ");
+        matriz1.add(lbldimensionMatrizFilas);
 
-        txtdimensionMatriz = new JTextField();
-        matriz.add(txtdimensionMatriz);
+        txtdimensionMatrizFilas = new JTextField(12);
+        matriz1.add(txtdimensionMatrizFilas);
 
-        matriz.setVisible(true);
-        configuracion.add(matriz);
+        matriz2 = new JPanel();
+        matriz2.setLayout(new FlowLayout());
+
+        lbldimensionMatrizColumnas = new JLabel("Numero de columnas: ");
+        matriz2.add(lbldimensionMatrizColumnas);
+
+        txtdimensionMatrizColumnas = new JTextField(12);
+        matriz2.add(txtdimensionMatrizColumnas);
+
+        matriz1.setVisible(true);
+        matriz2.setVisible(true);
+        configuracion.add(matriz1);
+        configuracion.add(matriz2);
 
         bestias = new JPanel();
         bestias.setLayout(new FlowLayout());
@@ -77,7 +97,7 @@ public class PanelDificultad extends JPanel{
         lblcantidadBestias = new JLabel("La cantidad de Bestias en el laberinto");
         bestias.add(lblcantidadBestias);
 
-        txtcantidadBestias = new JTextField();
+        txtcantidadBestias = new JTextField(12);
         bestias.add(txtcantidadBestias);
 
         bestias.setVisible(true);
@@ -89,7 +109,7 @@ public class PanelDificultad extends JPanel{
         lblcantidadMuros = new JLabel("La candidad de muros en el laberinto");
         muros.add(lblcantidadMuros);
 
-        txtcantidadMuros = new JTextField();
+        txtcantidadMuros = new JTextField(12);
         muros.add(txtcantidadMuros);
 
         muros.setVisible(true);
@@ -130,12 +150,12 @@ public class PanelDificultad extends JPanel{
         this.configuracion = configuracion;
     }
 
-    public JPanel getMatriz() {
-        return matriz;
+    public JPanel getMatriz1() {
+        return matriz1;
     }
 
-    public void setMatriz(JPanel matriz) {
-        this.matriz = matriz;
+    public void setMatriz1(JPanel matriz1) {
+        this.matriz1 = matriz1;
     }
 
     public JPanel getBestias() {
@@ -218,12 +238,36 @@ public class PanelDificultad extends JPanel{
         this.checkpoints5 = checkpoints5;
     }
 
-    public JLabel getLbldimensionMatriz() {
-        return lbldimensionMatriz;
+    public JLabel getLbldimensionMatrizFilas() {
+        return lbldimensionMatrizFilas;
     }
 
-    public void setLbldimensionMatriz(JLabel lbldimensionMatriz) {
-        this.lbldimensionMatriz = lbldimensionMatriz;
+    public void setLbldimensionMatrizFilas(JLabel lbldimensionMatrizFilas) {
+        this.lbldimensionMatrizFilas = lbldimensionMatrizFilas;
+    }
+
+    public JLabel getLbldimensionMatrizColumnas() {
+        return lbldimensionMatrizColumnas;
+    }
+
+    public void setLbldimensionMatrizColumnas(JLabel lbldimensionMatrizColumnas) {
+        this.lbldimensionMatrizColumnas = lbldimensionMatrizColumnas;
+    }
+
+    public JTextField getTxtdimensionMatrizFilas() {
+        return txtdimensionMatrizFilas;
+    }
+
+    public void setTxtdimensionMatrizFilas(JTextField txtdimensionMatrizFilas) {
+        this.txtdimensionMatrizFilas = txtdimensionMatrizFilas;
+    }
+
+    public JTextField getTxtdimensionMatrizColumnas() {
+        return txtdimensionMatrizColumnas;
+    }
+
+    public void setTxtdimensionMatrizColumnas(JTextField txtdimensionMatrizColumnas) {
+        this.txtdimensionMatrizColumnas = txtdimensionMatrizColumnas;
     }
 
     public JLabel getLblcantidadBestias() {
@@ -242,13 +286,6 @@ public class PanelDificultad extends JPanel{
         this.lblcantidadMuros = lblcantidadMuros;
     }
 
-    public JTextField getTxtdimensionMatriz() {
-        return txtdimensionMatriz;
-    }
-
-    public void setTxtdimensionMatriz(JTextField txtdimensionMatriz) {
-        this.txtdimensionMatriz = txtdimensionMatriz;
-    }
 
     public JTextField getTxtcantidadBestias() {
         return txtcantidadBestias;
@@ -264,5 +301,13 @@ public class PanelDificultad extends JPanel{
 
     public void setTxtcantidadMuros(JTextField txtcantidadMuros) {
         this.txtcantidadMuros = txtcantidadMuros;
+    }
+
+    public JPanel getMatriz2() {
+        return matriz2;
+    }
+
+    public void setMatriz2(JPanel matriz2) {
+        this.matriz2 = matriz2;
     }
 }
