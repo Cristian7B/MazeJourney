@@ -14,12 +14,12 @@ public class VentanaMenu extends JFrame {
 		setTitle("MazeJourney");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		getContentPane().setBackground(Color.darkGray);
+		getContentPane().setBackground(new Color(0x202020));
 		getContentPane().setLayout(null);
 
 		inicializarComponentes();
 
-		setResizable(true);
+		setResizable(false);
 		setVisible(true);
 	}
 

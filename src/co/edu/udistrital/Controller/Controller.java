@@ -1,7 +1,9 @@
 package co.edu.udistrital.Controller;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import co.edu.udistrital.Model.MatrizDeJuego;
 import co.edu.udistrital.View.VentanaMenu;
@@ -13,14 +15,14 @@ import javax.swing.*;
 public class Controller implements ActionListener{
     private VentanaMenu ventanaMenu;
     private VentanaPrincipal ventanaJuego;
-    private VentanaTutorial emergenteTutorial;
+    private VentanaTutorial ventanaEmeregenteTutorial;
     private int[] informacionParaGenerarMatriz;
 
 
-    public Controller() {
+    public Controller() throws IOException, FontFormatException {
         ventanaMenu = new VentanaMenu();
         ventanaJuego = new VentanaPrincipal();
-        emergenteTutorial = new VentanaTutorial();
+        ventanaEmeregenteTutorial = new VentanaTutorial();
 
         informacionParaGenerarMatriz = new int[5];
 
@@ -82,7 +84,7 @@ public class Controller implements ActionListener{
     }
 
     public void tutorial() {
-        emergenteTutorial.setVisible(true);
+        ventanaEmeregenteTutorial.setVisible(true);
     }
 
     public void salir() {
@@ -152,11 +154,11 @@ public class Controller implements ActionListener{
     }
 
     public VentanaTutorial getEmergenteTutorial() {
-        return emergenteTutorial;
+        return ventanaEmeregenteTutorial;
     }
 
-    public void setEmergenteTutorial(VentanaTutorial emergenteTutorial) {
-        this.emergenteTutorial = emergenteTutorial;
+    public void setEmergenteTutorial(VentanaTutorial ventanaEmeregenteTutorial) {
+        this.ventanaEmeregenteTutorial = ventanaEmeregenteTutorial;
     }
 
     public int[] getInformacionParaGenerarMatriz() {
