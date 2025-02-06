@@ -71,7 +71,7 @@ public class PanelDificultad extends JPanel{
         matriz1 = new JPanel();
         matriz1.setLayout(new FlowLayout());
 
-        lbldimensionMatrizFilas = new JLabel("Numero de filas: ");
+        lbldimensionMatrizFilas = new JLabel("Numero de filas (5-20): ");
         matriz1.add(lbldimensionMatrizFilas);
 
         txtdimensionMatrizFilas = new JTextField(12);
@@ -80,7 +80,7 @@ public class PanelDificultad extends JPanel{
         matriz2 = new JPanel();
         matriz2.setLayout(new FlowLayout());
 
-        lbldimensionMatrizColumnas = new JLabel("Numero de columnas: ");
+        lbldimensionMatrizColumnas = new JLabel("Numero de columnas (5-20): ");
         matriz2.add(lbldimensionMatrizColumnas);
 
         txtdimensionMatrizColumnas = new JTextField(12);
@@ -94,7 +94,7 @@ public class PanelDificultad extends JPanel{
         bestias = new JPanel();
         bestias.setLayout(new FlowLayout());
 
-        lblcantidadBestias = new JLabel("La cantidad de Bestias en el laberinto");
+        lblcantidadBestias = new JLabel("La cantidad de Bestias en el laberinto ");
         bestias.add(lblcantidadBestias);
 
         txtcantidadBestias = new JTextField(12);
@@ -117,7 +117,7 @@ public class PanelDificultad extends JPanel{
 
         checkpoints = new JPanel();
         checkpoints.setLayout(new GridLayout());
-        checkpoints.setBorder(BorderFactory.createTitledBorder("Cantidad de checkponits"));
+        checkpoints.setBorder(BorderFactory.createTitledBorder("Cantidad de checkpoints (2-5)"));
 
         checkpoints2 = new JButton("2");
         checkpoints2.setActionCommand("CHECKPOINTS2");

@@ -3,28 +3,38 @@ package co.edu.udistrital.Model;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MatrizDeJuego {
     private static ArrayList<ArrayList<JButton>> matrizDeJuego;
     private static JButton boton;
 
-    public static boolean GenerarMatriz(int filas, int columnas) {
-        matrizDeJuego = new ArrayList<>();
-        if(filas > 4 && columnas > 4) {
-            try {
-                for (int i = 0; i < filas; i++) {
-                    ArrayList<JButton> fila = new ArrayList<>();
-                    for (int j = 0; j < columnas; j++) {
-                        boton = new JButton("Celda " + (i + 1) + ", " + (j + 1));
-                        boton.setBackground(new Color(0x5448C8));
-                        fila.add(boton);
+    public static boolean GenerarMatriz(int filas, int columnas, int puntos, int bestias, int muros) {
+        if(puntos!=0) {
+            matrizDeJuego = new ArrayList<>();
+            if (filas > 4 && columnas > 4 && filas < 21 && columnas < 21) {
+                try {
+                    for (int i = 0; i < filas; i++) {
+                        ArrayList<JButton> fila = new ArrayList<>();
+                        for (int j = 0; j < columnas; j++) {
+                            boton = new JButton("Celda " + (i + 1) + ", " + (j + 1));
+                            boton.setBackground(new Color(0x5448C8));
+                            fila.add(boton);
+                        }
+                        matrizDeJuego.add(fila);
                     }
-                    matrizDeJuego.add(fila);
+                } catch (NumberFormatException e) {
+                    return false;
                 }
-            } catch (NumberFormatException e) {
-                return false;
+                crearJugador(filas,columnas);
+                crearMonedas(filas,columnas,puntos);
+                crearBestias(filas,columnas,bestias);
+                crearMuros(filas,columnas,muros);
+                crearCarro(filas,columnas);
+                return true;
             }
-            return true;
+
+
         }
 
         return false;
@@ -43,6 +53,51 @@ public class MatrizDeJuego {
         return matriz;
     }
 
+    public static void crearJugador(int filas, int columnas){
+        Random rand = new Random();
+        int filaJugador = rand.nextInt(filas);
+        int columnaJugador = rand.nextInt(columnas);
+        MatrizDeJuego.getMatrizDeJuego().get(filaJugador).get(columnaJugador).setBackground(new Color(0x1385f0));
+        MatrizDeJuego.getMatrizDeJuego().get(filaJugador).get(columnaJugador).setText("🤖");
+    }
+    public static void crearMonedas(int filas, int columnas, int puntos){
+        for (int i = 0; i < puntos; i++) {
+            int ran1 = 0;
+            int ran2 = 0;
+            ran1 = (int)(Math.random() * (filas)) ;
+            ran2 = (int)(Math.random() * (columnas)) ;
+            matrizDeJuego.get(ran1).get(ran2).setBackground(new Color(254, 168, 47));
+        }
+    }
+    public static void crearBestias(int filas, int columnas, int bestias){
+        for (int i = 0; i < bestias; i++) {
+            int ran1 = 0;
+            int ran2 = 0;
+            ran1 = (int)(Math.random() * (filas)) ;
+            ran2 = (int)(Math.random() * (columnas)) ;
+            if (i%2==0){
+                matrizDeJuego.get(ran1).get(ran2).setBackground(new Color(254, 16, 47));
+            }else{
+                matrizDeJuego.get(ran1).get(ran2).setBackground(new Color(200, 110, 100));
+            }
+        }
+    }
+    public static void crearMuros(int filas, int columnas, int muros){
+        for (int i = 0; i < muros; i++) {
+            int ran1 = 0;
+            int ran2 = 0;
+            ran1 = (int)(Math.random() * (filas)) ;
+            ran2 = (int)(Math.random() * (columnas)) ;
+            matrizDeJuego.get(ran1).get(ran2).setBackground(new Color(105, 105, 105));
+        }
+    }
+    public static void crearCarro(int filas, int columnas){
+        Random rand = new Random();
+        int filaJugador = rand.nextInt(filas);
+        int columnaJugador = rand.nextInt(columnas);
+        MatrizDeJuego.getMatrizDeJuego().get(filaJugador).get(columnaJugador).setBackground(new Color(200,100,250));
+        MatrizDeJuego.getMatrizDeJuego().get(filaJugador).get(columnaJugador).setText("carrito");
+    }
     public static ArrayList<ArrayList<JButton>> getMatrizDeJuego() {
         return matrizDeJuego;
     }

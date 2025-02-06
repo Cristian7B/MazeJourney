@@ -109,21 +109,25 @@ public class Controller implements ActionListener{
     }
 
     public void enviar() {
-        informacionParaGenerarMatriz[0] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizFilas().getText());
-        informacionParaGenerarMatriz[1] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizColumnas().getText());
-        informacionParaGenerarMatriz[2] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadMuros().getText());
-        informacionParaGenerarMatriz[4] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadBestias().getText());
+        try {
+            informacionParaGenerarMatriz[0] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizFilas().getText());
+            informacionParaGenerarMatriz[1] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizColumnas().getText());
+            informacionParaGenerarMatriz[2] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadMuros().getText());
+            informacionParaGenerarMatriz[4] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadBestias().getText());
+            if(MatrizDeJuego.GenerarMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1], informacionParaGenerarMatriz[3],informacionParaGenerarMatriz[4],informacionParaGenerarMatriz[2])) {
+                ventanaJuego.getPanelDificultad().setVisible(false);
+                ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1]);
+                ventanaJuego.getPanelImagenMatriz().setFilasMatriz(informacionParaGenerarMatriz[0]);
+                ventanaJuego.getPanelImagenMatriz().setColumnasMatriz(informacionParaGenerarMatriz[1]);
+                ventanaJuego.getPanelImagenMatriz().setVisible(true);
 
-        if(MatrizDeJuego.GenerarMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1])) {
-            ventanaJuego.getPanelDificultad().setVisible(false);
-            ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1]);
-            ventanaJuego.getPanelImagenMatriz().setFilasMatriz(informacionParaGenerarMatriz[0]);
-            ventanaJuego.getPanelImagenMatriz().setColumnasMatriz(informacionParaGenerarMatriz[1]);
-            ventanaJuego.getPanelImagenMatriz().setVisible(true);
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
+            } else {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Todos los valores ingresados deben ser números");
         }
+
     }
 
     public void volver() {

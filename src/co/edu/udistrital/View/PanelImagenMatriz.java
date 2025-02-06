@@ -22,11 +22,7 @@ public class PanelImagenMatriz extends JPanel {
 	}
 
 	private void colocarJugador() {
-		Random rand = new Random();
-		int filaJugador = rand.nextInt(filasMatriz);
-		int columnaJugador = rand.nextInt(filasMatriz);
-		MatrizDeJuego.getMatrizDeJuego().get(filaJugador).get(columnaJugador).setBackground(new Color(0x1385f0));
-		MatrizDeJuego.getMatrizDeJuego().get(filaJugador).get(columnaJugador).setText("🤖");
+
 
 	}
 
