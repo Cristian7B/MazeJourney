@@ -1,25 +1,55 @@
 package co.edu.udistrital.View.PanelsMenu;
 
 import co.edu.udistrital.Fonts.CabinetFont;
-
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import javax.swing.*;
+/**
+ * Clase encargada de mostrar el titulo del programa
+ */
 
 public class PanelTitleMenu extends JPanel {
+    /**
+     * Atributo que almacena la primera linea del titulo del programa
+     */
     private JLabel titleGeneral;
+    /**
+     * Atributo que almacena la segunda linea del titulo del programa
+     */
     private JLabel labelTutorialNombre;
+    /**
+     * Atributo que almacena el nombre del programa
+     */
     private JLabel mazeJourney;
+    /** 
+     * Atributo que almacena un signo de exclamacion
+     */
     private JLabel exclamation;
+    /**
+     * Atributo que distribuye de manera apropiada el titulo del panel principal 
+     */
     private JPanel upperPanel;
+    /**
+     * Atributo que distribuye de manera apropiada el titulo del panel principal
+     */
     private JPanel lowerPanel;
+
+    /**
+     * Metodo constructor de la clase
+     * @throws IOException
+     * @throws FontFormatException
+     */
 
     public PanelTitleMenu() throws IOException, FontFormatException {
         setLayout(new BorderLayout(0, 0));
         setOpaque(false);
         inicializarComponentes();
     }
-
+    /**
+     * Metodo encargado de inicializar componentes del la clase
+     * @throws IOException
+     * @throws FontFormatException
+     */
     public void inicializarComponentes() throws IOException, FontFormatException {
         upperPanel = new JPanel();
         lowerPanel = new JPanel();

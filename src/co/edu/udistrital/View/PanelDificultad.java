@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Clase encargada de la gestion de dificultad al crear el laberinto
+ */
+
 public class PanelDificultad extends JPanel{
    
     
