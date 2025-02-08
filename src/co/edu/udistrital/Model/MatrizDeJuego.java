@@ -9,7 +9,7 @@ public class MatrizDeJuego {
     private static ArrayList<ArrayList<JButton>> matrizDeJuego;
     private static JButton boton;
 
-    public static boolean GenerarMatriz(int filas, int columnas, int puntos, int bestias, int muros) {
+    public static boolean GenerarMatriz(int filas, int columnas, int puntos, int bestias, int configPuntos) {
         if(puntos!=0) {
             matrizDeJuego = new ArrayList<>();
             if (filas > 4 && columnas > 4 && filas < 21 && columnas < 21) {
@@ -29,7 +29,6 @@ public class MatrizDeJuego {
                 crearJugador(filas,columnas);
                 crearMonedas(filas,columnas,puntos);
                 crearBestias(filas,columnas,bestias);
-                crearMuros(filas,columnas,muros);
                 crearCarro(filas,columnas);
                 return true;
             }
@@ -82,15 +81,7 @@ public class MatrizDeJuego {
             }
         }
     }
-    public static void crearMuros(int filas, int columnas, int muros){
-        for (int i = 0; i < muros; i++) {
-            int ran1 = 0;
-            int ran2 = 0;
-            ran1 = (int)(Math.random() * (filas)) ;
-            ran2 = (int)(Math.random() * (columnas)) ;
-            matrizDeJuego.get(ran1).get(ran2).setBackground(new Color(105, 105, 105));
-        }
-    }
+
     public static void crearCarro(int filas, int columnas){
         Random rand = new Random();
         int filaJugador = rand.nextInt(filas);

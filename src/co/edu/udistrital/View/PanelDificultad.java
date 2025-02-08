@@ -3,11 +3,7 @@ package co.edu.udistrital.View;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class PanelDificultad extends JPanel{
    
@@ -20,7 +16,7 @@ public class PanelDificultad extends JPanel{
 
     private JPanel matriz1;
     private JPanel matriz2;
-    private JPanel muros;
+    private JPanel configuracionPuntos;
 
     private JButton enviar;
     private JButton volver;
@@ -33,12 +29,13 @@ public class PanelDificultad extends JPanel{
     private JLabel lbldimensionMatrizFilas;
     private JLabel lbldimensionMatrizColumnas;
     private JLabel lblcantidadBestias;
-    private JLabel lblcantidadMuros;
+    private JLabel lblConfiguracionPuntos;
 
     private JTextField txtdimensionMatrizFilas;
     private JTextField txtdimensionMatrizColumnas;
     private JTextField txtcantidadBestias;
-    private JTextField txtcantidadMuros;
+    private JComboBox<String> comboConfiguracionPuntos;
+    private String[] opciones = {"orden", "orden inverso"};
 
     public PanelDificultad(){
         setLayout(new BorderLayout());
@@ -103,17 +100,18 @@ public class PanelDificultad extends JPanel{
         bestias.setVisible(true);
         configuracion.add(bestias);
 
-        muros = new JPanel();
-        muros.setLayout(new FlowLayout());
+        configuracionPuntos = new JPanel();
+        configuracionPuntos.setLayout(new FlowLayout());
 
-        lblcantidadMuros = new JLabel("La candidad de muros en el laberinto");
-        muros.add(lblcantidadMuros);
+        lblConfiguracionPuntos = new JLabel("Configuracion de recolección de puntos ");
+        configuracionPuntos.add(lblConfiguracionPuntos);
 
-        txtcantidadMuros = new JTextField(12);
-        muros.add(txtcantidadMuros);
 
-        muros.setVisible(true);
-        configuracion.add(muros);
+        comboConfiguracionPuntos = new JComboBox<>(opciones);
+        configuracionPuntos.add(comboConfiguracionPuntos);
+
+        configuracionPuntos.setVisible(true);
+        configuracion.add(configuracionPuntos);
 
         checkpoints = new JPanel();
         checkpoints.setLayout(new GridLayout());
@@ -166,13 +164,6 @@ public class PanelDificultad extends JPanel{
         this.bestias = bestias;
     }
 
-    public JPanel getMuros() {
-        return muros;
-    }
-
-    public void setMuros(JPanel muros) {
-        this.muros = muros;
-    }
 
     public JPanel getCheckpoints() {
         return checkpoints;
@@ -278,14 +269,6 @@ public class PanelDificultad extends JPanel{
         this.lblcantidadBestias = lblcantidadBestias;
     }
 
-    public JLabel getLblcantidadMuros() {
-        return lblcantidadMuros;
-    }
-
-    public void setLblcantidadMuros(JLabel lblcantidadMuros) {
-        this.lblcantidadMuros = lblcantidadMuros;
-    }
-
 
     public JTextField getTxtcantidadBestias() {
         return txtcantidadBestias;
@@ -295,14 +278,6 @@ public class PanelDificultad extends JPanel{
         this.txtcantidadBestias = txtcantidadBestias;
     }
 
-    public JTextField getTxtcantidadMuros() {
-        return txtcantidadMuros;
-    }
-
-    public void setTxtcantidadMuros(JTextField txtcantidadMuros) {
-        this.txtcantidadMuros = txtcantidadMuros;
-    }
-
     public JPanel getMatriz2() {
         return matriz2;
     }
@@ -310,4 +285,38 @@ public class PanelDificultad extends JPanel{
     public void setMatriz2(JPanel matriz2) {
         this.matriz2 = matriz2;
     }
+
+    public String[] getOpciones() {
+        return opciones;
+    }
+
+    public void setOpciones(String[] opciones) {
+        this.opciones = opciones;
+    }
+
+    public JPanel getConfiguracionPuntos() {
+        return configuracionPuntos;
+    }
+
+    public void setConfiguracionPuntos(JPanel configuracionPuntos) {
+        this.configuracionPuntos = configuracionPuntos;
+    }
+
+    public JLabel getLblConfiguracionPuntos() {
+        return lblConfiguracionPuntos;
+    }
+
+    public void setLblConfiguracionPuntos(JLabel lblConfiguracionPuntos) {
+        this.lblConfiguracionPuntos = lblConfiguracionPuntos;
+    }
+
+    public JComboBox<String> getComboConfiguracionPuntos() {
+        return comboConfiguracionPuntos;
+    }
+
+    public void setComboConfiguracionPuntos(JComboBox<String> comboConfiguracionPuntos) {
+        this.comboConfiguracionPuntos = comboConfiguracionPuntos;
+    }
+
 }
+
