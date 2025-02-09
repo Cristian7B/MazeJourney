@@ -1,6 +1,7 @@
 package co.edu.udistrital.View;
 
 import javax.swing.*;
+import java.util.List;
 
 public class celdaLaberinto extends JButton {
     private int fila, columna;
@@ -11,6 +12,11 @@ public class celdaLaberinto extends JButton {
         this.fila = fila;
         this.columna = columna;
         setFocusable(false);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<String> getWalls() {
+        return (List<String>) this.getClientProperty("walls");
     }
 
     public int getFila() {

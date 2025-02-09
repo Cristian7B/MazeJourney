@@ -26,11 +26,12 @@ public class generacionMatriz extends JPanel {
             for (int j = 0; j < columnas; j++) {
                 celdaLaberinto celda = new celdaLaberinto(i, j);
                 grid[i][j] = celda;
+                List<String> walls = celda.getWalls();
+                System.out.println("Celda (" + i + ", " + j + ") tiene paredes: " + walls);
                 mazePanel.add(celda);
             }
         }
         add(mazePanel);
-        setSize(1000, 1000);
         setVisible(true);
 
     }
