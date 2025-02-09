@@ -1,12 +1,15 @@
 package co.edu.udistrital.View;
 
+import co.edu.udistrital.View.Maze.MazeMatriz;
+
 import java.awt.*;
 
 import javax.swing.*;
 
 public class VentanaPrincipal extends JFrame {
 	private PanelDificultad panelDificultad;
-	private PanelImagenMatriz panelImagenMatriz;
+	private MazeMatriz laberinto;
+
 	public VentanaPrincipal() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setResizable(false);
@@ -24,7 +27,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void agregarPanelImagenMatriz(int filas, int columnas) {
-		generacionMatriz laberinto = new generacionMatriz(filas,columnas);
+		this.laberinto = new MazeMatriz(filas,columnas);
 		add(laberinto, BorderLayout.CENTER);
 	}
 
@@ -36,14 +39,11 @@ public class VentanaPrincipal extends JFrame {
 		this.panelDificultad = panelDificultad;
 	}
 
-	public PanelImagenMatriz getPanelImagenMatriz() {
-		return panelImagenMatriz;
+	public MazeMatriz getLaberinto() {
+		return laberinto;
 	}
 
-	public void setPanelImagenMatriz(PanelImagenMatriz panelImagenMatriz) {
-		this.panelImagenMatriz = panelImagenMatriz;
+	public void setLaberinto(MazeMatriz laberinto) {
+		this.laberinto = laberinto;
 	}
-
-
-
 }

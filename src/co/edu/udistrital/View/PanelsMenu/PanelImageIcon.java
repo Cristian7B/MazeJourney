@@ -10,7 +10,7 @@ public class PanelImageIcon extends JPanel {
     }
 
     public void paint(Graphics g) {
-        im = new ImageIcon(getClass().getResource("../../Imagenes/favicon.png"));
+        im = new ImageIcon(getClass().getResource("../../Resources/Imagenes/favicon.png"));
         g.drawImage(im.getImage(), 0 , 0, 50, 62, null);
         setOpaque(false);
         super.paint(g);

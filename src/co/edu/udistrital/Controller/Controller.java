@@ -8,7 +8,6 @@ import java.io.IOException;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
 import co.edu.udistrital.View.VentanaTutorial;
-import co.edu.udistrital.View.generacionMatriz;
 
 import javax.swing.*;
 
@@ -45,7 +44,8 @@ public class Controller implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
-        String comando = e.getActionCommand();
+        String[] comandoArray = e.getActionCommand().split(" ");
+        String comando = comandoArray[0];
         switch (comando) {
             case "JUGAR":
                 jugar();
@@ -70,6 +70,10 @@ public class Controller implements ActionListener{
                 break;
             case "ENVIAR":
                 enviar();
+                break;
+            case "BOTON":
+                System.out.println("Celda (" + comandoArray[1] + ", " + comandoArray[2] + ") ha sido presionada");
+                System.out.println(ventanaJuego.getLaberinto().getMazeModel().getGrid()[Integer.parseInt(comandoArray[1])][Integer.parseInt(comandoArray[2])].getWalls());
                 break;
             case "VOLVER":
                 volver();
@@ -123,7 +127,11 @@ public class Controller implements ActionListener{
             if(informacionParaGenerarMatriz[0]>4 && informacionParaGenerarMatriz[1]>4 && informacionParaGenerarMatriz[0]<21 && informacionParaGenerarMatriz[1]<21) {
                 ventanaJuego.getPanelDificultad().setVisible(false);
                 ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
-
+                for(int i = 0; i < ventanaJuego.getLaberinto().getMazeModel().getGrid().length; i++){
+                    for(int j = 0; j < ventanaJuego.getLaberinto().getMazeModel().getGrid()[0].length; j++){
+                        ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
+                    }
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
             }

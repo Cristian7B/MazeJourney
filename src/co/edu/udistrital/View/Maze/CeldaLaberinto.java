@@ -1,17 +1,18 @@
-package co.edu.udistrital.View;
+package co.edu.udistrital.View.Maze;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class celdaLaberinto extends JButton {
+public class CeldaLaberinto extends JButton {
     private int fila, columna;
     private boolean visita = false;
-    private boolean[] paredes = {true,true,true,true};
+    private boolean[] wallsButton = {true,true,true,true};
 
-    public celdaLaberinto(int fila, int columna) {
+    public CeldaLaberinto(int fila, int columna) {
         this.fila = fila;
         this.columna = columna;
+
         setFocusable(false);
         setFocusPainted(false);
         setBackground(new Color(0xFFFECB));
@@ -24,7 +25,6 @@ public class celdaLaberinto extends JButton {
 
     public void setWalls() {
        List<String> wallsButton = this.getWalls();
-       System.out.println(wallsButton + "Llamada función");
        int[] numbers = {0, 0, 0, 0};
        for (int i = 0; i < wallsButton.size(); i++) {
             if(wallsButton.get(i).equals("ARRIBA")) {
@@ -64,19 +64,19 @@ public class celdaLaberinto extends JButton {
         this.visita = visita;
     }
 
-    public boolean getParedes(int indice) {
-        return paredes[indice];
+    public boolean getWallsButton(int indice) {
+        return wallsButton[indice];
     }
 
-    public void setParedes(int indice, boolean valor) {
-        paredes[indice] = valor;
+    public void setWallsButton(int indice, boolean valor) {
+        wallsButton[indice] = valor;
     }
 
-    public boolean[] getParedes() {
-        return paredes;
+    public boolean[] getWallsButton() {
+        return wallsButton;
     }
 
-    public void setParedes(boolean[] paredes) {
-        this.paredes = paredes;
+    public void setWallsButton(boolean[] wallsButton) {
+        this.wallsButton = wallsButton;
     }
 }

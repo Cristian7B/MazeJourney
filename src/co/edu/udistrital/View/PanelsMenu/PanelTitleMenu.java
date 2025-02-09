@@ -1,6 +1,6 @@
 package co.edu.udistrital.View.PanelsMenu;
 
-import co.edu.udistrital.Fonts.CabinetFont;
+import co.edu.udistrital.Resources.Fonts.CabinetFont;
 
 import javax.swing.*;
 import java.awt.*;

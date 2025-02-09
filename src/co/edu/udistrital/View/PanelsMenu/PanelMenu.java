@@ -1,9 +1,6 @@
 package co.edu.udistrital.View.PanelsMenu;
 
-import co.edu.udistrital.Fonts.CabinetFont;
-import co.edu.udistrital.Fonts.CabinetFontExtraBold;
-import co.edu.udistrital.Fonts.SatoshiFont;
-import co.edu.udistrital.Fonts.SatoshiFontBold;
+import co.edu.udistrital.Resources.Fonts.SatoshiFontBold;
 
 import java.awt.*;
 import java.io.IOException;
