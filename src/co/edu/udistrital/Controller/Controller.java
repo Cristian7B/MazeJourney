@@ -121,6 +121,7 @@ public class Controller implements ActionListener{
             }
             informacionParaGenerarMatriz[4] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadBestias().getText());
             if(MatrizDeJuego.GenerarMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1], informacionParaGenerarMatriz[3],informacionParaGenerarMatriz[4], informacionParaGenerarMatriz[2])) {
+                MatrizDeJuego laberinto = new MatrizDeJuego(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
                 ventanaJuego.getPanelDificultad().setVisible(false);
                 ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1]);
                 ventanaJuego.getPanelImagenMatriz().setFilasMatriz(informacionParaGenerarMatriz[0]);

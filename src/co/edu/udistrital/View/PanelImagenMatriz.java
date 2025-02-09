@@ -3,14 +3,14 @@ package co.edu.udistrital.View;
 import co.edu.udistrital.Model.MatrizDeJuego;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.*;
 
 public class PanelImagenMatriz extends JPanel {
 	private int filasMatriz;
 	private int columnasMatriz;
-
+	private MatrizDeJuego matriz;
 	public PanelImagenMatriz(int filas, int columnas) {
 		filasMatriz = filas;
 		columnasMatriz = columnas;
@@ -27,9 +27,10 @@ public class PanelImagenMatriz extends JPanel {
 	}
 
 	public void inicializarComponentes() {
+		matriz = new MatrizDeJuego();
 		for (int i = 0; i < filasMatriz; i++) {
 			for (int j = 0; j < columnasMatriz; j++) {
-				add(MatrizDeJuego.getMatrizDeJuego().get(i).get(j));
+				add(matriz.getMatrizDeJuego().get(i).get(j));
 			}
 		}
 	}
