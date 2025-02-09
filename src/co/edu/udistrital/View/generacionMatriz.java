@@ -34,6 +34,8 @@ public class generacionMatriz extends JPanel {
         add(mazePanel);
         setVisible(true);
 
+        generarLaberinto();
+        updateCellClientProperties();
     }
 
     private void generarLaberinto() {
