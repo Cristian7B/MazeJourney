@@ -9,12 +9,17 @@ import javax.swing.JFrame;
 
 public class VentanaPrincipal extends JFrame {
 	/**
-	 * Atributo instancia de la clase PanelDificultad, encargado de la eleccion de dificultad
+	 * Atributo instancia de PanelDificultad
+	 * Encargado de la eleccion de dificultad.
 	 */
 	private PanelDificultad panelDificultad;
+	/**
+	 * Atributo instancia de PanelImagenMatriz.
+	 * Muestra la matriz de juego.
+	 */
 	private PanelImagenMatriz panelImagenMatriz;
 	/**
-	 * Metodo constructor de la clase
+	 * Metodo constructor de la clase.
 	 */
 	public VentanaPrincipal() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -28,7 +33,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Metodo encargado de inicializar los componentes de la ventana principal 
+	 * Metodo encargado de inicializar los componentes de la ventana principal.
 	 */
 	public void inicializarComponentes() {
 		panelDificultad = new PanelDificultad();
@@ -41,26 +46,33 @@ public class VentanaPrincipal extends JFrame {
 		add(panelImagenMatriz, BorderLayout.CENTER);
 	}
 	/**
-	 * Metodo encargado de acceder al atributo panelDificultad
-	 * @return atributo panelDificultad
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el PanelDifucultad panelDificultad.
+	 * @return
 	 */
 	public PanelDificultad getPanelDificultad() {
 		return panelDificultad;
 	}
 
 	/**
-	 * Metodo que cambia el valor del atributo panelDificultad
-	 * @param panelDificultad Valor al que cambia panelDificultad
+	 * Metodo que cambia el valor del atributo panelDifitultad.
+	 * @param panelDificultad	El valor deseado del atributo panelDifitultad.
 	 */
-
 	public void setPanelDificultad(PanelDificultad panelDificultad) {
 		this.panelDificultad = panelDificultad;
 	}
-
+	/**
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el PanelImagenMatriz panelImagenMatriz.
+	 * @return
+	 */
 	public PanelImagenMatriz getPanelImagenMatriz() {
 		return panelImagenMatriz;
 	}
-
+	/**
+	 * Metodo que cambia el valor del atributo panelImagenMatriz.
+	 * @param panelImagenMatriz	El valor deseado del atributo panelImagenMatriz.
+	 */
 	public void setPanelImagenMatriz(PanelImagenMatriz panelImagenMatriz) {
 		this.panelImagenMatriz = panelImagenMatriz;
 	}

@@ -6,7 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.*;
 
 /**
- * Clase encargada de la gestion de dificultad al crear el laberinto
+ * Clase encargada de la gestion de dificultad al crear el laberinto.
  */
 
 public class PanelDificultad extends JPanel{

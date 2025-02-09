@@ -4,16 +4,16 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * Clase encargada de gestionar los textos que aparecen en el tutorial
+ * Clase encargada de gestionar los textos que aparecen en el tutorial.
  */
 
 public class PanelTutorialTexto extends JPanel {
     /**
-     * Atributo que contiene el subtitulo en el tutorial
+     * Atributo que contiene el subtitulo en el tutorial.
      */
     private JLabel subtitulo;
     /**
-     * Atributo que contiene 
+     * Atributo que contiene ??? 
      */
     private JLabel bulleted;
     public PanelTutorialTexto() {

@@ -122,15 +122,16 @@ public class VentanaMenu extends JFrame {
 	}
 
 	/**
-	 * Metodo encargado de acceder a la variable menu
-	 * @return Regresa la variable menu
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el PanelMenu llamado menu.
+	 * @return
 	 */
 	public PanelMenu getMenu() {
 		return menu;
 	}
 	/**
-	 * Metodo encargado de cambiar el valor del atributo menu
-	 * @param menu El valor que cambia el atributo menu
+	 * Metodo que cambia el valor del atributo menu.
+	 * @param jugar	El valor deseado del atributo menu.
 	 */
 	public void setMenu(PanelMenu menu) {
 		this.menu = menu;

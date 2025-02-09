@@ -6,24 +6,28 @@ import java.io.IOException;
 import javax.swing.*;
 
 /**
- * Clase encargada de administrar los titulos que se pueden ver en el tutorial
+ * Clase encargada de administrar los titulos que se pueden ver en el tutorial.
  */
-
 public class PanelTutorialTitulo extends JPanel {
 	/**
-	 * Atributo encargado de mostrar el titulo del tutorial
+	 * Atributo encargado de mostrar el titulo del tutorial.
 	 */
 	private JLabel labelTutorial;
 	/**
-	 * Atributo encargado de mostrar el nombre del programa en el tutorial
+	 * Atributo encargado de mostrar el nombre del programa en el tutorial.
 	 */
 	private JLabel labelTutorialNombre;
 
 	/**
-	 * Metodo construtor de la clase 
-	 * @throws IOException
-	 * @throws FontFormatException
-	 */
+     * Metodo constructor de la clase.
+     * 
+     * Este metodo lanza un {@code IOException} si un archivo seleccionado
+     * como fuente de texto no se encuentra.
+     * Este metodo lanza un {@code FontFormatException} si el tipo de formato 
+     * de la fuente de texto no es el correcto.
+     * @throws IOException
+     * @throws FontFormatException
+     */
 	public PanelTutorialTitulo() throws IOException, FontFormatException {
 		setLayout(new FlowLayout());
 		setVisible(true);
@@ -31,10 +35,15 @@ public class PanelTutorialTitulo extends JPanel {
 		setBackground(new Color(0x202020));
 	}
 	/**
-	 * Metodo encargado de inicializar los componentes del panel 
-	 * @throws IOException
-	 * @throws FontFormatException
-	 */
+     * Metodo encargado de inicializar los componentes de la clase.
+     * 
+     * Este metodo lanza un {@code IOException} si un archivo seleccionado
+     * como fuente de texto no se encuentra.
+     * Este metodo lanza un {@code FontFormatException} si el tipo de formato 
+     * de la fuente de texto no es el correcto.
+     * @throws IOException
+     * @throws FontFormatException
+     */
 	public void inicializarComponentes() throws IOException, FontFormatException {
 		labelTutorial = new JLabel("Tutorial de juego | ");
 		labelTutorial.setFont(CabinetFont.getCabinetFont(50f));

@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class PanelImagenMenu extends JPanel{
     /**
-     * Variable encargada de almacenar el fondo de pantalla de la ventana principal
+     * atributo encargada de almacenar el fondo de pantalla de la ventana principal
      */
     private ImageIcon im;
 
@@ -20,9 +20,7 @@ public class PanelImagenMenu extends JPanel{
 
     }
 
-    /**
-     * Funcion encargada de imprimir la imagen 
-     */
+
     @Override
         public void paint(Graphics g) {
             Dimension tam = getSize();

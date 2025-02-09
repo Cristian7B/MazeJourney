@@ -4,17 +4,19 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * Clase encargada de gestionar el icono del programa
+ * Clase encargada de gestionar el icono del programa.
  */
 
 public class PanelImageIcon extends JPanel {
     /**
-     * Variable que contiene el icono del programa
+     * Atributo que contiene el icono del programa.
      */
     private ImageIcon im;
 
     /**
-     * Funcion constructora de la clase
+     * Metodo constructor de la clase.
+     * 
+     * Determina un tamaño preferido para el icono.
      */
     public PanelImageIcon() {
         setPreferredSize(new Dimension(62, 70));
@@ -22,9 +24,6 @@ public class PanelImageIcon extends JPanel {
 
 
     @Override
-        /**
-         * Funcion que imprime la imagen
-         */
         public void paint(Graphics g) {
             im = new ImageIcon(getClass().getResource("../../Imagenes/favicon.png"));
             g.drawImage(im.getImage(), 0 , 0, 50, 62, null);

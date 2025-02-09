@@ -7,39 +7,48 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * Clase encargada de administrar el panel principal de la ventana de inicio
+ * Clase encargada de administrar el panel principal de la ventana de inicio.
  */
 
 public class PanelMenu extends JPanel {
 	/**
-	 * Variable que almacena el boton encargado de iniciar el juego
+	 * Atributo que almacena el boton encargado de iniciar el juego.
 	 */
 	private JButton jugar; 
 	/*
-	 * Variable que almacena el boton encargado de iniciar el tutorial
+	 * Atributo que almacena el boton encargado de iniciar el tutorial.
 	 */
 	private JButton tutorial; 
 	/**
-	 * Variable que almacena el boto encargado de salir del programa
+	 * Atributo que almacena el boto encargado de salir del programa.
 	 */
 	private JButton salir;
-	/**
-	 * Metodo constructor de la clase
-	 * @throws IOException
-	 * @throws FontFormatException
-	 */
+	 /**
+     * Metodo constructor de la clase.
+     * 
+     * Este metodo lanza un {@code IOException} si un archivo seleccionado
+     * como fuente de texto no se encuentra.
+     * Este metodo lanza un {@code FontFormatException} si el tipo de formato 
+     * de la fuente de texto no es el correcto.
+     * @throws IOException
+     * @throws FontFormatException
+     */
 	public PanelMenu() throws IOException, FontFormatException {
 		setLayout(new GridLayout(3,1, 5, 5));
 
 		inicializarComponentes();
 	}
 
-	/**
-	 * Metodo que inicializa los componentes del panel 
-	 * @throws IOException
-	 * @throws FontFormatException
-	 */
-	
+ /**
+     * Metodo encargado de inicializar los componentes de la clase
+     * 
+     * Este metodo lanza un {@code IOException} si un archivo seleccionado
+     * como fuente de texto no se encuentra.
+     * Este metodo lanza un {@code FontFormatException} si el tipo de formato 
+     * de la fuente de texto no es el correcto.
+     * @throws IOException
+     * @throws FontFormatException
+     */
 	public void inicializarComponentes() throws IOException, FontFormatException {
 		jugar = quitarEstilos("Jugar", "JUGAR");
 		jugar.setBackground(new Color(84, 72, 200));
@@ -57,10 +66,11 @@ public class PanelMenu extends JPanel {
 		add(salir);
 	}
 	/**
-	 * Metodo que agrega el estilo deseado a los botones 
-	 * @param labelText Nombre del boton 
-	 * @param comandText Comando del boton 
-	 * @return Regresa el boton deseado 
+	 * Metodo que agrega el estilo deseado a los botones
+	 * este metodo regresa un boton con el estilo deseado.
+	 * @param labelText Nombre del boton.
+	 * @param comandText Comando del boton.
+	 * @return 
 	 * @throws IOException
 	 * @throws FontFormatException
 	 */
@@ -79,48 +89,49 @@ public class PanelMenu extends JPanel {
 	}
 
 	/**
-	 * Metodo encargado de regresar la variable jugar
-	 * @return La variable de tipo JButton jugar
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el boton de jugar.
+	 * @return
 	 */
 
 	public JButton getJugar() {
 		return jugar;
 	}
 	/**
-	 * Metodo que cambia el valor de la variable jugar
-	 * @param jugar	El valor deseado de la variable
+	 * Metodo que cambia el valor del atributo jugar
+	 * @param jugar	El valor deseado del atributo jugar
 	 */
 	public void setJugar(JButton jugar) {
 		this.jugar = jugar;
 	}
 
 	/**
-	 * Metodo encargado de regresar la variable tutorial
-	 * @return La variable de tipo JButton tutorial
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el boton de tutorial.
+	 * @return
 	 */
-	
 	public JButton getTutorial() {
 		return tutorial;
 	}
 	/**
-	 * Metodo que cambia el valor de la variable tutorial
-	 * @param tutorial El valor deseado de la variable
+	 * Metodo que cambia el valor del atributo tutorial
+	 * @param tutorial	El valor deseado del atributo tutorial
 	 */
 	public void setTutorial(JButton tutorial) {
 		this.tutorial = tutorial;
 	}
 
 	/**
-	 * Metodo encargado de regresar la variable salir
-	 * @return La variable de tipo JButton salir
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el boton de salir.
+	 * @return
 	 */
-
 	public JButton getSalir() {
 		return salir;
 	}
 	/**
-	 * Metodo que cambia el valor de la variable salir
-	 * @param salir	El valor deseado de la variable
+	 * Metodo que cambia el valor del atributo salir
+	 * @param salir	El valor deseado del atributo salir
 	 */
 	public void setSalir(JButton salir) {
 		this.salir = salir;
