@@ -17,6 +17,7 @@ public class Controller implements ActionListener{
     private VentanaPrincipal ventanaJuego;
     private VentanaTutorial ventanaEmeregenteTutorial;
     private int[] informacionParaGenerarMatriz;
+    private String configPuntos;
 
 
     public Controller() throws IOException, FontFormatException {
@@ -112,9 +113,14 @@ public class Controller implements ActionListener{
         try {
             informacionParaGenerarMatriz[0] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizFilas().getText());
             informacionParaGenerarMatriz[1] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizColumnas().getText());
-            informacionParaGenerarMatriz[2] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadMuros().getText());
+            configPuntos = ventanaJuego.getPanelDificultad().getComboConfiguracionPuntos().getSelectedItem().toString();
+            if (configPuntos.equals("orden")){
+                informacionParaGenerarMatriz[2]=1;
+            }else{
+                informacionParaGenerarMatriz[2]=2;
+            }
             informacionParaGenerarMatriz[4] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadBestias().getText());
-            if(MatrizDeJuego.GenerarMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1], informacionParaGenerarMatriz[3],informacionParaGenerarMatriz[4],informacionParaGenerarMatriz[2])) {
+            if(MatrizDeJuego.GenerarMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1], informacionParaGenerarMatriz[3],informacionParaGenerarMatriz[4], informacionParaGenerarMatriz[2])) {
                 ventanaJuego.getPanelDificultad().setVisible(false);
                 ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1]);
                 ventanaJuego.getPanelImagenMatriz().setFilasMatriz(informacionParaGenerarMatriz[0]);
