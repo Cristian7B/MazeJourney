@@ -26,16 +26,25 @@ public class generacionMatriz extends JPanel {
             for (int j = 0; j < columnas; j++) {
                 celdaLaberinto celda = new celdaLaberinto(i, j);
                 grid[i][j] = celda;
-                List<String> walls = celda.getWalls();
-                System.out.println("Celda (" + i + ", " + j + ") tiene paredes: " + walls);
                 mazePanel.add(celda);
             }
         }
-        add(mazePanel);
+        setLayout(new BorderLayout());
+        add(mazePanel, BorderLayout.CENTER);
         setVisible(true);
 
         generarLaberinto();
         updateCellClientProperties();
+        showAllWalls();
+    }
+
+    public void showAllWalls() {
+        for (int row = 0; row < filas; row++) {
+            for (int col = 0; col < columnas; col++) {
+                celdaLaberinto cell = grid[row][col];
+                System.out.println("Celda (" + row + ", " + col + ") tiene paredes: " + cell.getWalls());
+            }
+        }
     }
 
     private void generarLaberinto() {
@@ -127,6 +136,8 @@ public class generacionMatriz extends JPanel {
                     java.util.List<String> props = (List<String>)  ((JButton) e.getSource()).getClientProperty("walls");
                     System.out.println("Celda (" + cell.getFila() + ", " + cell.getColumna() + ") tiene paredes: " + props);
                 });
+
+                cell.setWalls();
 
                 // (Opcional) Para depuración se puede mostrar la lista en el botón:
                 // cell.setText(wallsList.toString());
