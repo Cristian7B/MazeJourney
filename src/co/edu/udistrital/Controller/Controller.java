@@ -5,10 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import co.edu.udistrital.Model.MatrizDeJuego;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
 import co.edu.udistrital.View.VentanaTutorial;
+import co.edu.udistrital.View.generacionMatriz;
 
 import javax.swing.*;
 
@@ -120,14 +120,10 @@ public class Controller implements ActionListener{
                 informacionParaGenerarMatriz[2]=2;
             }
             informacionParaGenerarMatriz[4] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadBestias().getText());
-            if(MatrizDeJuego.GenerarMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1], informacionParaGenerarMatriz[3],informacionParaGenerarMatriz[4], informacionParaGenerarMatriz[2])) {
-                MatrizDeJuego laberinto = new MatrizDeJuego(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+            if(informacionParaGenerarMatriz[0]>4 && informacionParaGenerarMatriz[1]>4 && informacionParaGenerarMatriz[0]<21 && informacionParaGenerarMatriz[1]<21) {
                 ventanaJuego.getPanelDificultad().setVisible(false);
-                ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1]);
-                ventanaJuego.getPanelImagenMatriz().setFilasMatriz(informacionParaGenerarMatriz[0]);
-                ventanaJuego.getPanelImagenMatriz().setColumnasMatriz(informacionParaGenerarMatriz[1]);
-                ventanaJuego.getPanelImagenMatriz().setVisible(true);
-
+                ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
             }

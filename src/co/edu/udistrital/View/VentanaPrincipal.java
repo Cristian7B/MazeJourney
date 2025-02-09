@@ -2,7 +2,7 @@ package co.edu.udistrital.View;
 
 import java.awt.*;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class VentanaPrincipal extends JFrame {
 	private PanelDificultad panelDificultad;
@@ -24,8 +24,8 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void agregarPanelImagenMatriz(int filas, int columnas) {
-		panelImagenMatriz = new PanelImagenMatriz(filas, columnas);
-		add(panelImagenMatriz, BorderLayout.CENTER);
+		generacionMatriz laberinto = new generacionMatriz(filas,columnas);
+		add(laberinto, BorderLayout.CENTER);
 	}
 
 	public PanelDificultad getPanelDificultad() {
@@ -43,5 +43,7 @@ public class VentanaPrincipal extends JFrame {
 	public void setPanelImagenMatriz(PanelImagenMatriz panelImagenMatriz) {
 		this.panelImagenMatriz = panelImagenMatriz;
 	}
+
+
 
 }
