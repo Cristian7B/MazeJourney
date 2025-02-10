@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
 
@@ -49,10 +48,22 @@ public class Controller implements ActionListener{
                 jugar();
                 break;
             case "TUTORIAL1":
-                tutorial();
+                tutorial1();
                 break;
-            case "ATRASTUTORIAL":
-                atrasTutorial();
+            case "TUTORIAL2":
+                try {
+                    tutorial2();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
+                break;
+            case "ATRASTUTORIAL1":
+                atrasTutorial1();
+                break;
+            case "ATRASTUTORIAL2":
+                atrasTutorial2();
                 break;
             case "SALIR":
                 salir();
@@ -89,14 +100,23 @@ public class Controller implements ActionListener{
         ventanaJuego.setVisible(true);
     }
 
-    public void tutorial()   {
+    public void tutorial1()   {
         ventanaMenu.mostrarTutorial();
-        ventanaMenu.getPanelTutorialTitulo().getAtras().addActionListener(this);
+        ventanaMenu.getPanelTutorialTitulo1().getAtras().addActionListener(this);
     }
 
+    public void tutorial2() throws IOException, FontFormatException {
+        int num = ventanaJuego.mostrarTutorial();
+        ventanaJuego.getPanelTutorialTitulo2().getAtras().addActionListener(this);
+    }
 
-    public void atrasTutorial(){
+    public void atrasTutorial1(){
         ventanaMenu.cerrarTutorial();
+    }
+
+    public void atrasTutorial2(){
+        ventanaJuego.cerrarTutorial();
+        ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
     }
     public void salir () {
         JOptionPane.showMessageDialog(null, "Gracias por jugar");
@@ -120,6 +140,7 @@ public class Controller implements ActionListener{
     }
 
     public void enviar() {
+
         try {
             informacionParaGenerarMatriz[0] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizFilas().getText());
             informacionParaGenerarMatriz[1] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizColumnas().getText());
@@ -138,6 +159,7 @@ public class Controller implements ActionListener{
                         ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
                     }
                 }
+            ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
             }

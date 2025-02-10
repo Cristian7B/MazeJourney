@@ -29,7 +29,7 @@ public class PanelTutorialTitulo extends JPanel {
 		labelTutorialNombre.setForeground(new Color(0x5448C8));
 		add(labelTutorialNombre);
 
-		atras = quitarEstilos("Atras", "ATRASTUTORIAL");
+		atras = quitarEstilos("Atras", "ATRASTUTORIAL1");
 		atras.setBackground(new Color(254, 168, 47));
 		atras.setVisible(true);
 		add(atras);

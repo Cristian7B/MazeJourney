@@ -18,7 +18,7 @@ public class VentanaMenu extends JFrame {
 	private JLayeredPane layeredPane;
 	private PanelTitleMenu panelTitleMenu;
 	private PanelIconNameMenu panelIconNameMenu;
-	private PanelTutorialTitulo panelTutorialTitulo;
+	private PanelTutorialTitulo panelTutorialTitulo1;
 
 	public VentanaMenu() throws IOException, FontFormatException {
 		setTitle("MazeJourney");
@@ -42,7 +42,7 @@ public class VentanaMenu extends JFrame {
 		imagenMenu.setBounds(0, 0, getWidth(), getHeight());
 		imagenMenu.setOpaque(true);
 
-		panelTutorialTitulo = new PanelTutorialTitulo();
+		panelTutorialTitulo1 = new PanelTutorialTitulo();
 
 		panelIconNameMenu = new PanelIconNameMenu();
 		panelIconNameMenu.setBounds(27, 15, 300, 200);
@@ -94,11 +94,10 @@ public class VentanaMenu extends JFrame {
 	}
 
 	public void mostrarTutorial()  {
-		panelTutorialTitulo.setBounds(0, 0, getWidth(), getHeight());
-		panelTutorialTitulo.setOpaque(false);
+		panelTutorialTitulo1.setBounds(0, 0, getWidth(), getHeight());
+		panelTutorialTitulo1.setOpaque(false);
 		layeredPane.removeAll();
-		layeredPane.add(panelTutorialTitulo, Integer.valueOf(0));
-
+		layeredPane.add(panelTutorialTitulo1, Integer.valueOf(0));
 	}
 
 	public void cerrarTutorial() {
@@ -153,11 +152,11 @@ public class VentanaMenu extends JFrame {
 		this.panelIconNameMenu = panelIconNameMenu;
 	}
 
-	public PanelTutorialTitulo getPanelTutorialTitulo() {
-		return panelTutorialTitulo;
+	public PanelTutorialTitulo getPanelTutorialTitulo1() {
+		return panelTutorialTitulo1;
 	}
 
-	public void setPanelTutorialTitulo(PanelTutorialTitulo panelTutorialTitulo) {
-		this.panelTutorialTitulo = panelTutorialTitulo;
+	public void setPanelTutorialTitulo1(PanelTutorialTitulo panelTutorialTitulo1) {
+		this.panelTutorialTitulo1 = panelTutorialTitulo1;
 	}
 }
