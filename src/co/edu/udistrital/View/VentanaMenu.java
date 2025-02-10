@@ -4,6 +4,7 @@ import co.edu.udistrital.View.PanelsMenu.PanelIconNameMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelImagenMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelTitleMenu;
+import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,7 @@ public class VentanaMenu extends JFrame {
 	private JLayeredPane layeredPane;
 	private PanelTitleMenu panelTitleMenu;
 	private PanelIconNameMenu panelIconNameMenu;
+	private PanelTutorialTitulo panelTutorialTitulo;
 
 	public VentanaMenu() throws IOException, FontFormatException {
 		setTitle("MazeJourney");
@@ -39,6 +41,8 @@ public class VentanaMenu extends JFrame {
 		imagenMenu = new PanelImagenMenu();
 		imagenMenu.setBounds(0, 0, getWidth(), getHeight());
 		imagenMenu.setOpaque(true);
+
+		panelTutorialTitulo = new PanelTutorialTitulo();
 
 		panelIconNameMenu = new PanelIconNameMenu();
 		panelIconNameMenu.setBounds(27, 15, 300, 200);
@@ -89,6 +93,23 @@ public class VentanaMenu extends JFrame {
 		panelTitleMenu.setBounds(titleX, titleY, titleWidth, titleHeight);
 	}
 
+	public void mostrarTutorial()  {
+		panelTutorialTitulo.setBounds(0, 0, getWidth(), getHeight());
+		panelTutorialTitulo.setOpaque(false);
+		layeredPane.removeAll();
+		layeredPane.add(panelTutorialTitulo, Integer.valueOf(0));
+
+	}
+
+	public void cerrarTutorial() {
+		layeredPane.removeAll();
+		layeredPane.add(imagenMenu, Integer.valueOf(0));
+		layeredPane.add(panelIconNameMenu, Integer.valueOf(1));
+		layeredPane.add(panelTitleMenu, Integer.valueOf(1));
+		layeredPane.add(menu, Integer.valueOf(1));
+
+	}
+
 
 	public PanelMenu getMenu() {
 		return menu;
@@ -96,5 +117,47 @@ public class VentanaMenu extends JFrame {
 
 	public void setMenu(PanelMenu menu) {
 		this.menu = menu;
+	}
+
+	public PanelImagenMenu getImagenMenu() {
+		return imagenMenu;
+	}
+
+	public void setImagenMenu(PanelImagenMenu imagenMenu) {
+		this.imagenMenu = imagenMenu;
+	}
+
+	@Override
+	public JLayeredPane getLayeredPane() {
+		return layeredPane;
+	}
+
+	@Override
+	public void setLayeredPane(JLayeredPane layeredPane) {
+		this.layeredPane = layeredPane;
+	}
+
+	public PanelTitleMenu getPanelTitleMenu() {
+		return panelTitleMenu;
+	}
+
+	public void setPanelTitleMenu(PanelTitleMenu panelTitleMenu) {
+		this.panelTitleMenu = panelTitleMenu;
+	}
+
+	public PanelIconNameMenu getPanelIconNameMenu() {
+		return panelIconNameMenu;
+	}
+
+	public void setPanelIconNameMenu(PanelIconNameMenu panelIconNameMenu) {
+		this.panelIconNameMenu = panelIconNameMenu;
+	}
+
+	public PanelTutorialTitulo getPanelTutorialTitulo() {
+		return panelTutorialTitulo;
+	}
+
+	public void setPanelTutorialTitulo(PanelTutorialTitulo panelTutorialTitulo) {
+		this.panelTutorialTitulo = panelTutorialTitulo;
 	}
 }

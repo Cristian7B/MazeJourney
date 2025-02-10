@@ -5,16 +5,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
-import co.edu.udistrital.View.VentanaTutorial;
 
 import javax.swing.*;
 
 public class Controller implements ActionListener{
     private VentanaMenu ventanaMenu;
     private VentanaPrincipal ventanaJuego;
-    private VentanaTutorial ventanaEmeregenteTutorial;
     private int[] informacionParaGenerarMatriz;
     private String configPuntos;
 
@@ -22,7 +21,6 @@ public class Controller implements ActionListener{
     public Controller() throws IOException, FontFormatException {
         ventanaMenu = new VentanaMenu();
         ventanaJuego = new VentanaPrincipal();
-        ventanaEmeregenteTutorial = new VentanaTutorial();
 
         informacionParaGenerarMatriz = new int[5];
 
@@ -50,8 +48,11 @@ public class Controller implements ActionListener{
             case "JUGAR":
                 jugar();
                 break;
-            case "TUTORIAL":
+            case "TUTORIAL1":
                 tutorial();
+                break;
+            case "ATRASTUTORIAL":
+                atrasTutorial();
                 break;
             case "SALIR":
                 salir();
@@ -88,11 +89,16 @@ public class Controller implements ActionListener{
         ventanaJuego.setVisible(true);
     }
 
-    public void tutorial() {
-        ventanaEmeregenteTutorial.setVisible(true);
+    public void tutorial()   {
+        ventanaMenu.mostrarTutorial();
+        ventanaMenu.getPanelTutorialTitulo().getAtras().addActionListener(this);
     }
 
-    public void salir() {
+
+    public void atrasTutorial(){
+        ventanaMenu.cerrarTutorial();
+    }
+    public void salir () {
         JOptionPane.showMessageDialog(null, "Gracias por jugar");
         System.exit(0);
     }
@@ -168,13 +174,7 @@ public class Controller implements ActionListener{
         this.ventanaJuego = ventanaJuego;
     }
 
-    public VentanaTutorial getEmergenteTutorial() {
-        return ventanaEmeregenteTutorial;
-    }
 
-    public void setEmergenteTutorial(VentanaTutorial ventanaEmeregenteTutorial) {
-        this.ventanaEmeregenteTutorial = ventanaEmeregenteTutorial;
-    }
 
     public int[] getInformacionParaGenerarMatriz() {
         return informacionParaGenerarMatriz;

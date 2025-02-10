@@ -12,6 +12,7 @@ public class PanelMenu extends JPanel {
 	private JButton jugar; // inicia accion jugar
 	private JButton tutorial; //abre tutorial
 	private JButton salir;
+	private JButton atras;
 	public PanelMenu() throws IOException, FontFormatException {
 		setLayout(new GridLayout(3,1, 5, 5));
 
@@ -22,7 +23,7 @@ public class PanelMenu extends JPanel {
 		jugar = quitarEstilos("Jugar", "JUGAR");
 		jugar.setBackground(new Color(84, 72, 200));
 
-		tutorial = quitarEstilos("Tutorial", "TUTORIAL");
+		tutorial = quitarEstilos("Tutorial", "TUTORIAL1");
 		tutorial.setBackground(new Color(254, 168, 47));
 
 		salir = quitarEstilos("Salir", "SALIR");
@@ -72,7 +73,12 @@ public class PanelMenu extends JPanel {
 	public void setSalir(JButton salir) {
 		this.salir = salir;
 	}
-	
-	
-	
+
+	public JButton getAtras() {
+		return atras;
+	}
+
+	public void setAtras(JButton atras) {
+		this.atras = atras;
+	}
 }
