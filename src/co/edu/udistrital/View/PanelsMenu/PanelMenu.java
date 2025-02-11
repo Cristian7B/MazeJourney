@@ -60,7 +60,6 @@ public class PanelMenu extends JPanel {
 		tutorial.setBackground(new Color(254, 168, 47));
 
 		salir = quitarEstilos("Salir", "SALIR");
-		salir.setActionCommand("SALIR");
 		salir.setBackground(new Color(255, 46, 0));
 
 

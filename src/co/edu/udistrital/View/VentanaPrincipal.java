@@ -38,7 +38,7 @@ public class VentanaPrincipal extends JFrame {
 	private int numMovimientosMax;
 	private int numMovimientos;
 	private PanelTutorialTitulo panelTutorialTitulo2;
-	public VentanaPrincipal() {
+	public VentanaPrincipal() throws IOException, FontFormatException {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,15 +52,17 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Metodo encargado de inicializar los componentes de la ventana principal.
 	 */
-	public void inicializarComponentes() {
+	public void inicializarComponentes() throws IOException, FontFormatException {
 		panelDificultad = new PanelDificultad();
 		add(panelDificultad, BorderLayout.CENTER);
 
 		menuBar = new JMenuBar();
-		menuBar.setBackground(Color.CYAN);
-		menuBar.setForeground(Color.WHITE);
+		menuBar.setBackground(new Color(0x202020));
+		menuBar.setForeground(new Color(0x202020));
 
 		menuOpciones = new JMenu("Opciones");
+		menuOpciones.setForeground(new Color(0xFFECB));
+		menuOpciones.setFont
 		reiniciar = new JMenuItem("Reiniciar");
 		reiniciar.setActionCommand("REINICIAR");
 		reiniciar.setBackground(Color.green);
@@ -80,7 +82,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 
-	public void agregarPanelImagenMatriz(int filas, int columnas) {
+	public void agregarPanelImagenMatriz(int filas, int columnas) throws IOException, FontFormatException {
 		this.laberinto = new MazeMatriz(filas,columnas);
 		add(laberinto, BorderLayout.CENTER);
 		numMovimientosMax = filas*columnas;
@@ -108,7 +110,7 @@ public class VentanaPrincipal extends JFrame {
 		panelTutorialTitulo2.getAtras().setActionCommand("ATRASTUTORIAL2");
 	}
 
-	public void cerrarTutorial() {
+	public void cerrarTutorial() throws IOException, FontFormatException {
 		panelTutorialTitulo2.setVisible(false);
 		laberinto.setVisible(true);
 		getContentPane().remove(panelInformacion);

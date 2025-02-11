@@ -1,8 +1,11 @@
 package co.edu.udistrital.View;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import co.edu.udistrital.Resources.Fonts.CabinetFont;
+import co.edu.udistrital.Resources.Fonts.CabinetFontExtraBold;
+import co.edu.udistrital.Resources.Fonts.SatoshiFontBold;
+
+import java.awt.*;
+import java.io.IOException;
 import javax.swing.*;
 
 /**
@@ -10,7 +13,7 @@ import javax.swing.*;
  */
 
 public class PanelDificultad extends JPanel{
-   
+    private JLabel titleGeneral;
     
     private JPanel bestias;
     private JPanel botones;
@@ -21,6 +24,9 @@ public class PanelDificultad extends JPanel{
     private JPanel matriz1;
     private JPanel matriz2;
     private JPanel configuracionPuntos;
+
+    private JPanel panelDificultadPredeterminada;
+    private JPanel configuracionGeneral;
 
     private JButton enviar;
     private JButton volver;
@@ -43,121 +49,169 @@ public class PanelDificultad extends JPanel{
     private JTextField txtdimensionMatrizColumnas;
     private JTextField txtcantidadBestias;
     private JComboBox<String> comboConfiguracionPuntos;
-    private String[] opciones = {"orden", "orden inverso"};
+    private String[] opciones = {"Orden", "Orden Inverso"};
 
-    public PanelDificultad(){
+    public PanelDificultad() throws IOException, FontFormatException {
         setLayout(new BorderLayout());
+        setBorder(BorderFactory.createEmptyBorder(80, 0, 80, 0));
         setVisible(true);
+
+        setBackground(new Color(0x202020));
 
         inicializarComponentes();
     }
 
-    public void inicializarComponentes(){
+    public void inicializarComponentes() throws IOException, FontFormatException {
+        setLayout(new BorderLayout());
 
-        botones = new JPanel();
-        botones.setLayout(new FlowLayout());
-        
-        enviar = new JButton("Enviar");
-        enviar.setActionCommand("ENVIAR");
-        botones.add(enviar);
+        JPanel panelTitulo = new JPanel(new BorderLayout());
+        panelTitulo.setOpaque(false);
 
-        volver = new JButton("Volver");
-        volver.setActionCommand("VOLVER");
-        botones.add(volver);
+        titleGeneral = new JLabel("¡Configura tu experiencia!", SwingConstants.CENTER);
+        titleGeneral.setFont(CabinetFont.getCabinetFont(60f));
+        titleGeneral.setForeground(new Color(0xFFFECB));
+        panelTitulo.add(titleGeneral, BorderLayout.NORTH);
 
-        botones.setVisible(true);
-        add(botones,BorderLayout.SOUTH);    
-        
+        JPanel panelDificultad = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        panelDificultad.setOpaque(false);
+        facil = quitarEstilos("Fácil", "FACIL");
+        facil.setBackground(new Color(84, 72, 200));
+        medio = quitarEstilos("Medio", "MEDIO");
+        medio.setBackground(new Color(254, 168, 47));
+        dificil = quitarEstilos("Díficil", "DIFICIL");
+        dificil.setBackground(new Color(255, 46, 0));
+        panelDificultad.add(facil);
+        panelDificultad.add(medio);
+        panelDificultad.add(dificil);
 
-        configuracion = new JPanel();
-        configuracion.setBorder(BorderFactory.createTitledBorder("Configuracion"));
-        configuracion.setLayout(new GridLayout(5,1));
+        panelTitulo.add(panelDificultad, BorderLayout.SOUTH);
+        add(panelTitulo, BorderLayout.NORTH);
 
-        matriz1 = new JPanel();
-        matriz1.setLayout(new FlowLayout());
+        JPanel panelCentral = new JPanel(new GridBagLayout());
+        panelCentral.setBackground(new Color(0x202020));
 
-        lbldimensionMatrizFilas = new JLabel("Numero de filas (5-20): ");
-        matriz1.add(lbldimensionMatrizFilas);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = GridBagConstraints.RELATIVE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(10, 0, 10, 0);
+
+        matriz1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        matriz1.setBackground(new Color(0x202020));
+        lbldimensionMatrizFilas = new JLabel("Número de filas (5-20): ");
+        lbldimensionMatrizFilas.setFont(CabinetFontExtraBold.getCabinetFontExtraBold(18f));
+        lbldimensionMatrizFilas.setForeground(new Color(0xFFFECB));
 
         txtdimensionMatrizFilas = new JTextField(12);
+        txtdimensionMatrizFilas.setBorder(BorderFactory.createEmptyBorder());
+        txtdimensionMatrizFilas.setFont(SatoshiFontBold.getSatoshiFontBold(18f));
+        txtdimensionMatrizFilas.setForeground(new Color(0x202020));
+        txtdimensionMatrizFilas.setBackground(new Color(0xFFFECB));
+
+        matriz1.add(lbldimensionMatrizFilas);
         matriz1.add(txtdimensionMatrizFilas);
+        panelCentral.add(matriz1, gbc);
 
-        matriz2 = new JPanel();
-        matriz2.setLayout(new FlowLayout());
-
-        lbldimensionMatrizColumnas = new JLabel("Numero de columnas (5-20): ");
-        matriz2.add(lbldimensionMatrizColumnas);
+        matriz2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        matriz2.setBackground(new Color(0x202020));
+        lbldimensionMatrizColumnas = new JLabel("Número de columnas (5-20): ");
+        lbldimensionMatrizColumnas.setFont(CabinetFontExtraBold.getCabinetFontExtraBold(18f));
+        lbldimensionMatrizColumnas.setForeground(new Color(0xFFFECB));
 
         txtdimensionMatrizColumnas = new JTextField(12);
+        txtdimensionMatrizColumnas.setBorder(BorderFactory.createEmptyBorder());
+        txtdimensionMatrizColumnas.setFont(SatoshiFontBold.getSatoshiFontBold(18f));
+        txtdimensionMatrizColumnas.setForeground(new Color(0x202020));
+        txtdimensionMatrizColumnas.setBackground(new Color(0xFFFECB));
+
+        matriz2.add(lbldimensionMatrizColumnas);
         matriz2.add(txtdimensionMatrizColumnas);
+        panelCentral.add(matriz2, gbc);
 
-        facil = new JButton("Facil");
-        facil.setActionCommand("FACIL");
-        matriz1.add(facil);
-
-        medio = new JButton("Medio");
-        medio.setActionCommand("MEDIO");
-        matriz1.add(medio);
-
-        dificil = new JButton("Dificil");
-        dificil.setActionCommand("DIFICIL");
-        matriz1.add(dificil);
-
-        matriz1.setVisible(true);
-        matriz2.setVisible(true);
-        configuracion.add(matriz1);
-        configuracion.add(matriz2);
-
-        bestias = new JPanel();
-        bestias.setLayout(new FlowLayout());
-
-        lblcantidadBestias = new JLabel("La cantidad de Bestias en el laberinto ");
-        bestias.add(lblcantidadBestias);
+        bestias = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        bestias.setBackground(new Color(0x202020));
+        lblcantidadBestias = new JLabel("Cantidad de Bestias en el laberinto: ");
+        lblcantidadBestias.setFont(CabinetFontExtraBold.getCabinetFontExtraBold(18f));
+        lblcantidadBestias.setForeground(new Color(0xFFFECB));
 
         txtcantidadBestias = new JTextField(12);
-        bestias.add(txtcantidadBestias);
+        txtcantidadBestias.setBorder(BorderFactory.createEmptyBorder());
+        txtcantidadBestias.setFont(SatoshiFontBold.getSatoshiFontBold(18f));
+        txtcantidadBestias.setForeground(new Color(0x202020));
+        txtcantidadBestias.setBackground(new Color(0xFFFECB));
 
-        bestias.setVisible(true);
-        configuracion.add(bestias);
+        bestias.add(lblcantidadBestias);
+        bestias.add(txtcantidadBestias);
+        panelCentral.add(bestias, gbc);
 
         configuracionPuntos = new JPanel();
         configuracionPuntos.setLayout(new FlowLayout());
+        configuracionPuntos.setBackground(new Color(0x202020));
 
         lblConfiguracionPuntos = new JLabel("Configuracion de recolección de puntos ");
+        lblConfiguracionPuntos.setFont(CabinetFontExtraBold.getCabinetFontExtraBold(18f));
+        lblConfiguracionPuntos.setForeground(new Color(0xFFFECB));
         configuracionPuntos.add(lblConfiguracionPuntos);
 
-
         comboConfiguracionPuntos = new JComboBox<>(opciones);
+        comboConfiguracionPuntos.setFont(SatoshiFontBold.getSatoshiFontBold(18f));
+        comboConfiguracionPuntos.setForeground(new Color(0x202020));
+        comboConfiguracionPuntos.setBackground(new Color(0xFFFECB));
         configuracionPuntos.add(comboConfiguracionPuntos);
 
-        configuracionPuntos.setVisible(true);
-        configuracion.add(configuracionPuntos);
+        panelCentral.add(configuracionPuntos, gbc);
 
-        checkpoints = new JPanel();
-        checkpoints.setLayout(new GridLayout());
-        checkpoints.setBorder(BorderFactory.createTitledBorder("Cantidad de checkpoints (2-5)"));
+        checkpoints = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        checkpoints.setBackground(new Color(0x202020));
 
-        checkpoints2 = new JButton("2");
-        checkpoints2.setActionCommand("CHECKPOINTS2");
+        checkpoints2 = quitarEstilos("Checkpoints 2", "CHECKPOINTS2");
+        checkpoints2.setBackground(new Color(0xCCAD8F));
         checkpoints.add(checkpoints2);
 
-        checkpoints3 = new JButton("3");
-        checkpoints3.setActionCommand("CHECKPOINTS3");
+        checkpoints3 = quitarEstilos("Checkpoints 3", "CHECKPOINTS3");
+        checkpoints3.setBackground(new Color(0xCCAD8F));
         checkpoints.add(checkpoints3);
 
-        checkpoints4 = new JButton("4");
-        checkpoints4.setActionCommand("CHECKPOINTS4");
+        checkpoints4 = quitarEstilos("Checkpoints 4", "CHECKPOINTS4");
+        checkpoints4.setBackground(new Color(0xCCAD8F));
         checkpoints.add(checkpoints4);
 
-        checkpoints5 = new JButton("5");
-        checkpoints5.setActionCommand("CHECKPOINTS5");
+        checkpoints5 = quitarEstilos("Checkpoints 5", "CHECKPOINTS5");
+        checkpoints5.setBackground(new Color(0xCCAD8F));
         checkpoints.add(checkpoints5);
 
         checkpoints.setVisible(true);
-        configuracion.add(checkpoints);
+        panelCentral.add(checkpoints, gbc);
 
-        configuracion.setVisible(true);
-        add(configuracion,BorderLayout.CENTER);
+        add(panelCentral, BorderLayout.CENTER);
+
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        panelBotones.setBackground(new Color(0x202020));
+
+        enviar = quitarEstilos("Enviar", "ENVIAR");
+        enviar.setBackground(new Color(0x7FC6A4));
+        panelBotones.add(enviar);
+
+        volver = quitarEstilos("Volver", "VOLVER");
+        volver.setBackground(new Color(0xB3001B));
+        panelBotones.add(volver);
+
+        add(panelBotones, BorderLayout.SOUTH);
+    }
+
+
+    public JButton quitarEstilos(String labelText, String comandText) throws IOException, FontFormatException {
+        JButton button = new JButton(labelText);
+        button.setActionCommand(comandText);
+
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+
+        button.setFont(SatoshiFontBold.getSatoshiFontBold(18f));
+        button.setForeground(new Color(0xFFFECB));
+
+
+        return button;
     }
 
     public JPanel getConfiguracion() {

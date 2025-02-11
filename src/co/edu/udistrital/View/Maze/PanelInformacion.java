@@ -1,37 +1,39 @@
 package co.edu.udistrital.View.Maze;
 
+import co.edu.udistrital.Resources.Fonts.SatoshiFontBold;
 import co.edu.udistrital.View.PanelDificultad;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class PanelInformacion extends JPanel {
     private JLabel movimientos;
     private JButton tutorial;
     private JLabel aviso;
     private JProgressBar barraVida;
-    public PanelInformacion(int numero){
+    public PanelInformacion(int numero) throws IOException, FontFormatException {
         setSize(getWidth(),500);
-        setLayout(new GridLayout(1,3,5,5));
+        setLayout(new GridLayout(1,2,5,5));
+        setBackground(new Color(0x202020));
 
         inicializarComponentes(numero);
     }
 
-    public void inicializarComponentes(int numero){
+    public void inicializarComponentes(int numero) throws IOException, FontFormatException {
         String nMov = String.valueOf(numero);
 
         barraVida = new JProgressBar(0,numero);
         barraVida.setValue(numero);
-        barraVida.setForeground(Color.GREEN);
+        barraVida.setForeground(new Color(84, 72, 200));
+        barraVida.setFont(SatoshiFontBold.getSatoshiFontBold(20f));
         barraVida.setStringPainted(true);
         barraVida.setString("Movimientos restantes: "+nMov);
         add(barraVida);
 
-        aviso = new JLabel("Cada vez que abras el tutorial tendras una penalización de 5 movimientos");
-        add(aviso);
+        tutorial = quitarEstilos("Tutorial", "TUTORIAL2");
+        tutorial.setBackground(new Color(254, 168, 47));
 
-        tutorial = new JButton("Tutorial");
-        tutorial.setActionCommand("TUTORIAL2");
         add(tutorial);
 
     }
@@ -41,6 +43,20 @@ public class PanelInformacion extends JPanel {
         barraVida.setValue(numero);
         barraVida.setString("Movimientos restantes: "+numero);
         return numero;
+    }
+
+    public JButton quitarEstilos(String labelText, String comandText) throws IOException, FontFormatException {
+        JButton button = new JButton(labelText);
+        button.setActionCommand(comandText);
+
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+
+        button.setFont(SatoshiFontBold.getSatoshiFontBold(18f));
+        button.setForeground(new Color(0xFFFECB));
+
+
+        return button;
     }
 
     public int modificarMovimientosPenalizacion(int penalizacion) {
