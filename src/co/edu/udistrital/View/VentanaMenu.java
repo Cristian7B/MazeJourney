@@ -4,12 +4,10 @@ import co.edu.udistrital.View.PanelsMenu.PanelIconNameMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelImagenMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelTitleMenu;
-<<<<<<< HEAD
-=======
 import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
 
 import javax.swing.*;
->>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
+
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -130,13 +128,11 @@ public class VentanaMenu extends JFrame {
 		panelTitleMenu.setBounds(titleX, titleY, titleWidth, titleHeight);
 	}
 
-<<<<<<< HEAD
 	/**
 	 * Metodo encargado acceder a un atributo.
 	 * regresa el PanelMenu llamado menu.
 	 * @return
 	 */
-=======
 	public void mostrarTutorial()  {
 		panelTutorialTitulo1.setBounds(0, 0, getWidth(), getHeight());
 		panelTutorialTitulo1.setOpaque(false);
@@ -154,14 +150,10 @@ public class VentanaMenu extends JFrame {
 	}
 
 
->>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 	public PanelMenu getMenu() {
 		return menu;
 	}
-	/**
-	 * Metodo que cambia el valor del atributo menu.
-	 * @param jugar	El valor deseado del atributo menu.
-	 */
+
 	public void setMenu(PanelMenu menu) {
 		this.menu = menu;
 	}

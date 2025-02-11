@@ -1,24 +1,13 @@
 package co.edu.udistrital.Controller;
 
-<<<<<<< HEAD
-import co.edu.udistrital.Model.MatrizDeJuego;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
-import co.edu.udistrital.View.VentanaTutorial;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-=======
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import co.edu.udistrital.View.VentanaMenu;
-import co.edu.udistrital.View.VentanaPrincipal;
-
->>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 import javax.swing.*;
 
 /** 
@@ -41,13 +30,7 @@ public class Controller implements ActionListener{
      * el panel de eleccion de dificultad.
      */
     private VentanaPrincipal ventanaJuego;
-<<<<<<< HEAD
-    /**
-     * Atributo que instancia VentanaTutorial.
-     * 
-     * Se encarga de mostrar la ventana relacionada al tutorial.
-     */
-    private VentanaTutorial ventanaEmeregenteTutorial;
+
     /**
      * Atributo que determina las caracteristias del laberinto.
      * 
@@ -59,8 +42,6 @@ public class Controller implements ActionListener{
      * {@code informacionParaGenerarMatriz[3]} para la cantidad de puntos de control.
      * {@code informacionParaGenerarMatriz[4]} para la cantidad de bestias en el laberinto.
      */
-=======
->>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
     private int[] informacionParaGenerarMatriz;
     /**
      * Atributo encargado de determinar el orden en el que se 
@@ -169,33 +150,33 @@ public class Controller implements ActionListener{
         ventanaJuego.getSalir().addActionListener(this);
         ventanaJuego.getReiniciar().setVisible(false);
     }
-<<<<<<< HEAD
-    /**
-     * Metodo encargado me mostrar el tutorial
-     */
-    public void tutorial() {
-        ventanaEmeregenteTutorial.setVisible(true);
-    }
-    /**
-     * Metodo encargado de salir en caso de seleccionar un 
-     */
-    public void salir() {
-=======
 
+
+    /**
+     * Metodo encargado de mostrar el tutorial en el menu
+     */
     public void tutorial1()   {
         ventanaMenu.mostrarTutorial();
         ventanaMenu.getPanelTutorialTitulo1().getAtras().addActionListener(this);
     }
 
+    /**
+     * Metodo encargado de mostrar el tutorial en el juego
+     */
     public void tutorial2() throws IOException, FontFormatException {
         ventanaJuego.mostrarTutorial();
         ventanaJuego.getPanelTutorialTitulo2().getAtras().addActionListener(this);
     }
-
+    /**
+     * Metodo encargado de salir del tutorial en el menu
+     */
     public void atrasTutorial1(){
         ventanaMenu.cerrarTutorial();
     }
 
+    /**
+     * Metodo encargado de salir del tutorial en el juego
+     */
     public void atrasTutorial2(){
         ventanaJuego.cerrarTutorial();
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
@@ -206,7 +187,6 @@ public class Controller implements ActionListener{
     }
 
     public void salir () {
->>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
         JOptionPane.showMessageDialog(null, "Gracias por jugar");
         System.exit(0);
     }

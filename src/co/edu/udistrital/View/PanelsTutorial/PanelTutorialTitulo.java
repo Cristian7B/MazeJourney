@@ -1,13 +1,10 @@
 package co.edu.udistrital.View.PanelsTutorial;
 
-<<<<<<< HEAD
-import co.edu.udistrital.Fonts.CabinetFont;
-=======
+import co.edu.udistrital.Resources.Fonts.CabinetFont;
 import co.edu.udistrital.Resources.Fonts.CabinetFont;
 import co.edu.udistrital.Resources.Fonts.SatoshiFontBold;
 
 import javax.swing.*;
->>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 import java.awt.*;
 import java.io.IOException;
 import javax.swing.*;
@@ -24,7 +21,6 @@ public class PanelTutorialTitulo extends JPanel {
 	 * Atributo encargado de mostrar el nombre del programa en el tutorial.
 	 */
 	private JLabel labelTutorialNombre;
-<<<<<<< HEAD
 
 	/**
      * Metodo constructor de la clase.
@@ -36,9 +32,7 @@ public class PanelTutorialTitulo extends JPanel {
      * @throws IOException
      * @throws FontFormatException
      */
-=======
 	private JButton atras;
->>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 	public PanelTutorialTitulo() throws IOException, FontFormatException {
 		setLayout(new FlowLayout());
 		setVisible(true);
