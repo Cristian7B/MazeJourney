@@ -4,6 +4,7 @@ package co.edu.udistrital.View;
 import java.awt.*;
 import javax.swing.JFrame;
 
+import co.edu.udistrital.Resources.Fonts.SatoshiFontBold;
 import co.edu.udistrital.View.Maze.MazeMatriz;
 import co.edu.udistrital.View.Maze.PanelInformacion;
 import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
@@ -36,7 +37,7 @@ public class VentanaPrincipal extends JFrame {
 	private JMenuItem salir;
 
 	private int numMovimientosMax;
-	private int numMovimientos;
+	private static int numMovimientos;
 	private PanelTutorialTitulo panelTutorialTitulo2;
 	public VentanaPrincipal() throws IOException, FontFormatException {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -61,16 +62,16 @@ public class VentanaPrincipal extends JFrame {
 		menuBar.setForeground(new Color(0x202020));
 
 		menuOpciones = new JMenu("Opciones");
-		menuOpciones.setForeground(new Color(0xFFECB));
-		menuOpciones.setFont
-		reiniciar = new JMenuItem("Reiniciar");
-		reiniciar.setActionCommand("REINICIAR");
-		reiniciar.setBackground(Color.green);
+		menuOpciones.setForeground(new Color(0xFFFECB));
+		menuOpciones.setFont(SatoshiFontBold.getSatoshiFontBold(15f));
 
 		salir = new JMenuItem("Salir");
+		salir.setForeground(new Color(0x202020));
+		salir.setFont(SatoshiFontBold.getSatoshiFontBold(15f));
+		salir.setBorderPainted(false);
+		salir.setOpaque(false);
 		salir.setActionCommand("SALIR");
 		salir.setBackground(Color.red);
-		menuOpciones.add(reiniciar);
 		menuOpciones.add(salir);
 
 		menuBar.add(menuOpciones);
@@ -157,7 +158,7 @@ public class VentanaPrincipal extends JFrame {
 		this.layeredPane = layeredPane;
 	}
 
-	public int getNumMovimientos() {
+	public static int getNumMovimientos() {
 		return numMovimientos;
 	}
 
@@ -184,14 +185,6 @@ public class VentanaPrincipal extends JFrame {
 
 	public void setMenuOpciones(JMenu menuOpciones) {
 		this.menuOpciones = menuOpciones;
-	}
-
-	public JMenuItem getReiniciar() {
-		return reiniciar;
-	}
-
-	public void setReiniciar(JMenuItem reiniciar) {
-		this.reiniciar = reiniciar;
 	}
 
 	public JMenuItem getSalir() {

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import co.edu.udistrital.Model.ControlDeMovimientos;
+import co.edu.udistrital.Model.MazeModel;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
 
@@ -134,7 +135,6 @@ public class Controller implements ActionListener{
         ventanaMenu.setVisible(false);
         ventanaJuego.setVisible(true);
         ventanaJuego.getSalir().addActionListener(this);
-        ventanaJuego.getReiniciar().setVisible(false);
         ventanaJuego.getPanelDificultad().getFacil().addActionListener(this);
         ventanaJuego.getPanelDificultad().getMedio().addActionListener(this);
         ventanaJuego.getPanelDificultad().getDificil().addActionListener(this);
@@ -189,10 +189,9 @@ public class Controller implements ActionListener{
         ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
         ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
         ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
-        ventanaJuego.getReiniciar().setVisible(true);
+        ControlDeMovimientos.asignarBestias(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1], informacionParaGenerarMatriz[4]);
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
         ventanaJuego.getSalir().addActionListener(this);
-        ventanaJuego.getReiniciar().addActionListener(this);
     }
 
     public void medio() throws IOException, FontFormatException {
@@ -213,10 +212,9 @@ public class Controller implements ActionListener{
         ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
         ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
         ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
-        ventanaJuego.getReiniciar().setVisible(true);
+        ControlDeMovimientos.asignarBestias(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1], informacionParaGenerarMatriz[4]);
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
         ventanaJuego.getSalir().addActionListener(this);
-        ventanaJuego.getReiniciar().addActionListener(this);
 
     }
     public void dificil() throws IOException, FontFormatException {
@@ -236,10 +234,9 @@ public class Controller implements ActionListener{
         ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
         ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
         ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
-        ventanaJuego.getReiniciar().setVisible(true);
+        ControlDeMovimientos.asignarBestias(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1], informacionParaGenerarMatriz[4]);
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
         ventanaJuego.getSalir().addActionListener(this);
-        ventanaJuego.getReiniciar().addActionListener(this);
 
     }
     public void reiniciar() {}
@@ -280,8 +277,8 @@ public class Controller implements ActionListener{
             if(informacionParaGenerarMatriz[0]>4 && informacionParaGenerarMatriz[1]>4 && informacionParaGenerarMatriz[0]<21 && informacionParaGenerarMatriz[1]<21) {
                 ventanaJuego.getPanelDificultad().setVisible(false);
                 ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
-                for(int i = 0; i < ventanaJuego.getLaberinto().getMazeModel().getGrid().length; i++){
-                    for(int j = 0; j < ventanaJuego.getLaberinto().getMazeModel().getGrid()[0].length; j++){
+                for(int i = 0; i < MazeModel.getGrid().length; i++){
+                    for(int j = 0; j < MazeModel.getGrid()[0].length; j++){
                         ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
                     }
                 }
@@ -289,6 +286,7 @@ public class Controller implements ActionListener{
                 ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
                 ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
                 ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
+                ControlDeMovimientos.asignarBestias(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1], informacionParaGenerarMatriz[4]);
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
             }
@@ -315,6 +313,8 @@ public class Controller implements ActionListener{
             (Math.abs(jugadorY - y) == 1 && jugadorX == x)) {
             numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientosPenalizacion(ControlDeMovimientos.moverJugador(x, y));
             numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientos();
+            numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientosPenalizacion(ControlDeMovimientos.verificarSiEstaEnCasillaAdyacenteBestiayJugador());
+            ControlDeMovimientos.moverBestiasUnaCasilla();
         }
     }
 

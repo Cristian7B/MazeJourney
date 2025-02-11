@@ -1,5 +1,7 @@
 package co.edu.udistrital.Model;
 
+import co.edu.udistrital.View.VentanaPrincipal;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
@@ -10,6 +12,7 @@ import java.util.Random;
  */
 public class ControlDeMovimientos {
     private static int[][] checkpointsPosicion;
+    private static int[][] bestiasPosicionMover;
     private static boolean[] checkpointsEncontrados;
     private static int[] posicionJugador;
     private static int[] posicionCarro;
@@ -64,7 +67,7 @@ public class ControlDeMovimientos {
             int x = rand.nextInt(numeroFilas);
             int y = rand.nextInt(numeroColumnas);
 
-            while(x == posicionJugador[0] || y == posicionJugador[1] || x == posicionCarro[0] || y == posicionCarro[1]) {
+            while((x == posicionJugador[0] && y == posicionJugador[1]) || (x == posicionCarro[0] && y == posicionCarro[1])) {
                 x = rand.nextInt(numeroFilas);
                 y = rand.nextInt(numeroColumnas);
             }
@@ -95,6 +98,76 @@ public class ControlDeMovimientos {
             }
 
         }
+    }
+
+    public static void asignarBestias(int numeroFilas, int numeroColumnas, int numeroBestias) {
+        Random rand = new Random();
+        bestiasPosicionMover = new int[numeroBestias][2];
+        for(int i = 0; i < numeroBestias; i++) {
+            int x = rand.nextInt(numeroFilas);
+            int y = rand.nextInt(numeroColumnas);
+
+            while((x == posicionJugador[0] && y == posicionJugador[1]) || (x == posicionCarro[0] && y == posicionCarro[1])) {
+                x = rand.nextInt(numeroFilas);
+                y = rand.nextInt(numeroColumnas);
+            }
+
+            JButton botonBestia = MazeModel.getGrid()[x][y];
+            String pathToImage = "";
+            if(i%2 == 0) {
+                pathToImage = pathToGifImageFunction(numeroFilas, "Letal", ".png");
+            } else {
+                pathToImage = pathToGifImageFunction(numeroFilas, "Tormentoso", ".png");
+            }
+            setButtonGifJpg(botonBestia, pathToImage);
+            bestiasPosicionMover[i][0] = x;
+            bestiasPosicionMover[i][1] = y;
+        }
+    }
+
+    public static void moverBestiasUnaCasilla() {
+        Random rand = new Random();
+        for(int i = 0; i < bestiasPosicionMover.length; i++) {
+
+            int x = bestiasPosicionMover[i][0];
+            int y = bestiasPosicionMover[i][1];
+
+            JButton botonBestia = MazeModel.getGrid()[x][y];
+            botonBestia.setIcon(null);
+
+            int num = rand.nextInt(3) - 1;
+            if(x+num > 0 && x+num < numeroFilasGlobal) {
+                bestiasPosicionMover[i][0] = x + num;
+            }
+            if(y+num > 0 && y+num < numeroFilasGlobal) {
+                bestiasPosicionMover[i][1] = y + num;
+            }
+            botonBestia = MazeModel.getGrid()[bestiasPosicionMover[i][0]][bestiasPosicionMover[i][1]];
+
+            String pathToImage = "";
+            if(i%2 == 0) {
+                pathToImage = pathToGifImageFunction(numeroFilasGlobal, "Letal", ".png");
+            } else {
+                pathToImage = pathToGifImageFunction(numeroFilasGlobal, "Tormentoso", ".png");
+            }
+            setButtonGifJpg(botonBestia, pathToImage);
+        }
+    }
+
+    public static int verificarSiEstaEnCasillaAdyacenteBestiayJugador() {
+        for(int i = 0; i < bestiasPosicionMover.length; i++) {
+            if ((Math.abs(bestiasPosicionMover[i][0] - posicionJugador[0]) == 1 && bestiasPosicionMover[i][1] == posicionJugador[1]) ||
+                    (Math.abs(bestiasPosicionMover[i][1] - posicionJugador[1]) == 1 && bestiasPosicionMover[i][0] == posicionJugador[0])) {
+                if(MazeModel.getGrid()[bestiasPosicionMover[i][0]][bestiasPosicionMover[i][1]].getIcon().toString().contains("Letal")) {
+                    JOptionPane.showMessageDialog(null, "Has sido atrapado por una bestia, has perdido");
+                    System.exit(0);
+                } else {
+                    return (int) Math.floor(0.95 * VentanaPrincipal.getNumMovimientos());
+                }
+            }
+
+        }
+        return 0;
     }
 
     public static void renderizarCheckpoints() {
