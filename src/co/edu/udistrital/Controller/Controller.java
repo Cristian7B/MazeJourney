@@ -148,6 +148,9 @@ public class Controller implements ActionListener{
                     throw new RuntimeException(ex);
                 }
                 break;
+            case "REINICIARJUEGO":
+                reiniciar();
+                break;
             case "CHECKPOINTS2":
                 checkpoints2();
                 break;
@@ -296,12 +299,15 @@ public class Controller implements ActionListener{
         ventanaJuego.getReiniciar().addActionListener(this);
 
     }
-    public void reiniciar() {}
+    
+    
+    public void reiniciar() {
 
+    }
     /**
      * Metodo encargado de dar la opcion de salir del programa.
      */
-    public void salir() {
+    public void salir () {
         JOptionPane.showMessageDialog(null, "Gracias por jugar");
         System.exit(0);
     }
