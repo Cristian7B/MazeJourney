@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
+/**
+ * Clase encargada de el control de movimientos
+ * del jugador y los elementos dentro de la matriz de juego.
+ */
 public class ControlDeMovimientos {
     private static int[][] checkpointsPosicion;
     private static boolean[] checkpointsEncontrados;
@@ -161,7 +165,7 @@ public class ControlDeMovimientos {
             }
         } else {
             renderizarCheckpoints();
-            if(jugadorEnCarro) {
+            if (jugadorEnCarro) {
                 String pathToJpgInCar = pathToGifImageFunction(numeroFilasGlobal, "InCar", ".png");
                 setButtonGifJpg(botonNuevo, pathToJpgInCar);
             } else {
@@ -170,23 +174,5 @@ public class ControlDeMovimientos {
             }
 
         }
-        posicionJugador[0] = x;
-        posicionJugador[1] = y;
-    }
-
-    public static int[][] getCheckpointsPosicion() {
-        return checkpointsPosicion;
-    }
-
-    public static void setCheckpointsPosicion(int[][] checkpointsPosicion) {
-        ControlDeMovimientos.checkpointsPosicion = checkpointsPosicion;
-    }
-
-    public static int[] getPosicionJugador() {
-        return posicionJugador;
-    }
-
-    public static void setPosicionJugador(int[] posicionJugador) {
-        ControlDeMovimientos.posicionJugador = posicionJugador;
     }
 }

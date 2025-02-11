@@ -8,7 +8,6 @@ import java.io.IOException;
 import co.edu.udistrital.Model.ControlDeMovimientos;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
-import co.edu.udistrital.View.VentanaTutorial;
 
 import javax.swing.*;
 
@@ -51,8 +50,20 @@ public class Controller implements ActionListener{
             case "JUGAR":
                 jugar();
                 break;
-            case "TUTORIAL":
-                tutorial();
+            case "TUTORIAL1":
+                tutorial1();
+                break;
+            case "TUTORIAL2":
+                try {
+                    tutorial2();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
+                break;
+            case "ATRASTUTORIAL1":
+                atrasTutorial1();
                 break;
             case "SALIR":
                 salir();
@@ -81,16 +92,108 @@ public class Controller implements ActionListener{
         }
 
     }
-
-
+    /**
+     * Metodo encargado de mostrar la ventana de juego
+     */
     public void jugar() {
         ventanaMenu.setVisible(false);
         ventanaJuego.setVisible(true);
+        ventanaJuego.getSalir().addActionListener(this);
+        ventanaJuego.getReiniciar().setVisible(false);
     }
 
-    public void tutorial() {
-        ventanaEmeregenteTutorial.setVisible(true);
+
+    /**
+     * Metodo encargado de mostrar el tutorial en el menu
+     */
+    public void tutorial1()   {
+        ventanaMenu.mostrarTutorial();
+        ventanaMenu.getPanelTutorialTitulo1().getAtras().addActionListener(this);
     }
+
+    /**
+     * Metodo encargado de mostrar el tutorial en el juego
+     */
+    public void tutorial2() throws IOException, FontFormatException {
+        ventanaJuego.mostrarTutorial();
+        ventanaJuego.getPanelTutorialTitulo2().getAtras().addActionListener(this);
+    }
+    /**
+     * Metodo encargado de salir del tutorial en el menu
+     */
+    public void atrasTutorial1(){
+        ventanaMenu.cerrarTutorial();
+    }
+
+    /**
+     * Metodo encargado de salir del tutorial en el juego
+     */
+    public void atrasTutorial2(){
+        ventanaJuego.cerrarTutorial();
+        ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
+    }
+
+    public void facil() {
+        informacionParaGenerarMatriz[0] = 5;  //filas
+        informacionParaGenerarMatriz[1] = 5;  //columnas
+        configPuntos = "orden";
+        informacionParaGenerarMatriz[3] = 2;   //cantidad puntos
+        informacionParaGenerarMatriz[2] = 1;   //orden de puntos
+        informacionParaGenerarMatriz[4] = 1;    //bestias
+        ventanaJuego.getPanelDificultad().setVisible(false);
+        ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        for(int i = 0; i < ventanaJuego.getLaberinto().getMazeModel().getGrid().length; i++){
+            for(int j = 0; j < ventanaJuego.getLaberinto().getMazeModel().getGrid()[0].length; j++){
+                ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
+            }
+        }
+        ventanaJuego.getReiniciar().setVisible(true);
+        ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
+        ventanaJuego.getSalir().addActionListener(this);
+        ventanaJuego.getReiniciar().addActionListener(this);
+    }
+
+    public void medio(){
+
+        informacionParaGenerarMatriz[0] = 12;
+        informacionParaGenerarMatriz[1] = 12;
+        informacionParaGenerarMatriz[3] = 4;
+        informacionParaGenerarMatriz[2] = 1;
+        informacionParaGenerarMatriz[4] = 4;
+        ventanaJuego.getPanelDificultad().setVisible(false);
+        ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        for(int i = 0; i < ventanaJuego.getLaberinto().getMazeModel().getGrid().length; i++){
+            for(int j = 0; j < ventanaJuego.getLaberinto().getMazeModel().getGrid()[0].length; j++){
+                ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
+            }
+        }
+        ventanaJuego.getReiniciar().setVisible(true);
+        ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
+        ventanaJuego.getSalir().addActionListener(this);
+        ventanaJuego.getReiniciar().addActionListener(this);
+
+    }
+    public void dificil(){
+        informacionParaGenerarMatriz[0] = 20;
+        informacionParaGenerarMatriz[1] = 20;
+        informacionParaGenerarMatriz[3] = 5;
+        informacionParaGenerarMatriz[2] = 2;
+        informacionParaGenerarMatriz[4] = 10;
+        ventanaJuego.getPanelDificultad().setVisible(false);
+        ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        for(int i = 0; i < ventanaJuego.getLaberinto().getMazeModel().getGrid().length; i++){
+            for(int j = 0; j < ventanaJuego.getLaberinto().getMazeModel().getGrid()[0].length; j++){
+                ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
+            }
+        }
+        ventanaJuego.getReiniciar().setVisible(true);
+        ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
+        ventanaJuego.getSalir().addActionListener(this);
+        ventanaJuego.getReiniciar().addActionListener(this);
+
+    }
+    public void reiniciar() {}
+
 
     public void salir() {
         JOptionPane.showMessageDialog(null, "Gracias por jugar");

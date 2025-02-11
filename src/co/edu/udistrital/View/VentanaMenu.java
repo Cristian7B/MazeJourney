@@ -4,19 +4,48 @@ import co.edu.udistrital.View.PanelsMenu.PanelIconNameMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelImagenMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelTitleMenu;
+import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.IOException;
+import javax.swing.*;
+
+/**
+ * Clase encargada tratar las demas ventanas 
+ */
 
 public class VentanaMenu extends JFrame {
+	/**
+	 * Atributo encargado de gestionar la accesibilidad del usuario
+	 */
 	private PanelMenu menu;
+	/**
+	 * Atributo encargado de mostrar el fondo de pantalla
+	 */
 	private PanelImagenMenu imagenMenu;
+	/**
+	 * Atributo encargado de organizar los paneles
+	 */
 	private JLayeredPane layeredPane;
+	/**
+	 * Atributo encargado de mostrar el titulo del programa 
+	 */
 	private PanelTitleMenu panelTitleMenu;
+	/**
+	 * Atributo encargado de mostrar el nombre del programa y su icono
+	 */
 	private PanelIconNameMenu panelIconNameMenu;
+	private PanelTutorialTitulo panelTutorialTitulo1;
+
+	/**
+	 * Metodo contructor de la clase
+	 * @throws IOException
+	 * @throws FontFormatException
+	 */
 
 	public VentanaMenu() throws IOException, FontFormatException {
 		setTitle("MazeJourney");
@@ -31,6 +60,12 @@ public class VentanaMenu extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+	 * Metodo encargado de inicializar los componentes de la ventana
+	 * @throws IOException
+	 * @throws FontFormatException
+	 */
+
 	private void inicializarComponentes() throws IOException, FontFormatException {
 		layeredPane = new JLayeredPane();
 		layeredPane.setBounds(0, 0, getWidth(), getHeight());
@@ -39,6 +74,8 @@ public class VentanaMenu extends JFrame {
 		imagenMenu = new PanelImagenMenu();
 		imagenMenu.setBounds(0, 0, getWidth(), getHeight());
 		imagenMenu.setOpaque(true);
+
+		panelTutorialTitulo1 = new PanelTutorialTitulo();
 
 		panelIconNameMenu = new PanelIconNameMenu();
 		panelIconNameMenu.setBounds(27, 15, 300, 200);
@@ -65,7 +102,9 @@ public class VentanaMenu extends JFrame {
 			}
 		});
 	}
-
+	/**
+	 * Metodo encargado de ajustar el tamaño de la ventana 
+	 */
 	private void ajustarTamaño() {
 		int width = getWidth();
 		int height = getHeight();
@@ -89,6 +128,27 @@ public class VentanaMenu extends JFrame {
 		panelTitleMenu.setBounds(titleX, titleY, titleWidth, titleHeight);
 	}
 
+	/**
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el PanelMenu llamado menu.
+	 * @return
+	 */
+	public void mostrarTutorial()  {
+		panelTutorialTitulo1.setBounds(0, 0, getWidth(), getHeight());
+		panelTutorialTitulo1.setOpaque(false);
+		layeredPane.removeAll();
+		layeredPane.add(panelTutorialTitulo1, Integer.valueOf(0));
+	}
+
+	public void cerrarTutorial() {
+		layeredPane.removeAll();
+		layeredPane.add(imagenMenu, Integer.valueOf(0));
+		layeredPane.add(panelIconNameMenu, Integer.valueOf(1));
+		layeredPane.add(panelTitleMenu, Integer.valueOf(1));
+		layeredPane.add(menu, Integer.valueOf(1));
+
+	}
+
 
 	public PanelMenu getMenu() {
 		return menu;
@@ -96,5 +156,47 @@ public class VentanaMenu extends JFrame {
 
 	public void setMenu(PanelMenu menu) {
 		this.menu = menu;
+	}
+
+	public PanelImagenMenu getImagenMenu() {
+		return imagenMenu;
+	}
+
+	public void setImagenMenu(PanelImagenMenu imagenMenu) {
+		this.imagenMenu = imagenMenu;
+	}
+
+	@Override
+	public JLayeredPane getLayeredPane() {
+		return layeredPane;
+	}
+
+	@Override
+	public void setLayeredPane(JLayeredPane layeredPane) {
+		this.layeredPane = layeredPane;
+	}
+
+	public PanelTitleMenu getPanelTitleMenu() {
+		return panelTitleMenu;
+	}
+
+	public void setPanelTitleMenu(PanelTitleMenu panelTitleMenu) {
+		this.panelTitleMenu = panelTitleMenu;
+	}
+
+	public PanelIconNameMenu getPanelIconNameMenu() {
+		return panelIconNameMenu;
+	}
+
+	public void setPanelIconNameMenu(PanelIconNameMenu panelIconNameMenu) {
+		this.panelIconNameMenu = panelIconNameMenu;
+	}
+
+	public PanelTutorialTitulo getPanelTutorialTitulo1() {
+		return panelTutorialTitulo1;
+	}
+
+	public void setPanelTutorialTitulo1(PanelTutorialTitulo panelTutorialTitulo1) {
+		this.panelTutorialTitulo1 = panelTutorialTitulo1;
 	}
 }
