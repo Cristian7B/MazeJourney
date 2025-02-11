@@ -2,12 +2,10 @@ package co.edu.udistrital.Controller;
 
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
 import javax.swing.*;
 
 /** 
@@ -154,7 +152,7 @@ public class Controller implements ActionListener{
 
     }
     /**
-     * Metodo encargado de mostrar la ventana de juego 
+     * Metodo encargado de mostrar la ventana de juego.
      */
     public void jugar() {
         ventanaMenu.setVisible(false);
@@ -165,7 +163,7 @@ public class Controller implements ActionListener{
 
 
     /**
-     * Metodo encargado de mostrar el tutorial en el menu
+     * Metodo encargado de mostrar el tutorial en el menu.
      */
     public void tutorial1()   {
         ventanaMenu.mostrarTutorial();
@@ -173,27 +171,30 @@ public class Controller implements ActionListener{
     }
 
     /**
-     * Metodo encargado de mostrar el tutorial en el juego
+     * Metodo encargado de mostrar el tutorial en el juego.
      */
     public void tutorial2() throws IOException, FontFormatException {
         ventanaJuego.mostrarTutorial();
         ventanaJuego.getPanelTutorialTitulo2().getAtras().addActionListener(this);
     }
     /**
-     * Metodo encargado de salir del tutorial en el menu
+     * Metodo encargado de salir del tutorial en el menu.
      */
     public void atrasTutorial1(){
         ventanaMenu.cerrarTutorial();
     }
 
     /**
-     * Metodo encargado de salir del tutorial en el juego
+     * Metodo encargado de salir del tutorial en el juego.
      */
     public void atrasTutorial2(){
         ventanaJuego.cerrarTutorial();
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
     }
 
+    /**
+     * Metodo encargado de gestionar la dificultad "Facil".
+     */
     public void facil() {
         informacionParaGenerarMatriz[0] = 5;  //filas
         informacionParaGenerarMatriz[1] = 5;  //columnas
@@ -214,7 +215,9 @@ public class Controller implements ActionListener{
         ventanaJuego.getReiniciar().addActionListener(this);
 
     }
-
+    /**
+     * Metodo encargado de gestionar la dificultad "Media".
+     */
     public void medio(){
 
         informacionParaGenerarMatriz[0] = 12;
@@ -235,6 +238,10 @@ public class Controller implements ActionListener{
         ventanaJuego.getReiniciar().addActionListener(this);
 
     }
+
+    /**
+     * Metodo encargado de gestionar la dificultad "Dificil".
+     */
     public void dificil(){
         informacionParaGenerarMatriz[0] = 20;
         informacionParaGenerarMatriz[1] = 20;
@@ -254,31 +261,58 @@ public class Controller implements ActionListener{
         ventanaJuego.getReiniciar().addActionListener(this);
 
     }
+    
+    
     public void reiniciar() {
 
     }
-
+    /**
+     * Metodo encargado de dar la opcion de salir del programa.
+     */
     public void salir () {
         JOptionPane.showMessageDialog(null, "Gracias por jugar");
         System.exit(0);
     }
-
+    /**
+     * Metodo encargado de generar un cantidad determinada
+     * de checkpoints.
+     * 
+     * En este caso la cantidad de checkpoints es de 2.
+     */
     public void checkpoints2() {
         informacionParaGenerarMatriz[3] = 2;
     }
-
+    /**
+     * Metodo encargado de generar un cantidad determinada
+     * de checkpoints.
+     * 
+     * En este caso la cantidad de checkpoints es de 3.
+     */
     public void checkpoints3() {
         informacionParaGenerarMatriz[3] = 3;
     }
-
+    /**
+     * Metodo encargado de generar un cantidad determinada
+     * de checkpoints.
+     * 
+     * En este caso la cantidad de checkpoints es de 4.
+     */
     public void checkpoints4() {
         informacionParaGenerarMatriz[3] = 4;
     }
-
+    /**
+     * Metodo encargado de generar un cantidad determinada
+     * de checkpoints.
+     * 
+     * En este caso la cantidad de checkpoints es de 5.
+     */
     public void checkpoints5() {
         informacionParaGenerarMatriz[3] = 5;
     }
-
+    /**
+     * Metodo encargado de captar las entradas del
+     * usuario, para posteriormente almacenarlos.
+     */
     public void enviar() {
 
         try {
@@ -311,7 +345,10 @@ public class Controller implements ActionListener{
         }
 
     }
-
+    /**
+     * Metodo encargado de cambiar entre la ventana 
+     * de juego y la ventada de menu.
+     */
     public void volver() {
         ventanaJuego.setVisible(false);
         ventanaMenu.setVisible(true);
