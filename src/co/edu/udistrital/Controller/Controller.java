@@ -1,5 +1,15 @@
 package co.edu.udistrital.Controller;
 
+<<<<<<< HEAD
+import co.edu.udistrital.Model.MatrizDeJuego;
+import co.edu.udistrital.View.VentanaMenu;
+import co.edu.udistrital.View.VentanaPrincipal;
+import co.edu.udistrital.View.VentanaTutorial;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+=======
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,15 +18,66 @@ import java.io.IOException;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
 
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 import javax.swing.*;
 
+/** 
+ * Clase encargada de gestionar la union 
+ * entre la logica e interfaz del programa.
+ */
 public class Controller implements ActionListener{
+
+    /**
+     * Atributo que instancia de VentanaMenu.
+     * 
+     * Se encarga de mostrar el menu principal del 
+     * programa y elegir el tipo de proceso. 
+     */
     private VentanaMenu ventanaMenu;
+    /**
+     * Atributo que instancia VentanaPrincipal.
+     * 
+     * Se encarga de mostrar el panel de juego y 
+     * el panel de eleccion de dificultad.
+     */
     private VentanaPrincipal ventanaJuego;
+<<<<<<< HEAD
+    /**
+     * Atributo que instancia VentanaTutorial.
+     * 
+     * Se encarga de mostrar la ventana relacionada al tutorial.
+     */
+    private VentanaTutorial ventanaEmeregenteTutorial;
+    /**
+     * Atributo que determina las caracteristias del laberinto.
+     * 
+     * Tiene 5 indices los cuales se utilizan para:
+     * 
+     * {@code informacionParaGenerarMatriz[0]} para la cantidad de filas.
+     * {@code informacionParaGenerarMatriz[1]} para la cantidad de columnas.
+     * {@code informacionParaGenerarMatriz[2]} para el orden en el que se recorrera la matriz.
+     * {@code informacionParaGenerarMatriz[3]} para la cantidad de puntos de control.
+     * {@code informacionParaGenerarMatriz[4]} para la cantidad de bestias en el laberinto.
+     */
+=======
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
     private int[] informacionParaGenerarMatriz;
+    /**
+     * Atributo encargado de determinar el orden en el que se 
+     * recorrera la matriz.
+     */
     private String configPuntos;
 
-
+    /**
+     * Metodo constructor de la clase.
+     * 
+     * Este metodo lanza un {@code IOException} si un archivo seleccionado
+     * como fuente de texto no se encuentra.
+     * Este metodo lanza un {@code FontFormatException} si el tipo de formato 
+     * de la fuente de texto no es el correcto.
+     * @throws IOException
+     * @throws FontFormatException
+     */
     public Controller() throws IOException, FontFormatException {
         ventanaMenu = new VentanaMenu();
         ventanaJuego = new VentanaPrincipal();
@@ -25,7 +86,10 @@ public class Controller implements ActionListener{
 
         asignarOyentes();
     }
-
+    /**
+     * Metodo encargado de asignar metodos de escucha a los 
+     * elementos que interactuan directamente con el usuario
+     */
     public void asignarOyentes() {
         ventanaMenu.getMenu().getJugar().addActionListener(this);
         ventanaMenu.getMenu().getTutorial().addActionListener(this);
@@ -39,7 +103,8 @@ public class Controller implements ActionListener{
         ventanaJuego.getPanelDificultad().getVolver().addActionListener(this);
 
     }
-
+    
+    @Override
     public void actionPerformed(ActionEvent e) {
         String[] comandoArray = e.getActionCommand().split(" ");
         String comando = comandoArray[0];
@@ -93,12 +158,25 @@ public class Controller implements ActionListener{
         }
 
     }
-
-
+    /**
+     * Metodo encargado de mostrar la ventana de juego 
+     */
     public void jugar() {
         ventanaMenu.setVisible(false);
         ventanaJuego.setVisible(true);
     }
+<<<<<<< HEAD
+    /**
+     * Metodo encargado me mostrar el tutorial
+     */
+    public void tutorial() {
+        ventanaEmeregenteTutorial.setVisible(true);
+    }
+    /**
+     * Metodo encargado de salir en caso de seleccionar un 
+     */
+    public void salir() {
+=======
 
     public void tutorial1()   {
         ventanaMenu.mostrarTutorial();
@@ -119,6 +197,7 @@ public class Controller implements ActionListener{
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
     }
     public void salir () {
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
         JOptionPane.showMessageDialog(null, "Gracias por jugar");
         System.exit(0);
     }
