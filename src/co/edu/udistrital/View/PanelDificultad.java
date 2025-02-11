@@ -361,5 +361,7 @@ public class PanelDificultad extends JPanel{
     public void setDificil(JButton dificil) {
         this.dificil = dificil;
     }
+
+
 }
 

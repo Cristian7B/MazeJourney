@@ -14,15 +14,14 @@ import javax.swing.*;
 public class Controller implements ActionListener{
     private VentanaMenu ventanaMenu;
     private VentanaPrincipal ventanaJuego;
-    private VentanaTutorial ventanaEmeregenteTutorial;
     private int[] informacionParaGenerarMatriz;
     private String configPuntos;
+    private static int numMovimientos;
 
 
     public Controller() throws IOException, FontFormatException {
         ventanaMenu = new VentanaMenu();
         ventanaJuego = new VentanaPrincipal();
-        ventanaEmeregenteTutorial = new VentanaTutorial();
 
         informacionParaGenerarMatriz = new int[5];
 
@@ -65,8 +64,20 @@ public class Controller implements ActionListener{
             case "ATRASTUTORIAL1":
                 atrasTutorial1();
                 break;
+            case "ATRASTUTORIAL2":
+                atrasTutorial2();
+                break;
             case "SALIR":
                 salir();
+                break;
+            case "FACIL":
+                facil();
+                break;
+            case "MEDIO":
+                medio();
+                break;
+            case "DIFICIL":
+                dificil();
                 break;
             case "CHECKPOINTS2":
                 checkpoints2();
@@ -100,6 +111,9 @@ public class Controller implements ActionListener{
         ventanaJuego.setVisible(true);
         ventanaJuego.getSalir().addActionListener(this);
         ventanaJuego.getReiniciar().setVisible(false);
+        ventanaJuego.getPanelDificultad().getFacil().addActionListener(this);
+        ventanaJuego.getPanelDificultad().getMedio().addActionListener(this);
+        ventanaJuego.getPanelDificultad().getDificil().addActionListener(this);
     }
 
 
@@ -147,6 +161,10 @@ public class Controller implements ActionListener{
                 ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
             }
         }
+        ControlDeMovimientos.asignarJugadorPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
+        ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
         ventanaJuego.getReiniciar().setVisible(true);
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
         ventanaJuego.getSalir().addActionListener(this);
@@ -167,6 +185,10 @@ public class Controller implements ActionListener{
                 ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
             }
         }
+        ControlDeMovimientos.asignarJugadorPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
+        ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
         ventanaJuego.getReiniciar().setVisible(true);
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
         ventanaJuego.getSalir().addActionListener(this);
@@ -186,6 +208,10 @@ public class Controller implements ActionListener{
                 ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
             }
         }
+        ControlDeMovimientos.asignarJugadorPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
+        ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
         ventanaJuego.getReiniciar().setVisible(true);
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
         ventanaJuego.getSalir().addActionListener(this);
@@ -237,8 +263,8 @@ public class Controller implements ActionListener{
                 }
                 ControlDeMovimientos.asignarJugadorPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
                 ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
-                ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
                 ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
+                ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
             }
@@ -256,12 +282,14 @@ public class Controller implements ActionListener{
     public void modificarPosicion(int x, int y) {
         System.out.println("Posicion actual: " + ControlDeMovimientos.getPosicionJugador()[0] + ", " + ControlDeMovimientos.getPosicionJugador()[1]);
         System.out.println("Posicion nueva: " + x + ", " + y);
+
         int jugadorX = ControlDeMovimientos.getPosicionJugador()[0];
         int jugadorY = ControlDeMovimientos.getPosicionJugador()[1];
 
         if ((Math.abs(jugadorX - x) == 1 && jugadorY == y) ||
-                (Math.abs(jugadorY - y) == 1 && jugadorX == x)) {
-            ControlDeMovimientos.moverJugador(x, y);
+            (Math.abs(jugadorY - y) == 1 && jugadorX == x)) {
+            numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientosPenalizacion(ControlDeMovimientos.moverJugador(x, y));
+            numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientos();
         }
     }
 
@@ -279,14 +307,6 @@ public class Controller implements ActionListener{
 
     public void setVentanaJuego(VentanaPrincipal ventanaJuego) {
         this.ventanaJuego = ventanaJuego;
-    }
-
-    public VentanaTutorial getEmergenteTutorial() {
-        return ventanaEmeregenteTutorial;
-    }
-
-    public void setEmergenteTutorial(VentanaTutorial ventanaEmeregenteTutorial) {
-        this.ventanaEmeregenteTutorial = ventanaEmeregenteTutorial;
     }
 
     public int[] getInformacionParaGenerarMatriz() {

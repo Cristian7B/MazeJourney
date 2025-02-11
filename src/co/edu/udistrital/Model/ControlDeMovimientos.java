@@ -128,10 +128,11 @@ public class ControlDeMovimientos {
         });
     }
 
-    public static void moverJugador(int x, int y) {
+    public static int moverJugador(int x, int y) {
         JButton botonJugador = MazeModel.getGrid()[posicionJugador[0]][posicionJugador[1]];
         botonJugador.setIcon(null);
         JButton botonNuevo = MazeModel.getGrid()[x][y];
+        int esPosible = determinarMurosPenalizacion(x, y);
         if(MazeModel.getGrid()[x][y].getIcon() != null) {
             if(MazeModel.getGrid()[x][y].getIcon().toString().contains("Checkpoint")) {
                 if(jugadorEnCarro) {
@@ -160,12 +161,13 @@ public class ControlDeMovimientos {
                 }
             } else if(MazeModel.getGrid()[x][y].getIcon().toString().contains("Carro")) {
                 String pathToJpgInCar = pathToGifImageFunction(numeroFilasGlobal, "InCar", ".png");
+                System.out.println(pathToJpgInCar);
                 setButtonGifJpg(botonNuevo, pathToJpgInCar);
                 jugadorEnCarro = true;
             }
         } else {
             renderizarCheckpoints();
-            if (jugadorEnCarro) {
+            if(jugadorEnCarro) {
                 String pathToJpgInCar = pathToGifImageFunction(numeroFilasGlobal, "InCar", ".png");
                 setButtonGifJpg(botonNuevo, pathToJpgInCar);
             } else {
@@ -174,5 +176,55 @@ public class ControlDeMovimientos {
             }
 
         }
+        posicionJugador[0] = x;
+        posicionJugador[1] = y;
+
+        return esPosible;
+    }
+
+    public static int determinarMurosPenalizacion(int x, int y) {
+        int filasMovimiento = x - posicionJugador[0];
+        int columnasMovimiento = y - posicionJugador[1];
+
+        if(columnasMovimiento == 0) {
+            if(filasMovimiento < x) {
+                if(MazeModel.getGrid()[posicionJugador[0]][posicionJugador[1]].getWalls().contains("ARRIBA")) {
+                    return posicionJugador[1] + posicionJugador[0];
+                }
+            } else if(filasMovimiento > x) {
+                if(MazeModel.getGrid()[posicionJugador[0]][posicionJugador[1]].getWalls().contains("ABAJO")) {
+                    return posicionJugador[1] + posicionJugador[0];
+                }
+            }
+        } else if (filasMovimiento == 0) {
+            if(y > posicionJugador[1]) {
+                if(MazeModel.getGrid()[posicionJugador[0]][posicionJugador[1]].getWalls().contains("DERECHA")) {
+                    return posicionJugador[1] + posicionJugador[0];
+                }
+            } else if (y < posicionJugador[1]) {
+                if(MazeModel.getGrid()[posicionJugador[0]][posicionJugador[1]].getWalls().contains("IZQUIERDA")) {
+                    return posicionJugador[1] + posicionJugador[0];
+                }
+            }
+        }
+
+        return 0;
+
+    }
+
+    public static int[][] getCheckpointsPosicion() {
+        return checkpointsPosicion;
+    }
+
+    public static void setCheckpointsPosicion(int[][] checkpointsPosicion) {
+        ControlDeMovimientos.checkpointsPosicion = checkpointsPosicion;
+    }
+
+    public static int[] getPosicionJugador() {
+        return posicionJugador;
+    }
+
+    public static void setPosicionJugador(int[] posicionJugador) {
+        ControlDeMovimientos.posicionJugador = posicionJugador;
     }
 }
