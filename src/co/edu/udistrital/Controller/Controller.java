@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import co.edu.udistrital.Model.ControlDeMovimientos;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
 import co.edu.udistrital.View.VentanaTutorial;
@@ -72,8 +73,7 @@ public class Controller implements ActionListener{
                 enviar();
                 break;
             case "BOTON":
-                System.out.println("Celda (" + comandoArray[1] + ", " + comandoArray[2] + ") ha sido presionada");
-                System.out.println(ventanaJuego.getLaberinto().getMazeModel().getGrid()[Integer.parseInt(comandoArray[1])][Integer.parseInt(comandoArray[2])].getWalls());
+                modificarPosicion(Integer.parseInt(comandoArray[1]), Integer.parseInt(comandoArray[2]));
                 break;
             case "VOLVER":
                 volver();
@@ -132,6 +132,10 @@ public class Controller implements ActionListener{
                         ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
                     }
                 }
+                ControlDeMovimientos.asignarJugadorPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+                ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+                ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
+                ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
             }
@@ -146,11 +150,17 @@ public class Controller implements ActionListener{
         ventanaMenu.setVisible(true);
     }
 
+    public void modificarPosicion(int x, int y) {
+        System.out.println("Posicion actual: " + ControlDeMovimientos.getPosicionJugador()[0] + ", " + ControlDeMovimientos.getPosicionJugador()[1]);
+        System.out.println("Posicion nueva: " + x + ", " + y);
+        int jugadorX = ControlDeMovimientos.getPosicionJugador()[0];
+        int jugadorY = ControlDeMovimientos.getPosicionJugador()[1];
 
-
-
-
-
+        if ((Math.abs(jugadorX - x) == 1 && jugadorY == y) ||
+                (Math.abs(jugadorY - y) == 1 && jugadorX == x)) {
+            ControlDeMovimientos.moverJugador(x, y);
+        }
+    }
 
     public VentanaMenu getVentanaMenu() {
         return ventanaMenu;

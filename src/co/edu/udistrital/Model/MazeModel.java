@@ -9,7 +9,7 @@ import java.util.Stack;
 public class MazeModel {
     private int filas;
     private int columnas;
-    private CeldaLaberinto[][] grid;
+    private static CeldaLaberinto[][] grid;
     private Random random = new Random();
 
     public MazeModel(int filas, int columnas) {
@@ -90,7 +90,7 @@ public class MazeModel {
         return cell;
     }
 
-    public CeldaLaberinto[][] getGrid() {
+    public static CeldaLaberinto[][] getGrid() {
         return grid;
     }
 }
