@@ -409,6 +409,11 @@ public class Controller implements ActionListener{
             numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientosPenalizacion(ControlDeMovimientos.moverJugador(x, y));
             numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientos();
             numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientosPenalizacion(ControlDeMovimientos.verificarSiEstaEnCasillaAdyacenteBestiayJugador());
+            if(numMovimientos <= 0) {
+                JOptionPane.showMessageDialog(null, "Te has quedado sin movimientos 😥.");
+                System.exit(0);
+            }
+            ControlDeMovimientos.verificarGanador();
             ControlDeMovimientos.moverBestiasUnaCasilla();
         }
     }

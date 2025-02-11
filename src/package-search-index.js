@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"co.edu.udistrital.Controller"},{"l":"co.edu.udistrital.Model"},{"l":"co.edu.udistrital.Resources.Fonts"},{"l":"co.edu.udistrital.View"},{"l":"co.edu.udistrital.View.Maze"},{"l":"co.edu.udistrital.View.PanelsMenu"},{"l":"co.edu.udistrital.View.PanelsTutorial"}];updateSearchResults();

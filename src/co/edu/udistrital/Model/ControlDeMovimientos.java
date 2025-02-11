@@ -58,6 +58,20 @@ public class ControlDeMovimientos {
         setButtonGifJpg(botonCarro, pathToGif);
     }
 
+    public static void verificarGanador() {
+        boolean variable = true;
+        for (int i = 0; i < checkpointsEncontrados.length;i++) {
+            if(!checkpointsEncontrados[i]) {
+                variable = false;
+            }
+        }
+
+        if(variable) {
+            JOptionPane.showMessageDialog(null, "Has ganado 😃");
+            System.exit(0);
+        }
+    }
+
 
     public static void asignarCheckPoints(int numeroFilas, int numeroColumnas, int numeroCheckPoints) {
         checkpointsPosicion = new int[numeroCheckPoints][2];
@@ -256,34 +270,35 @@ public class ControlDeMovimientos {
     }
 
     public static int determinarMurosPenalizacion(int x, int y) {
-        int filasMovimiento = x - posicionJugador[0];
-        int columnasMovimiento = y - posicionJugador[1];
+        int jugadorX = posicionJugador[0];
+        int jugadorY = posicionJugador[1];
 
-        if(columnasMovimiento == 0) {
-            if(filasMovimiento < x) {
-                if(MazeModel.getGrid()[posicionJugador[0]][posicionJugador[1]].getWalls().contains("ARRIBA")) {
+        if (y == jugadorY) {
+            if (x < jugadorX) {
+                if (MazeModel.getGrid()[x][y].getWalls().contains("ABAJO")) {
                     return posicionJugador[1] + posicionJugador[0];
                 }
-            } else if(filasMovimiento > x) {
-                if(MazeModel.getGrid()[posicionJugador[0]][posicionJugador[1]].getWalls().contains("ABAJO")) {
+            } else if (x > jugadorX) {
+                if (MazeModel.getGrid()[jugadorX][jugadorY].getWalls().contains("ABAJO")) {
                     return posicionJugador[1] + posicionJugador[0];
                 }
             }
-        } else if (filasMovimiento == 0) {
-            if(y > posicionJugador[1]) {
-                if(MazeModel.getGrid()[posicionJugador[0]][posicionJugador[1]].getWalls().contains("DERECHA")) {
+        }
+        else if (x == jugadorX) {
+            if (y > jugadorY) {
+                if (MazeModel.getGrid()[jugadorX][jugadorY].getWalls().contains("DERECHA")) {
                     return posicionJugador[1] + posicionJugador[0];
                 }
-            } else if (y < posicionJugador[1]) {
-                if(MazeModel.getGrid()[posicionJugador[0]][posicionJugador[1]].getWalls().contains("IZQUIERDA")) {
+            } else if (y < jugadorY) {
+                if (MazeModel.getGrid()[jugadorX][jugadorY].getWalls().contains("IZQUIERDA")) {
                     return posicionJugador[1] + posicionJugador[0];
                 }
             }
         }
 
         return 0;
-
     }
+
 
     public static int[][] getCheckpointsPosicion() {
         return checkpointsPosicion;

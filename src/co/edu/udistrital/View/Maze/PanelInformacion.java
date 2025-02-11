@@ -40,7 +40,13 @@ public class PanelInformacion extends JPanel {
     public int modificarMovimientos() {
         int numero = barraVida.getValue();
         numero = numero - 1;
-        barraVida.setValue(numero);
+        if(numero <= 0) {
+            barraVida.setValue(0);
+            barraVida.setForeground(Color.red);
+            numero = 0;
+        } else {
+            barraVida.setValue(numero);
+        }
         barraVida.setString("Movimientos restantes: "+numero);
         return numero;
     }
@@ -62,7 +68,13 @@ public class PanelInformacion extends JPanel {
     public int modificarMovimientosPenalizacion(int penalizacion) {
         int numero = barraVida.getValue();
         numero = numero - penalizacion;
-        barraVida.setValue(numero);
+        if(numero <= 0) {
+            barraVida.setValue(0);
+            barraVida.setForeground(Color.red);
+            numero = 0;
+        } else {
+            barraVida.setValue(numero);
+        }
         barraVida.setString("Movimientos restantes: "+numero);
         return numero;
     }
