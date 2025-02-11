@@ -1,15 +1,12 @@
 package co.edu.udistrital.Controller;
 
+import co.edu.udistrital.Model.ControlDeMovimientos;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
-import co.edu.udistrital.Model.ControlDeMovimientos;
-import co.edu.udistrital.View.VentanaMenu;
-import co.edu.udistrital.View.VentanaPrincipal;
 import javax.swing.*;
 
 /** 
@@ -113,19 +110,43 @@ public class Controller implements ActionListener{
                 atrasTutorial1();
                 break;
             case "ATRASTUTORIAL2":
-                atrasTutorial2();
+                try {
+                    atrasTutorial2();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
                 break;
             case "SALIR":
                 salir();
                 break;
             case "FACIL":
-                facil();
+                try {
+                    facil();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
                 break;
             case "MEDIO":
-                medio();
+                try {
+                    medio();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
                 break;
             case "DIFICIL":
-                dificil();
+                try {
+                    dificil();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
                 break;
             case "CHECKPOINTS2":
                 checkpoints2();
@@ -190,7 +211,7 @@ public class Controller implements ActionListener{
     /**
      * Metodo encargado de salir del tutorial en el juego.
      */
-    public void atrasTutorial2(){
+    public void atrasTutorial2() throws IOException, FontFormatException {
         ventanaJuego.cerrarTutorial();
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
     }
@@ -198,7 +219,7 @@ public class Controller implements ActionListener{
     /**
      * Metodo encargado de gestionar la dificultad "Facil".
      */
-    public void facil() {
+    public void facil() throws IOException, FontFormatException {
         informacionParaGenerarMatriz[0] = 5;  //filas
         informacionParaGenerarMatriz[1] = 5;  //columnas
         configPuntos = "orden";
@@ -224,7 +245,7 @@ public class Controller implements ActionListener{
     /**
      * Metodo encargado de gestionar la dificultad "Media".
      */
-    public void medio(){
+    public void medio() throws IOException, FontFormatException {
 
         informacionParaGenerarMatriz[0] = 12;
         informacionParaGenerarMatriz[1] = 12;
@@ -252,7 +273,7 @@ public class Controller implements ActionListener{
     /**
      * Metodo encargado de gestionar la dificultad "Dificil".
      */
-    public void dificil(){
+    public void dificil() throws IOException, FontFormatException {
         informacionParaGenerarMatriz[0] = 20;
         informacionParaGenerarMatriz[1] = 20;
         informacionParaGenerarMatriz[3] = 5;
@@ -352,6 +373,10 @@ public class Controller implements ActionListener{
             }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Todos los valores ingresados deben ser números");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (FontFormatException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -365,9 +390,6 @@ public class Controller implements ActionListener{
     }
 
     public void modificarPosicion(int x, int y) {
-        System.out.println("Posicion actual: " + ControlDeMovimientos.getPosicionJugador()[0] + ", " + ControlDeMovimientos.getPosicionJugador()[1]);
-        System.out.println("Posicion nueva: " + x + ", " + y);
-
         int jugadorX = ControlDeMovimientos.getPosicionJugador()[0];
         int jugadorY = ControlDeMovimientos.getPosicionJugador()[1];
 
