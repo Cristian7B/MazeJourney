@@ -7,18 +7,45 @@ import co.edu.udistrital.View.PanelsMenu.PanelTitleMenu;
 import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.IOException;
+import javax.swing.*;
+
+/**
+ * Clase encargada tratar las demas ventanas 
+ */
 
 public class VentanaMenu extends JFrame {
+	/**
+	 * Atributo encargado de gestionar la accesibilidad del usuario
+	 */
 	private PanelMenu menu;
+	/**
+	 * Atributo encargado de mostrar el fondo de pantalla
+	 */
 	private PanelImagenMenu imagenMenu;
+	/**
+	 * Atributo encargado de organizar los paneles
+	 */
 	private JLayeredPane layeredPane;
+	/**
+	 * Atributo encargado de mostrar el titulo del programa 
+	 */
 	private PanelTitleMenu panelTitleMenu;
+	/**
+	 * Atributo encargado de mostrar el nombre del programa y su icono
+	 */
 	private PanelIconNameMenu panelIconNameMenu;
 	private PanelTutorialTitulo panelTutorialTitulo1;
+
+	/**
+	 * Metodo contructor de la clase
+	 * @throws IOException
+	 * @throws FontFormatException
+	 */
 
 	public VentanaMenu() throws IOException, FontFormatException {
 		setTitle("MazeJourney");
@@ -32,6 +59,12 @@ public class VentanaMenu extends JFrame {
 		setResizable(false);
 		setVisible(true);
 	}
+
+	/**
+	 * Metodo encargado de inicializar los componentes de la ventana
+	 * @throws IOException
+	 * @throws FontFormatException
+	 */
 
 	private void inicializarComponentes() throws IOException, FontFormatException {
 		layeredPane = new JLayeredPane();
@@ -69,7 +102,9 @@ public class VentanaMenu extends JFrame {
 			}
 		});
 	}
-
+	/**
+	 * Metodo encargado de ajustar el tamaño de la ventana 
+	 */
 	private void ajustarTamaño() {
 		int width = getWidth();
 		int height = getHeight();
@@ -93,6 +128,11 @@ public class VentanaMenu extends JFrame {
 		panelTitleMenu.setBounds(titleX, titleY, titleWidth, titleHeight);
 	}
 
+	/**
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el PanelMenu llamado menu.
+	 * @return
+	 */
 	public void mostrarTutorial()  {
 		panelTutorialTitulo1.setBounds(0, 0, getWidth(), getHeight());
 		panelTutorialTitulo1.setOpaque(false);

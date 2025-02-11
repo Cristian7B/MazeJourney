@@ -1,15 +1,37 @@
 package co.edu.udistrital.View.PanelsTutorial;
 
 import co.edu.udistrital.Resources.Fonts.CabinetFont;
+import co.edu.udistrital.Resources.Fonts.CabinetFont;
 import co.edu.udistrital.Resources.Fonts.SatoshiFontBold;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import javax.swing.*;
 
+/**
+ * Clase encargada de administrar los titulos que se pueden ver en el tutorial.
+ */
 public class PanelTutorialTitulo extends JPanel {
+	/**
+	 * Atributo encargado de mostrar el titulo del tutorial.
+	 */
 	private JLabel labelTutorial;
+	/**
+	 * Atributo encargado de mostrar el nombre del programa en el tutorial.
+	 */
 	private JLabel labelTutorialNombre;
+
+	/**
+     * Metodo constructor de la clase.
+     * 
+     * Este metodo lanza un {@code IOException} si un archivo seleccionado
+     * como fuente de texto no se encuentra.
+     * Este metodo lanza un {@code FontFormatException} si el tipo de formato 
+     * de la fuente de texto no es el correcto.
+     * @throws IOException
+     * @throws FontFormatException
+     */
 	private JButton atras;
 	public PanelTutorialTitulo() throws IOException, FontFormatException {
 		setLayout(new FlowLayout());
@@ -17,7 +39,16 @@ public class PanelTutorialTitulo extends JPanel {
 		inicializarComponentes();
 		setBackground(new Color(0x202020));
 	}
-
+	/**
+     * Metodo encargado de inicializar los componentes de la clase.
+     * 
+     * Este metodo lanza un {@code IOException} si un archivo seleccionado
+     * como fuente de texto no se encuentra.
+     * Este metodo lanza un {@code FontFormatException} si el tipo de formato 
+     * de la fuente de texto no es el correcto.
+     * @throws IOException
+     * @throws FontFormatException
+     */
 	public void inicializarComponentes() throws IOException, FontFormatException {
 		labelTutorial = new JLabel("Tutorial de juego | ");
 		labelTutorial.setFont(CabinetFont.getCabinetFont(50f));

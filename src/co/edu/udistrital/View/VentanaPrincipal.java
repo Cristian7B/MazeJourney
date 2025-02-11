@@ -1,5 +1,9 @@
 package co.edu.udistrital.View;
 
+
+import java.awt.*;
+import javax.swing.JFrame;
+
 import co.edu.udistrital.View.Maze.MazeMatriz;
 import co.edu.udistrital.View.Maze.PanelInformacion;
 import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
@@ -9,11 +13,29 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+/**
+ * Clase encargada de gestionar tanto la eleccion de dificultad como la eleccion de dificultad e iniciar el juego
+ */
+
 public class VentanaPrincipal extends JFrame {
-	private JLayeredPane layeredPane;
+	/**
+	 * Atributo instancia de PanelDificultad
+	 * Encargado de la eleccion de dificultad.
+	 */
 	private PanelDificultad panelDificultad;
+
+	/**
+	 * Metodo constructor de la clase.
+	 */
+	private JLayeredPane layeredPane;
 	private MazeMatriz laberinto;
 	private PanelInformacion panelInformacion;
+	private JMenuBar menuBar;
+	private JMenu menuOpciones;
+	private JMenuItem reiniciar;
+	private JMenuItem salir;
+
+	private int numMovimientosMax;
 	private int numMovimientos;
 	private PanelTutorialTitulo panelTutorialTitulo2;
 	public VentanaPrincipal() {
@@ -21,49 +43,85 @@ public class VentanaPrincipal extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(10, 10));
-
+		
 		inicializarComponentes();
 
 		setVisible(false);
 	}
-
+	
+	/**
+	 * Metodo encargado de inicializar los componentes de la ventana principal.
+	 */
 	public void inicializarComponentes() {
 		panelDificultad = new PanelDificultad();
 		add(panelDificultad, BorderLayout.CENTER);
+
+		menuBar = new JMenuBar();
+		menuBar.setBackground(Color.CYAN);
+		menuBar.setForeground(Color.WHITE);
+
+		menuOpciones = new JMenu("Opciones");
+		reiniciar = new JMenuItem("Reiniciar");
+		reiniciar.setActionCommand("REINICIAR");
+		reiniciar.setBackground(Color.green);
+
+		salir = new JMenuItem("Salir");
+		salir.setActionCommand("SALIR");
+		salir.setBackground(Color.red);
+		menuOpciones.add(reiniciar);
+		menuOpciones.add(salir);
+
+		menuBar.add(menuOpciones);
+		setJMenuBar(menuBar);
 
 		layeredPane = new JLayeredPane();
 		layeredPane.setBounds(0, 0, getWidth(), getHeight());
 
 	}
 
+
 	public void agregarPanelImagenMatriz(int filas, int columnas) {
 		this.laberinto = new MazeMatriz(filas,columnas);
 		add(laberinto, BorderLayout.CENTER);
+		numMovimientosMax = Integer.parseInt(panelDificultad.getTxtdimensionMatrizColumnas().getText())*Integer.parseInt(panelDificultad.getTxtdimensionMatrizFilas().getText());
 		numMovimientos = Integer.parseInt(panelDificultad.getTxtdimensionMatrizColumnas().getText())*Integer.parseInt(panelDificultad.getTxtdimensionMatrizFilas().getText());
-		panelInformacion = new PanelInformacion(numMovimientos);
+		panelInformacion = new PanelInformacion(numMovimientosMax);
 		add(panelInformacion, BorderLayout.NORTH);
 	}
+	/**
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el PanelDifucultad panelDificultad.
+	 * @return
+	 */
 
-	public int mostrarTutorial() throws IOException, FontFormatException {
+	public void mostrarTutorial() throws IOException, FontFormatException {
 		panelTutorialTitulo2 = new PanelTutorialTitulo();
 		laberinto.setVisible(false);
 		add(panelTutorialTitulo2, BorderLayout.CENTER);
 		panelTutorialTitulo2.setVisible(true);
 		numMovimientos = (numMovimientos - 5);
+		panelInformacion.getBarraVida().setValue(numMovimientos);
+		panelInformacion.getBarraVida().setString("Movimientos restantes: "+numMovimientos);
 		panelTutorialTitulo2.getAtras().setActionCommand("ATRASTUTORIAL2");
-		return numMovimientos;
+
 	}
 	public void cerrarTutorial() {
 		panelTutorialTitulo2.setVisible(false);
 		laberinto.setVisible(true);
 		getContentPane().remove(panelInformacion);
-		panelInformacion = new PanelInformacion(numMovimientos);
+		panelInformacion = new PanelInformacion(numMovimientosMax);
+		panelInformacion.getBarraVida().setValue(numMovimientos);
+		panelInformacion.getBarraVida().setString("Movimientos restantes: "+numMovimientos);
 		add(panelInformacion, BorderLayout.NORTH);
 	}
 	public PanelDificultad getPanelDificultad() {
 		return panelDificultad;
 	}
 
+	/**
+	 * Metodo que cambia el valor del atributo panelDifitultad.
+	 * @param panelDificultad	El valor deseado del atributo panelDifitultad.
+	 */
 	public void setPanelDificultad(PanelDificultad panelDificultad) {
 		this.panelDificultad = panelDificultad;
 	}
@@ -110,4 +168,40 @@ public class VentanaPrincipal extends JFrame {
 		this.panelTutorialTitulo2 = panelTutorialTitulo2;
 	}
 
+
+	public void setMenuBar(JMenuBar menuBar) {
+		this.menuBar = menuBar;
+	}
+
+	public JMenu getMenuOpciones() {
+		return menuOpciones;
+	}
+
+	public void setMenuOpciones(JMenu menuOpciones) {
+		this.menuOpciones = menuOpciones;
+	}
+
+	public JMenuItem getReiniciar() {
+		return reiniciar;
+	}
+
+	public void setReiniciar(JMenuItem reiniciar) {
+		this.reiniciar = reiniciar;
+	}
+
+	public JMenuItem getSalir() {
+		return salir;
+	}
+
+	public void setSalir(JMenuItem salir) {
+		this.salir = salir;
+	}
+
+	public int getNumMovimientosMax() {
+		return numMovimientosMax;
+	}
+
+	public void setNumMovimientosMax(int numMovimientosMax) {
+		this.numMovimientosMax = numMovimientosMax;
+	}
 }

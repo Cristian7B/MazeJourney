@@ -9,9 +9,9 @@ public class PanelInformacion extends JPanel {
     private JLabel movimientos;
     private JButton tutorial;
     private JLabel aviso;
-
+    private JProgressBar barraVida;
     public PanelInformacion(int numero){
-        setSize(getWidth(),300);
+        setSize(getWidth(),500);
         setLayout(new GridLayout(1,3,5,5));
 
         inicializarComponentes(numero);
@@ -19,8 +19,13 @@ public class PanelInformacion extends JPanel {
 
     public void inicializarComponentes(int numero){
         String nMov = String.valueOf(numero);
-        movimientos = new JLabel("Movimientos restantes: "+nMov);
-        add(movimientos);
+
+        barraVida = new JProgressBar(0,numero);
+        barraVida.setValue(numero);
+        barraVida.setForeground(Color.GREEN);
+        barraVida.setStringPainted(true);
+        barraVida.setString("Movimientos restantes: "+nMov);
+        add(barraVida);
 
         aviso = new JLabel("Cada vez que abras el tutorial tendras una penalización de 5 movimientos");
         add(aviso);
@@ -47,6 +52,19 @@ public class PanelInformacion extends JPanel {
         this.tutorial = tutorial;
     }
 
+    public JLabel getAviso() {
+        return aviso;
+    }
 
+    public void setAviso(JLabel aviso) {
+        this.aviso = aviso;
+    }
 
+    public JProgressBar getBarraVida() {
+        return barraVida;
+    }
+
+    public void setBarraVida(JProgressBar barraVida) {
+        this.barraVida = barraVida;
+    }
 }
