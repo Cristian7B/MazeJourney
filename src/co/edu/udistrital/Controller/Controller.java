@@ -166,7 +166,6 @@ public class Controller implements ActionListener{
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Todos los valores ingresados deben ser números");
         }
-
     }
 
     public void volver() {

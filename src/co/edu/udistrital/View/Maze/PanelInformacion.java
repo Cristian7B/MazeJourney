@@ -28,8 +28,8 @@ public class PanelInformacion extends JPanel {
         tutorial = new JButton("Tutorial");
         tutorial.setActionCommand("TUTORIAL2");
         add(tutorial);
-    }
 
+    }
 
     public JLabel getMovimientos() {
         return movimientos;

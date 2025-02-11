@@ -109,4 +109,5 @@ public class VentanaPrincipal extends JFrame {
 	public void setPanelTutorialTitulo2(PanelTutorialTitulo panelTutorialTitulo2) {
 		this.panelTutorialTitulo2 = panelTutorialTitulo2;
 	}
+
 }
