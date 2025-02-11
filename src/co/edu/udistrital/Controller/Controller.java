@@ -65,6 +65,8 @@ public class Controller implements ActionListener{
             case "ATRASTUTORIAL2":
                 atrasTutorial2();
                 break;
+            case "REINICIARJUEGO":
+                    reiniciar();
             case "SALIR":
                 salir();
                 break;
@@ -98,6 +100,8 @@ public class Controller implements ActionListener{
     public void jugar() {
         ventanaMenu.setVisible(false);
         ventanaJuego.setVisible(true);
+        ventanaJuego.getSalir().addActionListener(this);
+        ventanaJuego.getReiniciar().setVisible(false);
     }
 
     public void tutorial1()   {
@@ -106,7 +110,7 @@ public class Controller implements ActionListener{
     }
 
     public void tutorial2() throws IOException, FontFormatException {
-        int num = ventanaJuego.mostrarTutorial();
+        ventanaJuego.mostrarTutorial();
         ventanaJuego.getPanelTutorialTitulo2().getAtras().addActionListener(this);
     }
 
@@ -118,6 +122,11 @@ public class Controller implements ActionListener{
         ventanaJuego.cerrarTutorial();
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
     }
+
+    public void reiniciar() {
+
+    }
+
     public void salir () {
         JOptionPane.showMessageDialog(null, "Gracias por jugar");
         System.exit(0);
@@ -159,7 +168,10 @@ public class Controller implements ActionListener{
                         ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
                     }
                 }
+            ventanaJuego.getReiniciar().setVisible(true);
             ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
+            ventanaJuego.getSalir().addActionListener(this);
+            ventanaJuego.getReiniciar().addActionListener(this);
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
             }
