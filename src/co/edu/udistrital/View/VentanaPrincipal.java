@@ -99,12 +99,15 @@ public class VentanaPrincipal extends JFrame {
 		laberinto.setVisible(false);
 		add(panelTutorialTitulo2, BorderLayout.CENTER);
 		panelTutorialTitulo2.setVisible(true);
-		numMovimientos = (numMovimientos - 5);
-		panelInformacion.getBarraVida().setValue(numMovimientos);
-		panelInformacion.getBarraVida().setString("Movimientos restantes: "+numMovimientos);
-		panelTutorialTitulo2.getAtras().setActionCommand("ATRASTUTORIAL2");
+		numMovimientos = panelInformacion.getBarraVida().getValue();
+		numMovimientos -= 5;
 
+		panelInformacion.getBarraVida().setValue(numMovimientos);
+		panelInformacion.getBarraVida().setString("Movimientos restantes: " + numMovimientos);
+
+		panelTutorialTitulo2.getAtras().setActionCommand("ATRASTUTORIAL2");
 	}
+
 	public void cerrarTutorial() {
 		panelTutorialTitulo2.setVisible(false);
 		laberinto.setVisible(true);

@@ -12,7 +12,7 @@ import java.util.Stack;
 public class MazeModel {
     private int filas;
     private int columnas;
-    private CeldaLaberinto[][] grid;
+    private static CeldaLaberinto[][] grid;
     private Random random = new Random();
     /**
      * Metodo encargado de inicializar la matriz
@@ -133,7 +133,7 @@ public class MazeModel {
      *
      * @return una matriz de tipo {@link CeldaLaberinto} que representa el laberinto.
      */
-    public CeldaLaberinto[][] getGrid() {
+    public static CeldaLaberinto[][] getGrid() {
         return grid;
     }
 

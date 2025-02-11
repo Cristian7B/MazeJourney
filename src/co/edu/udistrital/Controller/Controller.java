@@ -1,5 +1,6 @@
 package co.edu.udistrital.Controller;
 
+import co.edu.udistrital.Model.ControlDeMovimientos;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
 import java.awt.*;
@@ -8,55 +9,14 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.*;
 
-/** 
- * Clase encargada de gestionar la union 
- * entre la logica e interfaz del programa.
- */
 public class Controller implements ActionListener{
-
-    /**
-     * Atributo que instancia de VentanaMenu.
-     * 
-     * Se encarga de mostrar el menu principal del 
-     * programa y elegir el tipo de proceso. 
-     */
     private VentanaMenu ventanaMenu;
-    /**
-     * Atributo que instancia VentanaPrincipal.
-     * 
-     * Se encarga de mostrar el panel de juego y 
-     * el panel de eleccion de dificultad.
-     */
     private VentanaPrincipal ventanaJuego;
-
-    /**
-     * Atributo que determina las caracteristias del laberinto.
-     * 
-     * Tiene 5 indices los cuales se utilizan para:
-     * 
-     * {@code informacionParaGenerarMatriz[0]} para la cantidad de filas.
-     * {@code informacionParaGenerarMatriz[1]} para la cantidad de columnas.
-     * {@code informacionParaGenerarMatriz[2]} para el orden en el que se recorrera la matriz.
-     * {@code informacionParaGenerarMatriz[3]} para la cantidad de puntos de control.
-     * {@code informacionParaGenerarMatriz[4]} para la cantidad de bestias en el laberinto.
-     */
     private int[] informacionParaGenerarMatriz;
-    /**
-     * Atributo encargado de determinar el orden en el que se 
-     * recorrera la matriz.
-     */
     private String configPuntos;
+    private static int numMovimientos;
 
-    /**
-     * Metodo constructor de la clase.
-     * 
-     * Este metodo lanza un {@code IOException} si un archivo seleccionado
-     * como fuente de texto no se encuentra.
-     * Este metodo lanza un {@code FontFormatException} si el tipo de formato 
-     * de la fuente de texto no es el correcto.
-     * @throws IOException
-     * @throws FontFormatException
-     */
+
     public Controller() throws IOException, FontFormatException {
         ventanaMenu = new VentanaMenu();
         ventanaJuego = new VentanaPrincipal();
@@ -65,10 +25,7 @@ public class Controller implements ActionListener{
 
         asignarOyentes();
     }
-    /**
-     * Metodo encargado de asignar metodos de escucha a los 
-     * elementos que interactuan directamente con el usuario
-     */
+
     public void asignarOyentes() {
         ventanaMenu.getMenu().getJugar().addActionListener(this);
         ventanaMenu.getMenu().getTutorial().addActionListener(this);
@@ -80,13 +37,9 @@ public class Controller implements ActionListener{
         ventanaJuego.getPanelDificultad().getCheckpoints5().addActionListener(this);
         ventanaJuego.getPanelDificultad().getEnviar().addActionListener(this);
         ventanaJuego.getPanelDificultad().getVolver().addActionListener(this);
-        ventanaJuego.getPanelDificultad().getFacil().addActionListener(this);
-        ventanaJuego.getPanelDificultad().getMedio().addActionListener(this);
-        ventanaJuego.getPanelDificultad().getDificil().addActionListener(this);
 
     }
-    
-    @Override
+
     public void actionPerformed(ActionEvent e) {
         String[] comandoArray = e.getActionCommand().split(" ");
         String comando = comandoArray[0];
@@ -112,6 +65,9 @@ public class Controller implements ActionListener{
             case "ATRASTUTORIAL2":
                 atrasTutorial2();
                 break;
+            case "SALIR":
+                salir();
+                break;
             case "FACIL":
                 facil();
                 break;
@@ -122,9 +78,7 @@ public class Controller implements ActionListener{
                 dificil();
                 break;
             case "REINICIARJUEGO":
-                    reiniciar();
-            case "SALIR":
-                salir();
+                reiniciar();
                 break;
             case "CHECKPOINTS2":
                 checkpoints2();
@@ -142,8 +96,7 @@ public class Controller implements ActionListener{
                 enviar();
                 break;
             case "BOTON":
-                System.out.println("Celda (" + comandoArray[1] + ", " + comandoArray[2] + ") ha sido presionada");
-                System.out.println(ventanaJuego.getLaberinto().getMazeModel().getGrid()[Integer.parseInt(comandoArray[1])][Integer.parseInt(comandoArray[2])].getWalls());
+                modificarPosicion(Integer.parseInt(comandoArray[1]), Integer.parseInt(comandoArray[2]));
                 break;
             case "VOLVER":
                 volver();
@@ -159,6 +112,9 @@ public class Controller implements ActionListener{
         ventanaJuego.setVisible(true);
         ventanaJuego.getSalir().addActionListener(this);
         ventanaJuego.getReiniciar().setVisible(false);
+        ventanaJuego.getPanelDificultad().getFacil().addActionListener(this);
+        ventanaJuego.getPanelDificultad().getMedio().addActionListener(this);
+        ventanaJuego.getPanelDificultad().getDificil().addActionListener(this);
     }
 
 
@@ -209,11 +165,14 @@ public class Controller implements ActionListener{
                 ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
             }
         }
+        ControlDeMovimientos.asignarJugadorPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
+        ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
         ventanaJuego.getReiniciar().setVisible(true);
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
         ventanaJuego.getSalir().addActionListener(this);
         ventanaJuego.getReiniciar().addActionListener(this);
-
     }
     /**
      * Metodo encargado de gestionar la dificultad "Media".
@@ -232,6 +191,10 @@ public class Controller implements ActionListener{
                 ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
             }
         }
+        ControlDeMovimientos.asignarJugadorPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
+        ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
         ventanaJuego.getReiniciar().setVisible(true);
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
         ventanaJuego.getSalir().addActionListener(this);
@@ -255,6 +218,10 @@ public class Controller implements ActionListener{
                 ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
             }
         }
+        ControlDeMovimientos.asignarJugadorPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+        ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
+        ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
         ventanaJuego.getReiniciar().setVisible(true);
         ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
         ventanaJuego.getSalir().addActionListener(this);
@@ -314,7 +281,6 @@ public class Controller implements ActionListener{
      * usuario, para posteriormente almacenarlos.
      */
     public void enviar() {
-
         try {
             informacionParaGenerarMatriz[0] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizFilas().getText());
             informacionParaGenerarMatriz[1] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizColumnas().getText());
@@ -333,10 +299,10 @@ public class Controller implements ActionListener{
                         ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
                     }
                 }
-            ventanaJuego.getReiniciar().setVisible(true);
-            ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
-            ventanaJuego.getSalir().addActionListener(this);
-            ventanaJuego.getReiniciar().addActionListener(this);
+                ControlDeMovimientos.asignarJugadorPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+                ControlDeMovimientos.asignarCarroPosicion(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+                ControlDeMovimientos.asignarCheckPoints(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1],informacionParaGenerarMatriz[3]);
+                ControlDeMovimientos.asignarOrdenCheckPoints(informacionParaGenerarMatriz[2]);
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
             }
@@ -354,11 +320,19 @@ public class Controller implements ActionListener{
         ventanaMenu.setVisible(true);
     }
 
+    public void modificarPosicion(int x, int y) {
+        System.out.println("Posicion actual: " + ControlDeMovimientos.getPosicionJugador()[0] + ", " + ControlDeMovimientos.getPosicionJugador()[1]);
+        System.out.println("Posicion nueva: " + x + ", " + y);
 
+        int jugadorX = ControlDeMovimientos.getPosicionJugador()[0];
+        int jugadorY = ControlDeMovimientos.getPosicionJugador()[1];
 
-
-
-
+        if ((Math.abs(jugadorX - x) == 1 && jugadorY == y) ||
+            (Math.abs(jugadorY - y) == 1 && jugadorX == x)) {
+            numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientosPenalizacion(ControlDeMovimientos.moverJugador(x, y));
+            numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientos();
+        }
+    }
 
     public VentanaMenu getVentanaMenu() {
         return ventanaMenu;
@@ -375,8 +349,6 @@ public class Controller implements ActionListener{
     public void setVentanaJuego(VentanaPrincipal ventanaJuego) {
         this.ventanaJuego = ventanaJuego;
     }
-
-
 
     public int[] getInformacionParaGenerarMatriz() {
         return informacionParaGenerarMatriz;

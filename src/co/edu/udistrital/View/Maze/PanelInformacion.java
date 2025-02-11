@@ -35,7 +35,21 @@ public class PanelInformacion extends JPanel {
         add(tutorial);
 
     }
+    public int modificarMovimientos() {
+        int numero = barraVida.getValue();
+        numero = numero - 1;
+        barraVida.setValue(numero);
+        barraVida.setString("Movimientos restantes: "+numero);
+        return numero;
+    }
 
+    public int modificarMovimientosPenalizacion(int penalizacion) {
+        int numero = barraVida.getValue();
+        numero = numero - penalizacion;
+        barraVida.setValue(numero);
+        barraVida.setString("Movimientos restantes: "+numero);
+        return numero;
+    }
     public JLabel getMovimientos() {
         return movimientos;
     }
