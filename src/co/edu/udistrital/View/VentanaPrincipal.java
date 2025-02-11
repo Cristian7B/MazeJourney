@@ -20,9 +20,12 @@ public class VentanaPrincipal extends JFrame {
 	private PanelDificultad panelDificultad;
 
 	/**
-	 * Metodo constructor de la clase.
+	 * Atributo encargado de organizar el contenido de los paneles.
 	 */
 	private JLayeredPane layeredPane;
+	/**
+	 * Atributo encargado de generar el 
+	 */
 	private MazeMatriz laberinto;
 	private PanelInformacion panelInformacion;
 	private JMenuBar menuBar;

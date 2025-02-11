@@ -388,7 +388,14 @@ public class Controller implements ActionListener{
         ventanaJuego.setVisible(false);
         ventanaMenu.setVisible(true);
     }
-
+    /**
+     * Metodo encargado de modificar la posicion del jugador 
+     * en la matriz del juego.
+     * @param x
+     * Fila en la que se encuentra el jugador.
+     * @param y
+     * Columna en la que se encuentra el jugador.
+     */
     public void modificarPosicion(int x, int y) {
         int jugadorX = ControlDeMovimientos.getPosicionJugador()[0];
         int jugadorY = ControlDeMovimientos.getPosicionJugador()[1];
@@ -400,27 +407,58 @@ public class Controller implements ActionListener{
         }
     }
 
+    /**
+     * Obtiene el valor del atributo `ventanaMenu`.
+     * 
+     * @return La ventana del menú actual (de tipo `VentanaMenu`).
+     */
     public VentanaMenu getVentanaMenu() {
         return ventanaMenu;
     }
 
+    /**
+     * Establece el valor del atributo `ventanaMenu`.
+     * 
+     * @param ventanaMenu El valor deseado para la ventana del menú.
+     */
     public void setVentanaMenu(VentanaMenu ventanaMenu) {
         this.ventanaMenu = ventanaMenu;
     }
 
+    /**
+     * Obtiene el valor del atributo `ventanaJuego`.
+     * 
+     * @return La ventana del juego actual (de tipo `VentanaPrincipal`).
+     */
     public VentanaPrincipal getVentanaJuego() {
         return ventanaJuego;
     }
 
+    /**
+     * Establece el valor del atributo `ventanaJuego`.
+     * 
+     * @param ventanaJuego El valor deseado para la ventana del juego.
+     */
     public void setVentanaJuego(VentanaPrincipal ventanaJuego) {
         this.ventanaJuego = ventanaJuego;
     }
 
+    /**
+     * Obtiene el valor del atributo `informacionParaGenerarMatriz`.
+     * 
+     * @return Un arreglo de enteros que contiene la información necesaria para generar la matriz.
+     */
     public int[] getInformacionParaGenerarMatriz() {
         return informacionParaGenerarMatriz;
     }
 
+    /**
+     * Establece el valor del atributo `informacionParaGenerarMatriz`.
+     * 
+     * @param informacionParaGenerarMatriz Un arreglo de enteros con la información para generar la matriz.
+     */
     public void setInformacionParaGenerarMatriz(int[] informacionParaGenerarMatriz) {
         this.informacionParaGenerarMatriz = informacionParaGenerarMatriz;
     }
+
 }

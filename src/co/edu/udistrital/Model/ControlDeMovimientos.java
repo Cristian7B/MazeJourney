@@ -1,21 +1,47 @@
 package co.edu.udistrital.Model;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.Random;
+import javax.swing.*;
 
 /**
- * Clase encargada de el control de movimientos
+ * Clase encargada del control de movimientos
  * del jugador y los elementos dentro de la matriz de juego.
  */
 public class ControlDeMovimientos {
+    /**
+     * Atributo que contiene la ubicacion de los checkpoints en el laberinto.
+     */
     private static int[][] checkpointsPosicion;
+    /**
+     * Atributo que contiene la condicion de los 
+     * checkpoints (encontrado o no encontrado).
+     */
     private static boolean[] checkpointsEncontrados;
+    /**
+     * Atributo que contiene la ubicacion del jugador en el laberinto. 
+     */
     private static int[] posicionJugador;
+    /**
+     * Atributo que contiene la ubicacion del carro en el laberinto.
+     */
     private static int[] posicionCarro;
+    /**
+     * Atributo que contiene el numero de filas de la matriz.
+     */
     private static int numeroFilasGlobal;
+    /**
+     * Atributo que contiene la condicion del carro
+     * (en el carro o no).
+     */
     private static boolean jugadorEnCarro = false;
-
+    /**
+     * Metodo que genera la posicion del jugador en el laberinto.
+     * 
+     * @param numeroFilas
+     * Las filas de la matriz del laberinto.
+     * @param numeroColumnas
+     * Las columnas de la matriz del laberinto.
+     */
     public static void asignarJugadorPosicion(int numeroFilas, int numeroColumnas) {
         Random rand = new Random();
         posicionJugador = new int[2];
@@ -33,7 +59,14 @@ public class ControlDeMovimientos {
         JButton botonJugador = MazeModel.getGrid()[x][y];
         setButtonGifJpg(botonJugador, pathToGif);
     }
-
+    /**
+     * Metodo que genera la posicion del carro en el laberinto.
+     * 
+     * @param numeroFilas
+     * Numero de filas de la matriz del laberinto.
+     * @param numeroColumnas
+     * Numero de columnas de la matriz del laberinto
+     */
     public static void asignarCarroPosicion(int numeroFilas, int numeroColumnas) {
         Random rand = new Random();
         posicionCarro = new int[2];
@@ -55,7 +88,17 @@ public class ControlDeMovimientos {
         setButtonGifJpg(botonCarro, pathToGif);
     }
 
-
+    
+    /**
+     * Metodo que asigna la posicion y la cantidad de los checkpoints.
+     * 
+     * @param numeroFilas
+     * Cantidad de filas en la matriz de juego.
+     * @param numeroColumnas
+     * Cantidad de columnas en la matriz de juego.
+     * @param numeroCheckPoints
+     * Cantidad de checkpoints en la matriz de juego.
+     */
     public static void asignarCheckPoints(int numeroFilas, int numeroColumnas, int numeroCheckPoints) {
         checkpointsPosicion = new int[numeroCheckPoints][2];
         checkpointsEncontrados = new boolean[numeroCheckPoints];
@@ -82,6 +125,13 @@ public class ControlDeMovimientos {
         }
 
     }
+    /**
+     * Metodo encargado de gestionar el orden en el que se recorren los checkpoints.
+     * 
+     * @param ordenDefinido El orden por el que se recorren los checpoints
+     *  Si tiene el valor de 1, se recorre en orden.
+     *  Si tiene el valor de 2, se recorre en orden inverso.
+     */
     public static void asignarOrdenCheckPoints(int ordenDefinido) {
         if(ordenDefinido != 1) {
             for (int i = 0; i < checkpointsEncontrados.length / 2; i++) {
@@ -96,7 +146,9 @@ public class ControlDeMovimientos {
 
         }
     }
-
+    /**
+     * Metodo encargado de colocar las imagenes a los checkpoints.
+     */
     public static void renderizarCheckpoints() {
         for(int i = 0; i < checkpointsPosicion.length; i++) {
             if(!checkpointsEncontrados[i]) {
@@ -106,7 +158,18 @@ public class ControlDeMovimientos {
             }
         }
     }
-
+    /**
+     * Metodo encargado de colocar el tamaño de las imagenes, segun 
+     * la cantidad de filas de la matriz.
+     * 
+     * @param numeroFilas
+     * La cantidad de filas de la matriz.
+     * @param fileName
+     * El nombre del archivo de la imagen del personaje.
+     * @param extension
+     * El nombre de la extension del archivo.
+     * @return  la imagen ajustada al tamaño correcto.
+     */
     public static String pathToGifImageFunction(int numeroFilas, String fileName, String extension) {
         String pathToGif = "";
         if(numeroFilas >= 5 && numeroFilas < 10) {
@@ -118,7 +181,11 @@ public class ControlDeMovimientos {
         }
         return pathToGif;
     }
-
+    /**
+     * 
+     * @param button
+     * @param gifPath
+     */
     private static void setButtonGifJpg(JButton button, String gifPath) {
         ImageIcon gifIcon = new ImageIcon(ControlDeMovimientos.class.getResource(gifPath));
         button.setIcon(gifIcon);
@@ -127,7 +194,15 @@ public class ControlDeMovimientos {
             int height = button.getHeight();
         });
     }
-
+    /**
+     * Metodo encargado de cambiar la posicion del jugador.
+     * @param x
+     * La fila en la que se encuentra el jugador.
+     * @param y
+     * La columna en la que se encuentra el jugador.
+     * @return
+     * La nueva posicion del jugador.
+     */
     public static int moverJugador(int x, int y) {
         JButton botonJugador = MazeModel.getGrid()[posicionJugador[0]][posicionJugador[1]];
         botonJugador.setIcon(null);
