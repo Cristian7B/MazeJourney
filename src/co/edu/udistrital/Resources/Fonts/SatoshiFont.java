@@ -1,11 +1,11 @@
-package co.edu.udistrital.Fonts;
+package co.edu.udistrital.Resources.Fonts;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class CabinetFontExtraBold {
-    private static Font cabinetFontExtraBold;
+public class SatoshiFont {
+    private static Font satoshiFont;
      /**
      * Metodo encargado de transformar el archivo de texto plano en
      * una fuente utilizable por el programa.
@@ -17,9 +17,9 @@ public class CabinetFontExtraBold {
      * @throws IOException
      * @throws FontFormatException
      */
-    public static Font getCabinetFontExtraBold(float size) throws IOException, FontFormatException {
-        File archivoFont = new File("src/co/edu/udistrital/Fonts/CabinetGrotesk-Extrabold.otf");
-        cabinetFontExtraBold = Font.createFont(Font.TRUETYPE_FONT, archivoFont).deriveFont(size);
-        return cabinetFontExtraBold;
+    public static Font getSatoshiFont(float size) throws IOException, FontFormatException {
+        File archivoFont = new File("src/co/edu/udistrital/Resources/Fonts/Files/Satoshi-Medium.otf");
+        satoshiFont = Font.createFont(Font.TRUETYPE_FONT, archivoFont).deriveFont(size);
+        return satoshiFont;
     }
 }

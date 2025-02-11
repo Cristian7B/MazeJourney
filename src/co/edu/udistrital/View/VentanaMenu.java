@@ -4,6 +4,12 @@ import co.edu.udistrital.View.PanelsMenu.PanelIconNameMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelImagenMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelMenu;
 import co.edu.udistrital.View.PanelsMenu.PanelTitleMenu;
+<<<<<<< HEAD
+=======
+import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
+
+import javax.swing.*;
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -35,6 +41,7 @@ public class VentanaMenu extends JFrame {
 	 * Atributo encargado de mostrar el nombre del programa y su icono
 	 */
 	private PanelIconNameMenu panelIconNameMenu;
+	private PanelTutorialTitulo panelTutorialTitulo1;
 
 	/**
 	 * Metodo contructor de la clase
@@ -69,6 +76,8 @@ public class VentanaMenu extends JFrame {
 		imagenMenu = new PanelImagenMenu();
 		imagenMenu.setBounds(0, 0, getWidth(), getHeight());
 		imagenMenu.setOpaque(true);
+
+		panelTutorialTitulo1 = new PanelTutorialTitulo();
 
 		panelIconNameMenu = new PanelIconNameMenu();
 		panelIconNameMenu.setBounds(27, 15, 300, 200);
@@ -121,11 +130,31 @@ public class VentanaMenu extends JFrame {
 		panelTitleMenu.setBounds(titleX, titleY, titleWidth, titleHeight);
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Metodo encargado acceder a un atributo.
 	 * regresa el PanelMenu llamado menu.
 	 * @return
 	 */
+=======
+	public void mostrarTutorial()  {
+		panelTutorialTitulo1.setBounds(0, 0, getWidth(), getHeight());
+		panelTutorialTitulo1.setOpaque(false);
+		layeredPane.removeAll();
+		layeredPane.add(panelTutorialTitulo1, Integer.valueOf(0));
+	}
+
+	public void cerrarTutorial() {
+		layeredPane.removeAll();
+		layeredPane.add(imagenMenu, Integer.valueOf(0));
+		layeredPane.add(panelIconNameMenu, Integer.valueOf(1));
+		layeredPane.add(panelTitleMenu, Integer.valueOf(1));
+		layeredPane.add(menu, Integer.valueOf(1));
+
+	}
+
+
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 	public PanelMenu getMenu() {
 		return menu;
 	}
@@ -135,5 +164,47 @@ public class VentanaMenu extends JFrame {
 	 */
 	public void setMenu(PanelMenu menu) {
 		this.menu = menu;
+	}
+
+	public PanelImagenMenu getImagenMenu() {
+		return imagenMenu;
+	}
+
+	public void setImagenMenu(PanelImagenMenu imagenMenu) {
+		this.imagenMenu = imagenMenu;
+	}
+
+	@Override
+	public JLayeredPane getLayeredPane() {
+		return layeredPane;
+	}
+
+	@Override
+	public void setLayeredPane(JLayeredPane layeredPane) {
+		this.layeredPane = layeredPane;
+	}
+
+	public PanelTitleMenu getPanelTitleMenu() {
+		return panelTitleMenu;
+	}
+
+	public void setPanelTitleMenu(PanelTitleMenu panelTitleMenu) {
+		this.panelTitleMenu = panelTitleMenu;
+	}
+
+	public PanelIconNameMenu getPanelIconNameMenu() {
+		return panelIconNameMenu;
+	}
+
+	public void setPanelIconNameMenu(PanelIconNameMenu panelIconNameMenu) {
+		this.panelIconNameMenu = panelIconNameMenu;
+	}
+
+	public PanelTutorialTitulo getPanelTutorialTitulo1() {
+		return panelTutorialTitulo1;
+	}
+
+	public void setPanelTutorialTitulo1(PanelTutorialTitulo panelTutorialTitulo1) {
+		this.panelTutorialTitulo1 = panelTutorialTitulo1;
 	}
 }

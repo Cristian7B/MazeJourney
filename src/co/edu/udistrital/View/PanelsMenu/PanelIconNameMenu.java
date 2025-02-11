@@ -1,6 +1,12 @@
 package co.edu.udistrital.View.PanelsMenu;
 
+<<<<<<< HEAD
 import co.edu.udistrital.Fonts.CabinetFontExtraBold;
+=======
+import co.edu.udistrital.Resources.Fonts.CabinetFontExtraBold;
+
+import javax.swing.*;
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 import java.awt.*;
 import java.io.IOException;
 import javax.swing.*;

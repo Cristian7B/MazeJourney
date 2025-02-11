@@ -1,13 +1,25 @@
 package co.edu.udistrital.View;
 
+<<<<<<< HEAD
 import java.awt.*;
 import javax.swing.JFrame;
+=======
+import co.edu.udistrital.View.Maze.MazeMatriz;
+import co.edu.udistrital.View.Maze.PanelInformacion;
+import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
+
+import java.awt.*;
+import java.io.IOException;
+
+import javax.swing.*;
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 
 /**
  * Clase encargada de gestionar tanto la eleccion de dificultad como la eleccion de dificultad e iniciar el juego
  */
 
 public class VentanaPrincipal extends JFrame {
+<<<<<<< HEAD
 	/**
 	 * Atributo instancia de PanelDificultad
 	 * Encargado de la eleccion de dificultad.
@@ -21,6 +33,14 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Metodo constructor de la clase.
 	 */
+=======
+	private JLayeredPane layeredPane;
+	private PanelDificultad panelDificultad;
+	private MazeMatriz laberinto;
+	private PanelInformacion panelInformacion;
+	private int numMovimientos;
+	private PanelTutorialTitulo panelTutorialTitulo2;
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 	public VentanaPrincipal() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setResizable(false);
@@ -38,18 +58,45 @@ public class VentanaPrincipal extends JFrame {
 	public void inicializarComponentes() {
 		panelDificultad = new PanelDificultad();
 		add(panelDificultad, BorderLayout.CENTER);
+
+		layeredPane = new JLayeredPane();
+		layeredPane.setBounds(0, 0, getWidth(), getHeight());
+
 	}
 
 
 	public void agregarPanelImagenMatriz(int filas, int columnas) {
-		panelImagenMatriz = new PanelImagenMatriz(filas, columnas);
-		add(panelImagenMatriz, BorderLayout.CENTER);
+		this.laberinto = new MazeMatriz(filas,columnas);
+		add(laberinto, BorderLayout.CENTER);
+		numMovimientos = Integer.parseInt(panelDificultad.getTxtdimensionMatrizColumnas().getText())*Integer.parseInt(panelDificultad.getTxtdimensionMatrizFilas().getText());
+		panelInformacion = new PanelInformacion(numMovimientos);
+		add(panelInformacion, BorderLayout.NORTH);
 	}
+<<<<<<< HEAD
 	/**
 	 * Metodo encargado acceder a un atributo.
 	 * regresa el PanelDifucultad panelDificultad.
 	 * @return
 	 */
+=======
+
+	public int mostrarTutorial() throws IOException, FontFormatException {
+		panelTutorialTitulo2 = new PanelTutorialTitulo();
+		laberinto.setVisible(false);
+		add(panelTutorialTitulo2, BorderLayout.CENTER);
+		panelTutorialTitulo2.setVisible(true);
+		numMovimientos = (numMovimientos - 5);
+		panelTutorialTitulo2.getAtras().setActionCommand("ATRASTUTORIAL2");
+		return numMovimientos;
+	}
+	public void cerrarTutorial() {
+		panelTutorialTitulo2.setVisible(false);
+		laberinto.setVisible(true);
+		getContentPane().remove(panelInformacion);
+		panelInformacion = new PanelInformacion(numMovimientos);
+		add(panelInformacion, BorderLayout.NORTH);
+	}
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 	public PanelDificultad getPanelDificultad() {
 		return panelDificultad;
 	}
@@ -61,6 +108,7 @@ public class VentanaPrincipal extends JFrame {
 	public void setPanelDificultad(PanelDificultad panelDificultad) {
 		this.panelDificultad = panelDificultad;
 	}
+<<<<<<< HEAD
 	/**
 	 * Metodo encargado acceder a un atributo.
 	 * regresa el PanelImagenMatriz panelImagenMatriz.
@@ -75,6 +123,48 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	public void setPanelImagenMatriz(PanelImagenMatriz panelImagenMatriz) {
 		this.panelImagenMatriz = panelImagenMatriz;
+=======
+
+	public MazeMatriz getLaberinto() {
+		return laberinto;
 	}
 
+	public void setLaberinto(MazeMatriz laberinto) {
+		this.laberinto = laberinto;
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
+	}
+
+	public PanelInformacion getPanelInformacion() {
+		return panelInformacion;
+	}
+
+	public void setPanelInformacion(PanelInformacion panelInformacion) {
+		this.panelInformacion = panelInformacion;
+	}
+
+	@Override
+	public JLayeredPane getLayeredPane() {
+		return layeredPane;
+	}
+
+	@Override
+	public void setLayeredPane(JLayeredPane layeredPane) {
+		this.layeredPane = layeredPane;
+	}
+
+	public int getNumMovimientos() {
+		return numMovimientos;
+	}
+
+	public void setNumMovimientos(int numMovimientos) {
+		this.numMovimientos = numMovimientos;
+	}
+
+	public PanelTutorialTitulo getPanelTutorialTitulo2() {
+		return panelTutorialTitulo2;
+	}
+
+	public void setPanelTutorialTitulo2(PanelTutorialTitulo panelTutorialTitulo2) {
+		this.panelTutorialTitulo2 = panelTutorialTitulo2;
+	}
 }

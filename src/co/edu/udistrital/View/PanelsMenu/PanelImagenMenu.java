@@ -19,6 +19,7 @@ public class PanelImagenMenu extends JPanel{
     public PanelImagenMenu() {
 
     }
+<<<<<<< HEAD
 
 
     @Override
@@ -30,4 +31,13 @@ public class PanelImagenMenu extends JPanel{
             super.paint(g);
         }
     
+=======
+    public void paint(Graphics g) {
+        Dimension tam = getSize();
+        im = new ImageIcon(getClass().getResource("../../Resources/Imagenes/Wallpaper.png"));
+        g.drawImage(im.getImage(), 0 , 0, tam.width, tam.height, null);
+        setOpaque(false);
+        super.paint(g);
+    }
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 }

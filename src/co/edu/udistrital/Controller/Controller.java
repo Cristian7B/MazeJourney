@@ -1,5 +1,6 @@
 package co.edu.udistrital.Controller;
 
+<<<<<<< HEAD
 import co.edu.udistrital.Model.MatrizDeJuego;
 import co.edu.udistrital.View.VentanaMenu;
 import co.edu.udistrital.View.VentanaPrincipal;
@@ -8,6 +9,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+=======
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import co.edu.udistrital.View.VentanaMenu;
+import co.edu.udistrital.View.VentanaPrincipal;
+
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 import javax.swing.*;
 
 /** 
@@ -30,6 +41,7 @@ public class Controller implements ActionListener{
      * el panel de eleccion de dificultad.
      */
     private VentanaPrincipal ventanaJuego;
+<<<<<<< HEAD
     /**
      * Atributo que instancia VentanaTutorial.
      * 
@@ -47,6 +59,8 @@ public class Controller implements ActionListener{
      * {@code informacionParaGenerarMatriz[3]} para la cantidad de puntos de control.
      * {@code informacionParaGenerarMatriz[4]} para la cantidad de bestias en el laberinto.
      */
+=======
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
     private int[] informacionParaGenerarMatriz;
     /**
      * Atributo encargado de determinar el orden en el que se 
@@ -67,7 +81,6 @@ public class Controller implements ActionListener{
     public Controller() throws IOException, FontFormatException {
         ventanaMenu = new VentanaMenu();
         ventanaJuego = new VentanaPrincipal();
-        ventanaEmeregenteTutorial = new VentanaTutorial();
 
         informacionParaGenerarMatriz = new int[5];
 
@@ -93,13 +106,29 @@ public class Controller implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String comando = e.getActionCommand();
+        String[] comandoArray = e.getActionCommand().split(" ");
+        String comando = comandoArray[0];
         switch (comando) {
             case "JUGAR":
                 jugar();
                 break;
-            case "TUTORIAL":
-                tutorial();
+            case "TUTORIAL1":
+                tutorial1();
+                break;
+            case "TUTORIAL2":
+                try {
+                    tutorial2();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (FontFormatException ex) {
+                    throw new RuntimeException(ex);
+                }
+                break;
+            case "ATRASTUTORIAL1":
+                atrasTutorial1();
+                break;
+            case "ATRASTUTORIAL2":
+                atrasTutorial2();
                 break;
             case "SALIR":
                 salir();
@@ -119,6 +148,10 @@ public class Controller implements ActionListener{
             case "ENVIAR":
                 enviar();
                 break;
+            case "BOTON":
+                System.out.println("Celda (" + comandoArray[1] + ", " + comandoArray[2] + ") ha sido presionada");
+                System.out.println(ventanaJuego.getLaberinto().getMazeModel().getGrid()[Integer.parseInt(comandoArray[1])][Integer.parseInt(comandoArray[2])].getWalls());
+                break;
             case "VOLVER":
                 volver();
                 break;
@@ -132,6 +165,7 @@ public class Controller implements ActionListener{
         ventanaMenu.setVisible(false);
         ventanaJuego.setVisible(true);
     }
+<<<<<<< HEAD
     /**
      * Metodo encargado me mostrar el tutorial
      */
@@ -142,6 +176,28 @@ public class Controller implements ActionListener{
      * Metodo encargado de salir en caso de seleccionar un 
      */
     public void salir() {
+=======
+
+    public void tutorial1()   {
+        ventanaMenu.mostrarTutorial();
+        ventanaMenu.getPanelTutorialTitulo1().getAtras().addActionListener(this);
+    }
+
+    public void tutorial2() throws IOException, FontFormatException {
+        int num = ventanaJuego.mostrarTutorial();
+        ventanaJuego.getPanelTutorialTitulo2().getAtras().addActionListener(this);
+    }
+
+    public void atrasTutorial1(){
+        ventanaMenu.cerrarTutorial();
+    }
+
+    public void atrasTutorial2(){
+        ventanaJuego.cerrarTutorial();
+        ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
+    }
+    public void salir () {
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
         JOptionPane.showMessageDialog(null, "Gracias por jugar");
         System.exit(0);
     }
@@ -163,6 +219,7 @@ public class Controller implements ActionListener{
     }
 
     public void enviar() {
+
         try {
             informacionParaGenerarMatriz[0] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizFilas().getText());
             informacionParaGenerarMatriz[1] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtdimensionMatrizColumnas().getText());
@@ -173,13 +230,15 @@ public class Controller implements ActionListener{
                 informacionParaGenerarMatriz[2]=2;
             }
             informacionParaGenerarMatriz[4] = Integer.parseInt(ventanaJuego.getPanelDificultad().getTxtcantidadBestias().getText());
-            if(MatrizDeJuego.GenerarMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1], informacionParaGenerarMatriz[3],informacionParaGenerarMatriz[4], informacionParaGenerarMatriz[2])) {
+            if(informacionParaGenerarMatriz[0]>4 && informacionParaGenerarMatriz[1]>4 && informacionParaGenerarMatriz[0]<21 && informacionParaGenerarMatriz[1]<21) {
                 ventanaJuego.getPanelDificultad().setVisible(false);
-                ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0], informacionParaGenerarMatriz[1]);
-                ventanaJuego.getPanelImagenMatriz().setFilasMatriz(informacionParaGenerarMatriz[0]);
-                ventanaJuego.getPanelImagenMatriz().setColumnasMatriz(informacionParaGenerarMatriz[1]);
-                ventanaJuego.getPanelImagenMatriz().setVisible(true);
-
+                ventanaJuego.agregarPanelImagenMatriz(informacionParaGenerarMatriz[0],informacionParaGenerarMatriz[1]);
+                for(int i = 0; i < ventanaJuego.getLaberinto().getMazeModel().getGrid().length; i++){
+                    for(int j = 0; j < ventanaJuego.getLaberinto().getMazeModel().getGrid()[0].length; j++){
+                        ventanaJuego.getLaberinto().getMazeModel().getGrid()[i][j].addActionListener(this);
+                    }
+                }
+            ventanaJuego.getPanelInformacion().getTutorial().addActionListener(this);
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al generar la matriz");
             }
@@ -216,13 +275,7 @@ public class Controller implements ActionListener{
         this.ventanaJuego = ventanaJuego;
     }
 
-    public VentanaTutorial getEmergenteTutorial() {
-        return ventanaEmeregenteTutorial;
-    }
 
-    public void setEmergenteTutorial(VentanaTutorial ventanaEmeregenteTutorial) {
-        this.ventanaEmeregenteTutorial = ventanaEmeregenteTutorial;
-    }
 
     public int[] getInformacionParaGenerarMatriz() {
         return informacionParaGenerarMatriz;

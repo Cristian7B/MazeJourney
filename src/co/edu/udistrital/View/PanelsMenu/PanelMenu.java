@@ -1,6 +1,11 @@
 package co.edu.udistrital.View.PanelsMenu;
 
+<<<<<<< HEAD
 import co.edu.udistrital.Fonts.SatoshiFontBold;
+=======
+import co.edu.udistrital.Resources.Fonts.SatoshiFontBold;
+
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 import java.awt.*;
 import java.io.IOException;
 import javax.swing.JButton;
@@ -23,6 +28,7 @@ public class PanelMenu extends JPanel {
 	 * Atributo que almacena el boto encargado de salir del programa.
 	 */
 	private JButton salir;
+<<<<<<< HEAD
 	 /**
      * Metodo constructor de la clase.
      * 
@@ -33,6 +39,9 @@ public class PanelMenu extends JPanel {
      * @throws IOException
      * @throws FontFormatException
      */
+=======
+	private JButton atras;
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 	public PanelMenu() throws IOException, FontFormatException {
 		setLayout(new GridLayout(3,1, 5, 5));
 
@@ -53,7 +62,7 @@ public class PanelMenu extends JPanel {
 		jugar = quitarEstilos("Jugar", "JUGAR");
 		jugar.setBackground(new Color(84, 72, 200));
 
-		tutorial = quitarEstilos("Tutorial", "TUTORIAL");
+		tutorial = quitarEstilos("Tutorial", "TUTORIAL1");
 		tutorial.setBackground(new Color(254, 168, 47));
 
 		salir = quitarEstilos("Salir", "SALIR");
@@ -136,7 +145,12 @@ public class PanelMenu extends JPanel {
 	public void setSalir(JButton salir) {
 		this.salir = salir;
 	}
-	
-	
-	
+
+	public JButton getAtras() {
+		return atras;
+	}
+
+	public void setAtras(JButton atras) {
+		this.atras = atras;
+	}
 }
