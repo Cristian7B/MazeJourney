@@ -1,12 +1,11 @@
 package co.edu.udistrital.View.PanelsMenu;
 
 import co.edu.udistrital.Resources.Fonts.CabinetFontExtraBold;
-import co.edu.udistrital.Resources.Fonts.CabinetFontExtraBold;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import javax.swing.*;
+
 
 /**
  * Clase encargada de agregar el titulo e icono del programa en la ventana principal.
@@ -48,7 +47,7 @@ public class PanelIconNameMenu extends JPanel {
      * @throws IOException
      * @throws FontFormatException
      */
-    public void inicializarComponentes() throws IOException, FontFormatException {
+   public void inicializarComponentes() throws IOException, FontFormatException {
         labelIcon = new JLabel("MazeJourney");
         labelIcon.setFont(CabinetFontExtraBold.getCabinetFontExtraBold(35f));
         labelIcon.setForeground(new Color(0xFFFECB));
@@ -59,5 +58,5 @@ public class PanelIconNameMenu extends JPanel {
 
         add(panelImageIcon);
         add(labelIcon);
-    }
+   }
 }

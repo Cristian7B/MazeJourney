@@ -83,8 +83,8 @@ public class VentanaPrincipal extends JFrame {
 	public void agregarPanelImagenMatriz(int filas, int columnas) {
 		this.laberinto = new MazeMatriz(filas,columnas);
 		add(laberinto, BorderLayout.CENTER);
-		numMovimientosMax = Integer.parseInt(panelDificultad.getTxtdimensionMatrizColumnas().getText())*Integer.parseInt(panelDificultad.getTxtdimensionMatrizFilas().getText());
-		numMovimientos = Integer.parseInt(panelDificultad.getTxtdimensionMatrizColumnas().getText())*Integer.parseInt(panelDificultad.getTxtdimensionMatrizFilas().getText());
+		numMovimientosMax = filas*columnas;
+		numMovimientos = numMovimientosMax;
 		panelInformacion = new PanelInformacion(numMovimientosMax);
 		add(panelInformacion, BorderLayout.NORTH);
 	}

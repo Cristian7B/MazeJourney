@@ -25,6 +25,10 @@ public class PanelDificultad extends JPanel{
     private JButton enviar;
     private JButton volver;
 
+    private JButton facil;
+    private JButton medio;
+    private JButton dificil;
+
     private JButton checkpoints2;
     private JButton checkpoints3;
     private JButton checkpoints4;
@@ -86,6 +90,18 @@ public class PanelDificultad extends JPanel{
 
         txtdimensionMatrizColumnas = new JTextField(12);
         matriz2.add(txtdimensionMatrizColumnas);
+
+        facil = new JButton("Facil");
+        facil.setActionCommand("FACIL");
+        matriz1.add(facil);
+
+        medio = new JButton("Medio");
+        medio.setActionCommand("MEDIO");
+        matriz1.add(medio);
+
+        dificil = new JButton("Dificil");
+        dificil.setActionCommand("DIFICIL");
+        matriz1.add(dificil);
 
         matriz1.setVisible(true);
         matriz2.setVisible(true);
@@ -322,5 +338,28 @@ public class PanelDificultad extends JPanel{
         this.comboConfiguracionPuntos = comboConfiguracionPuntos;
     }
 
+    public JButton getFacil() {
+        return facil;
+    }
+
+    public void setFacil(JButton facil) {
+        this.facil = facil;
+    }
+
+    public JButton getMedio() {
+        return medio;
+    }
+
+    public void setMedio(JButton medio) {
+        this.medio = medio;
+    }
+
+    public JButton getDificil() {
+        return dificil;
+    }
+
+    public void setDificil(JButton dificil) {
+        this.dificil = dificil;
+    }
 }
 
