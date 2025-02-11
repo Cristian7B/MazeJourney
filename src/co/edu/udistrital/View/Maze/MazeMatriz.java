@@ -1,9 +1,11 @@
 package co.edu.udistrital.View.Maze;
 
 import co.edu.udistrital.Model.MazeModel;
-import javax.swing.*;
 import java.awt.*;
-
+import javax.swing.*;
+/**
+ * Clase encargado 
+ */
 public class MazeMatriz extends JPanel {
     private int filas;
     private int columnas;

@@ -1,8 +1,6 @@
 package co.edu.udistrital.View.PanelsMenu;
 
 import co.edu.udistrital.Resources.Fonts.SatoshiFontBold;
-import co.edu.udistrital.Resources.Fonts.SatoshiFontBold;
-
 import java.awt.*;
 import java.io.IOException;
 import javax.swing.JButton;
@@ -22,10 +20,14 @@ public class PanelMenu extends JPanel {
 	 */
 	private JButton tutorial; 
 	/**
-	 * Atributo que almacena el boto encargado de salir del programa.
+	 * Atributo que almacena el boton encargado de salir del programa.
 	 */
 	private JButton salir;
-	 /**
+	/**
+	 * Atributo que almacena el boton encargado de regresar a un punto en el programa.
+	 */
+	private JButton atras;
+	/**
      * Metodo constructor de la clase.
      * 
      * Este metodo lanza un {@code IOException} si un archivo seleccionado
@@ -35,7 +37,6 @@ public class PanelMenu extends JPanel {
      * @throws IOException
      * @throws FontFormatException
      */
-	private JButton atras;
 	public PanelMenu() throws IOException, FontFormatException {
 		setLayout(new GridLayout(3,1, 5, 5));
 
