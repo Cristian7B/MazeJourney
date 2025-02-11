@@ -1,5 +1,9 @@
 package co.edu.udistrital.View;
 
+<<<<<<< HEAD
+import java.awt.*;
+import javax.swing.JFrame;
+=======
 import co.edu.udistrital.View.Maze.MazeMatriz;
 import co.edu.udistrital.View.Maze.PanelInformacion;
 import co.edu.udistrital.View.PanelsTutorial.PanelTutorialTitulo;
@@ -8,8 +12,28 @@ import java.awt.*;
 import java.io.IOException;
 
 import javax.swing.*;
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
+
+/**
+ * Clase encargada de gestionar tanto la eleccion de dificultad como la eleccion de dificultad e iniciar el juego
+ */
 
 public class VentanaPrincipal extends JFrame {
+<<<<<<< HEAD
+	/**
+	 * Atributo instancia de PanelDificultad
+	 * Encargado de la eleccion de dificultad.
+	 */
+	private PanelDificultad panelDificultad;
+	/**
+	 * Atributo instancia de PanelImagenMatriz.
+	 * Muestra la matriz de juego.
+	 */
+	private PanelImagenMatriz panelImagenMatriz;
+	/**
+	 * Metodo constructor de la clase.
+	 */
+=======
 	private JLayeredPane layeredPane;
 	private PanelDificultad panelDificultad;
 	private MazeMatriz laberinto;
@@ -22,6 +46,7 @@ public class VentanaPrincipal extends JFrame {
 	private int numMovimientosMax;
 	private int numMovimientos;
 	private PanelTutorialTitulo panelTutorialTitulo2;
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 	public VentanaPrincipal() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setResizable(false);
@@ -33,6 +58,9 @@ public class VentanaPrincipal extends JFrame {
 		setVisible(false);
 	}
 	
+	/**
+	 * Metodo encargado de inicializar los componentes de la ventana principal.
+	 */
 	public void inicializarComponentes() {
 		panelDificultad = new PanelDificultad();
 		add(panelDificultad, BorderLayout.CENTER);
@@ -60,6 +88,7 @@ public class VentanaPrincipal extends JFrame {
 
 	}
 
+
 	public void agregarPanelImagenMatriz(int filas, int columnas) {
 		this.laberinto = new MazeMatriz(filas,columnas);
 		add(laberinto, BorderLayout.CENTER);
@@ -68,6 +97,13 @@ public class VentanaPrincipal extends JFrame {
 		panelInformacion = new PanelInformacion(numMovimientosMax);
 		add(panelInformacion, BorderLayout.NORTH);
 	}
+<<<<<<< HEAD
+	/**
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el PanelDifucultad panelDificultad.
+	 * @return
+	 */
+=======
 
 	public void mostrarTutorial() throws IOException, FontFormatException {
 		panelTutorialTitulo2 = new PanelTutorialTitulo();
@@ -89,13 +125,34 @@ public class VentanaPrincipal extends JFrame {
 		panelInformacion.getBarraVida().setString("Movimientos restantes: "+numMovimientos);
 		add(panelInformacion, BorderLayout.NORTH);
 	}
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 	public PanelDificultad getPanelDificultad() {
 		return panelDificultad;
 	}
 
+	/**
+	 * Metodo que cambia el valor del atributo panelDifitultad.
+	 * @param panelDificultad	El valor deseado del atributo panelDifitultad.
+	 */
 	public void setPanelDificultad(PanelDificultad panelDificultad) {
 		this.panelDificultad = panelDificultad;
 	}
+<<<<<<< HEAD
+	/**
+	 * Metodo encargado acceder a un atributo.
+	 * regresa el PanelImagenMatriz panelImagenMatriz.
+	 * @return
+	 */
+	public PanelImagenMatriz getPanelImagenMatriz() {
+		return panelImagenMatriz;
+	}
+	/**
+	 * Metodo que cambia el valor del atributo panelImagenMatriz.
+	 * @param panelImagenMatriz	El valor deseado del atributo panelImagenMatriz.
+	 */
+	public void setPanelImagenMatriz(PanelImagenMatriz panelImagenMatriz) {
+		this.panelImagenMatriz = panelImagenMatriz;
+=======
 
 	public MazeMatriz getLaberinto() {
 		return laberinto;
@@ -103,6 +160,7 @@ public class VentanaPrincipal extends JFrame {
 
 	public void setLaberinto(MazeMatriz laberinto) {
 		this.laberinto = laberinto;
+>>>>>>> 85107bdceed95ee9da1e3c30c6be632f9032de7a
 	}
 
 	public PanelInformacion getPanelInformacion() {
