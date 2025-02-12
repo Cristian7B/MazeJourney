@@ -81,13 +81,14 @@ public class ControlDeMovimientos {
             int x = rand.nextInt(numeroFilas);
             int y = rand.nextInt(numeroColumnas);
 
-            while((x == posicionJugador[0] && y == posicionJugador[1]) || (x == posicionCarro[0] && y == posicionCarro[1])) {
+            while((x == posicionJugador[0] && y == posicionJugador[1]) || (x == posicionCarro[0] && y == posicionCarro[1]) || estaEnCheckpoints(x, y)) {
                 x = rand.nextInt(numeroFilas);
                 y = rand.nextInt(numeroColumnas);
             }
 
             JButton botonCheckPoint = MazeModel.getGrid()[x][y];
-            String pathToImage = pathToGifImageFunction(numeroFilas, "Checkpoint", ".png");
+            String stringCheckpoint = "Checkpoint" + (i+1) + "-";
+            String pathToImage = pathToGifImageFunction(numeroFilas, stringCheckpoint, ".png");
             setButtonGifJpg(botonCheckPoint, pathToImage);
 
             checkpointsPosicion[i][0] = x;
@@ -141,31 +142,47 @@ public class ControlDeMovimientos {
 
     public static void moverBestiasUnaCasilla() {
         Random rand = new Random();
-        for(int i = 0; i < bestiasPosicionMover.length; i++) {
-
+        for (int i = 0; i < bestiasPosicionMover.length; i++) {
             int x = bestiasPosicionMover[i][0];
             int y = bestiasPosicionMover[i][1];
 
             JButton botonBestia = MazeModel.getGrid()[x][y];
             botonBestia.setIcon(null);
 
-            int num = rand.nextInt(3) - 1;
-            if(x+num > 0 && x+num < numeroFilasGlobal) {
-                bestiasPosicionMover[i][0] = x + num;
-            }
-            if(y+num > 0 && y+num < numeroFilasGlobal) {
-                bestiasPosicionMover[i][1] = y + num;
-            }
-            botonBestia = MazeModel.getGrid()[bestiasPosicionMover[i][0]][bestiasPosicionMover[i][1]];
+            int newX, newY;
+            do {
+                int num = rand.nextInt(3) - 1;
+                newX = x + num;
+                newY = y + num;
+            } while (newX < 0 || newY < 0 ||
+                    newX >= numeroFilasGlobal || newY >= numeroFilasGlobal ||
+                    (newX == posicionJugador[0] && newY == posicionJugador[1]) ||
+                    (newX == posicionCarro[0] && newY == posicionCarro[1]) ||
+                    (newX == x && newY == y) ||
+                    estaEnCheckpoints(newX, newY));
+
+            bestiasPosicionMover[i][0] = newX;
+            bestiasPosicionMover[i][1] = newY;
+
+            botonBestia = MazeModel.getGrid()[newX][newY];
 
             String pathToImage = "";
-            if(i%2 == 0) {
+            if (i % 2 == 0) {
                 pathToImage = pathToGifImageFunction(numeroFilasGlobal, "Letal", ".png");
             } else {
                 pathToImage = pathToGifImageFunction(numeroFilasGlobal, "Tormentoso", ".png");
             }
             setButtonGifJpg(botonBestia, pathToImage);
         }
+    }
+
+    private static boolean estaEnCheckpoints(int newX, int newY) {
+        for (int[] checkpoint : checkpointsPosicion) {
+            if (checkpoint[0] == newX && checkpoint[1] == newY) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static int verificarSiEstaEnCasillaAdyacenteBestiayJugador() {
@@ -176,7 +193,7 @@ public class ControlDeMovimientos {
                     JOptionPane.showMessageDialog(null, "Has sido atrapado por una bestia, has perdido");
                     System.exit(0);
                 } else {
-                    return (int) Math.floor(0.95 * VentanaPrincipal.getNumMovimientos());
+                    return (int) Math.floor(0.05 * VentanaPrincipal.getNumMovimientos());
                 }
             }
 
@@ -186,9 +203,10 @@ public class ControlDeMovimientos {
 
     public static void renderizarCheckpoints() {
         for(int i = 0; i < checkpointsPosicion.length; i++) {
+            String stringCheckpoint = "Checkpoint" + (i+1) + "-";
             if(!checkpointsEncontrados[i]) {
                 JButton botonCheckPoint = MazeModel.getGrid()[checkpointsPosicion[i][0]][checkpointsPosicion[i][1]];
-                String pathToImage = pathToGifImageFunction(numeroFilasGlobal, "Checkpoint", ".png");
+                String pathToImage = pathToGifImageFunction(numeroFilasGlobal, stringCheckpoint, ".png");
                 setButtonGifJpg(botonCheckPoint, pathToImage);
             }
         }

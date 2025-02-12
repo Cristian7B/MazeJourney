@@ -404,17 +404,19 @@ public class Controller implements ActionListener{
         int jugadorX = ControlDeMovimientos.getPosicionJugador()[0];
         int jugadorY = ControlDeMovimientos.getPosicionJugador()[1];
 
-        if ((Math.abs(jugadorX - x) == 1 && jugadorY == y) ||
-            (Math.abs(jugadorY - y) == 1 && jugadorX == x)) {
-            numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientosPenalizacion(ControlDeMovimientos.moverJugador(x, y));
-            numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientos();
-            numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientosPenalizacion(ControlDeMovimientos.verificarSiEstaEnCasillaAdyacenteBestiayJugador());
-            if(numMovimientos <= 0) {
-                JOptionPane.showMessageDialog(null, "Te has quedado sin movimientos 😥.");
-                System.exit(0);
+        if(jugadorY != y || jugadorX != x) {
+            if ((Math.abs(jugadorX - x) == 1 && jugadorY == y) ||
+                (Math.abs(jugadorY - y) == 1 && jugadorX == x)) {
+                numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientosPenalizacion(ControlDeMovimientos.moverJugador(x, y));
+                numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientos();
+                if(numMovimientos <= 0) {
+                    JOptionPane.showMessageDialog(null, "Te has quedado sin movimientos 😥.");
+                    System.exit(0);
+                }
+                ControlDeMovimientos.verificarGanador();
+                ControlDeMovimientos.moverBestiasUnaCasilla();
+                numMovimientos = ventanaJuego.getPanelInformacion().modificarMovimientosPenalizacion(ControlDeMovimientos.verificarSiEstaEnCasillaAdyacenteBestiayJugador());
             }
-            ControlDeMovimientos.verificarGanador();
-            ControlDeMovimientos.moverBestiasUnaCasilla();
         }
     }
 
